@@ -4,7 +4,7 @@ Published UK gas and electricity siteworks prices, with clickable context and so
 
 Live page: https://suman1-cpu.github.io/siteworks-price-book/
 
-Apple-inspired interface with system, light and dark appearances. The free Zen ask box uses matched price rows. Optional online search is limited to UK siteworks and energy broker fees and shows source links. Search snippets are leads to verify. Missing broker tariffs are not treated as zero; London examples show underlying work components and exclude unknown broker fees.
+Apple-inspired interface with system, light and dark appearances. The free Zen ask box uses matched price rows and replies in English only. Optional online search is limited to UK siteworks and energy broker fees and shows source links. Search snippets are leads to verify. Missing broker tariffs are not treated as zero; London examples show underlying work components and exclude unknown broker fees.
 
 Last checked 01/10/2026. Refresh manually when asked. No scheduled jobs. VAT basis is shown per source.
 

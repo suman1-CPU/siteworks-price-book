@@ -11,7 +11,7 @@ const U='https://siteworks-relay.saumya-siteworks.workers.dev';
 const T=[["gas disconnection 90mm pipe East Midlands?","2,391"],["125mm disconnection North London?","3,360"],["Move a gas pipe 6 metres in the North West, total?","1,482"],
 ["new gas connection West Midlands 5 metres private land","2,783"],["U25 install with housing?","1,202.57"],["180mm gas disconnection East of England","3,837"],
 ["gas alteration fixed charge East Midlands","679"],["U65 meter removal","573.12"],["new gas connection North West 10 metres customer digs","2,302"],["gas disconnection 63mm West Midlands","1,393"],
-["U40 meter removal kitna hai?","423.94"],["disconnect electricity overhead cable london","640"]];
+["How much does U40 meter removal cost?","423.94"],["disconnect electricity overhead cable london","640"]];
 const mode=process.argv[2], models=process.argv.slice(3);
 if(mode==='rows'){for(const [q] of T)console.log(pick(q,'').length,'rows <-',q);process.exit()}
 for(const model of models){
