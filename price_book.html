@@ -389,7 +389,7 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
   chart();draw();
 
   // Ask box: talks to the relay, which holds the key and calls a free OpenCode model.
-  var RELAY='';
+  var RELAY='https://siteworks-relay.saumya-siteworks.workers.dev';
   var host=location.hostname;
   if(RELAY&&(/(^|\.)github\.io$/.test(host)||host==='localhost'||host==='127.0.0.1')){
     var hist=[], busy=false;
@@ -417,7 +417,7 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
       b.addEventListener('click',function(){ask(t)});$('eg').appendChild(b);
     });
     $('askform').addEventListener('submit',function(e){e.preventDefault();ask($('askq').value)});
-    $('ask').hidden=false;
+    fetch(RELAY).then(function(res){return res.json()}).then(function(j){if(j&&j.ready)$('ask').hidden=false}).catch(function(){});
   }
 })();
 </script>
