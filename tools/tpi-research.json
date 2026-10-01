@@ -1,7 +1,7 @@
 {
   "checked": "2026-10-01",
   "title": "Broker fees and London budgets",
-  "summary": "Eight energy intermediaries checked. None of the pages reviewed publishes a fixed siteworks arrangement fee. Obtain an itemised quote. The London figures below estimate the underlying work only, using published provider prices or a clearly labelled UK guide proxy.",
+  "summary": "Eight energy intermediaries checked. None of the pages reviewed publishes a fixed siteworks arrangement fee. Obtain an itemised quote. The eight London figures below estimate the underlying work only, using published provider prices or a clearly labelled UK guide proxy.",
   "caution": "Supplier, network and meter-owner charges are separate from a broker's arrangement fee or energy-contract commission. No broker markup or London premium has been invented. A missing published fee does not mean the service is free.",
   "tpis": [
     {
@@ -345,6 +345,35 @@
           "title": "Utility Bidder UK meter installation guide",
           "url": "https://www.utilitybidder.co.uk/compare-business-energy/business-gas-electricity-meters-installation/",
           "type": "TPI primary guide, lower-confidence price proxy",
+          "quote": ""
+        }
+      ]
+    },
+    {
+      "id": "london-three-phase-upgrade",
+      "job": "Single-to-three-phase electricity upgrade",
+      "fuel": "Electricity",
+      "customer": "Home or small business; confirm package scope",
+      "area": "London contractor guide example",
+      "price": "£3,000–£8,000 indicative total; package from £4,995",
+      "min": 3000,
+      "max": 8000,
+      "status": "London contractor guide estimate",
+      "basis": "Electrician247.London publishes £3,000–£8,000 as a realistic total depending on dig length, cable upgrade and metering arrangement. Its separate priced package for a single-to-three-phase DNO upgrade plus new board starts at £4,995 and lists DNO application, dig, cable, new metering and TP&N board. The narrative range and advertised package are distinct examples, not a fixed tariff.",
+      "context": "Provisional London planning estimate, not a confirmed market minimum or maximum. The provider works with homes and small commercial sites. Confirm exact network, supplier-metering, internal-board and broker-arrangement inclusions in an itemised quote. A TPI fee is separate and unpublished; no fixed arrangement-fee range is evidenced. Complex reinforcement or civil works can exceed this guide range.",
+      "vat": "VAT basis not stated on the contractor page; confirm with the provider.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Electrician247.London three-phase upgrade guide and advertised package",
+          "url": "https://electrician247.london/three-phase-supply-london/",
+          "type": "London electrical contractor primary guide and advertised starting price",
+          "quote": "Final cost depends on dig length, cable size, DNO contractor charges and metering arrangement."
+        },
+        {
+          "title": "UKPN upgrade cost and time",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/cost-and-time",
+          "type": "Network primary cost-indication route, no fixed tariff",
           "quote": ""
         }
       ]

@@ -8,6 +8,8 @@ Apple-inspired interface with system, light and dark appearances. The free Zen a
 
 Last checked 01/10/2026. Refresh manually when asked. No scheduled jobs. VAT basis is shown per source.
 
+The question library offers 73 examples from a 76-scenario broker inventory covering supply capacity, metering, connections, isolation, moves, fees and quote calculations, operations and conversation boundaries. Three privacy/abuse scenarios remain test cases only. See `tools/question-coverage.json` and `tools/ask-audit.md`. Matching keeps job comparisons, sizes and follow-up context while rejecting incompatible locations, pressure and supply scopes. London single-to-three-phase conversion uses a checked contractor planning guide, not an observed TPI fee minimum/maximum. Live search failure retains qualified reference sources and an honest status.
+
 ## Build and check
 
 Run from the project folder:
@@ -15,7 +17,7 @@ Run from the project folder:
 ```sh
 ./build.sh
 node tools/bench.mjs rows
-node --test relay/worker.test.mjs
+node --test tools/context.test.mjs relay/worker.test.mjs
 ```
 
 Edit `price_book.html`; `index.html` is built from it. Broker research and assumptions are recorded in `tools/tpi-research.json` and embedded in the page. Keep them in sync when refreshing.
