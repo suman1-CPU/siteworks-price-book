@@ -5,10 +5,11 @@ workers_dev = true
 
 [vars]
 # "1" shows the ask box on the page. Leave "0" until the key is set and a test question works.
-ENABLED = "0"
+ENABLED = "1"
 # Only this page may call the relay.
 ALLOWED_ORIGINS = "https://suman1-cpu.github.io"
-# Free OpenCode Zen models only, tried in order. The first two do not keep or train on the questions.
-MODELS = "space-bunny-free,longcat-2.5-preview-free,big-pickle"
+# Free OpenCode Zen models, tried in order. Tested 01/10/2026: space-bunny-free is the only free model that answers
+# over the API (the others return "FreeTierError", OpenCode-app only). It does not keep or train on the questions.
+MODELS = "space-bunny-free"
 
 # The OpenCode key is a secret, never a var:  npx wrangler secret put OPENCODE_KEY

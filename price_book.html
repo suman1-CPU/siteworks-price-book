@@ -239,7 +239,7 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
   var JOBS=['New connection','Meter install','Meter upgrade','Meter removal','Re-energise / isolate','Disconnection','Alteration / move','Aborted visit'];
   var R=[];
   // fuel, job, cust(D|C|B), network, area, item, price text, sort number, note, from, status(cur|old|unc|quo), source
-  function r(f,j,c,n,a,i,p,num,note,from,st,src){R.push({f:f,j:j,c:c,n:n,a:a,i:i,p:p,num:num,note:note,from:from,st:st,src:src})}
+  function r(f,j,c,n,a,i,p,num,note,from,st,src,sub){R.push({f:f,j:j,c:c,n:n,a:a,i:i,p:p,num:num,note:note,from:from,st:st,src:src,sub:sub||[]})}
   function gbp(v){return '£'+v.toLocaleString('en-GB',{minimumFractionDigits:v%1?2:0,maximumFractionDigits:2})}
 
   var cad=[['north-london','North London',3050,165,774,2157,3235,3360,4322],
@@ -248,9 +248,9 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
            ['west-midlands','West Midlands',2208,115,660,1393,2153,2244,3021],
            ['north-west','North West',1927,125,732,1548,2429,2532,3473]];
   cad.forEach(function(c){
-    r('Gas','New connection','D','Cadent',c[1],'One home, standard job',gbp(c[2]),c[2],'Plus '+gbp(c[3])+' per metre on private land, 70% off that rate if the customer digs. Meter box £58, kiosk £353.','01/04/2026','cur',S.cadNew(c[0]));
-    r('Gas','Alteration / move','D','Cadent',c[1],'Move the service pipe, fixed charge',gbp(c[4]),c[4],'Plus '+gbp(c[3])+' per metre on private land, 70% off if the customer digs. 5% off if your own Gas Safe engineer refits the meter.','01/04/2026','cur',S.cadAlt(c[0]));
-    r('Gas','Disconnection','B','Cadent',c[1],'Service pipe up to 63mm',gbp(c[5]),c[5],'90mm '+gbp(c[6])+', 125mm '+gbp(c[7])+', 180mm '+gbp(c[8])+'. Bigger pipes or intermediate pressure are quoted.','01/04/2026','cur',S.cadDis(c[0]));
+    r('Gas','New connection','D','Cadent',c[1],'One home, standard job',gbp(c[2]),c[2],'Plus '+gbp(c[3])+' per metre on private land, or '+gbp(c[3]*0.3)+' per metre if the customer digs. Meter box £58, kiosk £353.','01/04/2026','cur',S.cadNew(c[0]));
+    r('Gas','Alteration / move','D','Cadent',c[1],'Move the service pipe, fixed charge',gbp(c[4]),c[4],'Plus '+gbp(c[3])+' per metre on private land, or '+gbp(c[3]*0.3)+' per metre if the customer digs. 5% off if your own Gas Safe engineer refits the meter.','01/04/2026','cur',S.cadAlt(c[0]));
+    r('Gas','Disconnection','B','Cadent',c[1],'Service pipe up to 63mm',gbp(c[5]),c[5],'90mm '+gbp(c[6])+', 125mm '+gbp(c[7])+', 180mm '+gbp(c[8])+'. Bigger pipes or intermediate pressure are quoted.','01/04/2026','cur',S.cadDis(c[0]),[['Service pipe 90mm',gbp(c[6])],['Service pipe 125mm',gbp(c[7])],['Service pipe 180mm',gbp(c[8])]]);
   });
   r('Gas','New connection','D','Northern Gas Networks','North East, Yorkshire, north Cumbria','One home, main to boundary','£3,022',3022,'Plus £95 per metre on private land, or £20 per metre if the customer digs.','02/04/2026','cur',S.ngn);
   r('Gas','New connection','D','Wales & West Utilities','Wales and South West','One home, up to 10m in the road','£1,443',1443,'£856 if the customer digs on private land, £769 with no private land. Plus £131 per metre past 10m. The network says the full cost is typically £3,500 to £3,800 before its allowance.','03/03/2025','old',S.wwu);
@@ -258,9 +258,9 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
   r('Gas','New connection','D','SGN','Scotland','New housing, 3 to 10 plots','£1,321',1321,'Per plot. £803 for each extra plot from 11 to 250.','03/04/2024','old',S.sgnC);
   r('Gas','New connection','C','All gas networks','Great Britain','Commercial, or over 73,200 kWh a year','Quote only',null,'No network publishes a price. Apply to the network or an independent connection provider for a quote.','','quo',S.ngn);
 
-  r('Gas','Disconnection','B','Northern Gas Networks','North East, Yorkshire, north Cumbria','Service pipe up to 63mm','£1,234',1234,'In a footpath or unmade ground. £1,412.50 in a road. 90mm and above are quoted.','02/04/2026','cur',S.ngn);
-  r('Gas','Disconnection','B','Wales & West Utilities','Wales and South West','Service pipe up to 63mm','£977',977,'£510 if the customer digs on private land. 90mm or 125mm £2,360 to £2,623. 180mm £2,992 to £3,492.','03/03/2025','old',S.wwu);
-  r('Gas','Disconnection','B','SGN','Scotland','Service pipe up to 63mm','£917',917,'90mm or 125mm £2,483. 180mm £2,912. The meter must be removed first.','03/04/2024','old',S.sgnC);
+  r('Gas','Disconnection','B','Northern Gas Networks','North East, Yorkshire, north Cumbria','Service pipe up to 63mm','£1,234',1234,'In a footpath or unmade ground. £1,412.50 in a road. 90mm and above are quoted.','02/04/2026','cur',S.ngn,[['Service pipe up to 63mm, in a road','£1,412.50'],['Service pipe 90mm and above','Quote only']]);
+  r('Gas','Disconnection','B','Wales & West Utilities','Wales and South West','Service pipe up to 63mm','£977',977,'£510 if the customer digs on private land. 90mm or 125mm £2,360 to £2,623. 180mm £2,992 to £3,492.','03/03/2025','old',S.wwu,[['Service pipe up to 63mm, customer digs on private land','£510'],['Service pipe 90mm or 125mm','£2,360 unmade ground, £2,623 footpath or road'],['Service pipe 180mm','£2,992 unmade ground, £3,492 footpath or road']]);
+  r('Gas','Disconnection','B','SGN','Scotland','Service pipe up to 63mm','£917',917,'90mm or 125mm £2,483. 180mm £2,912. The meter must be removed first.','03/04/2024','old',S.sgnC,[['Service pipe 90mm or 125mm','£2,483'],['Service pipe 180mm','£2,912']]);
 
   r('Gas','Alteration / move','D','Northern Gas Networks','North East, Yorkshire, north Cumbria','Move the service pipe, first metre','£1,135',1135,'Plus £95 per extra metre. If the customer digs: £674.50 plus £20 per metre. Reconnecting the meter and pipework £192.50.','02/04/2026','cur',S.ngn);
   r('Gas','Alteration / move','D','Wales & West Utilities','Wales and South West','Move the service pipe, fixed charge','£570',570,'Plus £131 per metre, or £18 if the customer digs. Work at the meter end £112. Refit the meter and reconnect up to 3m of pipe £189.','03/03/2025','old',S.wwu);
@@ -268,11 +268,11 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
   r('Gas','Alteration / move','D','SGN','Southern England','Move the meter only, pipe untouched','£188.76',188.76,'Charged by the meter owner to the supplier.','01/06/2026','cur',S.sgnM);
   r('Gas','Alteration / move','D','Wales & West Utilities','Wales and South West','Move the meter indoors, no digging','£297',297,'Up to 2m of new pipe each side of the meter.','03/03/2025','old',S.wwu);
 
-  r('Gas','Meter install','D','SGN','Southern England','Home credit meter','£129.54',129.54,'Prepayment meter £145.39. Swap credit for prepayment or back £131.13. Replace a damaged or stolen meter £108.99.','01/06/2026','cur',S.sgnM);
+  r('Gas','Meter install','D','SGN','Southern England','Home credit meter','£129.54',129.54,'Prepayment meter £145.39. Swap credit for prepayment or back £131.13. Replace a damaged or stolen meter £108.99.','01/06/2026','cur',S.sgnM,[['Home prepayment meter install','£145.39'],['Swap home credit meter for prepayment or back','£131.13'],['Replace a damaged or stolen home meter','£108.99']]);
   var big=[['U16','11 to 21',278.17,859.08,195.94],['U25','21 to 29',344.13,1202.57,211.45],['U40','29 to 51',558.76,1555.71,423.94],
            ['U65','51 to 79',1392.80,3357.43,573.12],['U100','79 to 121',1529.77,3811.15,738.03],['U160','121 and over',1658.69,3958.95,738.03]];
   big.forEach(function(b){
-    r('Gas','Meter install','C','SGN','Southern England',b[0]+' meter ('+b[1]+' cubic metres an hour)',gbp(b[2]),b[2],'Meter only. With a meter housing: '+gbp(b[3])+'.','01/06/2026','cur',S.sgnM);
+    r('Gas','Meter install','C','SGN','Southern England',b[0]+' meter ('+b[1]+' cubic metres an hour)',gbp(b[2]),b[2],'Meter only. With a meter housing: '+gbp(b[3])+'.','01/06/2026','cur',S.sgnM,[[b[0]+' meter install including a meter housing',gbp(b[3])]]);
     r('Gas','Meter removal','C','SGN','Southern England',b[0]+' meter removal',gbp(b[4]),b[4],'Standard low pressure installation.','01/06/2026','cur',S.sgnM);
   });
   r('Gas','Meter upgrade','C','SGN','Southern England','Swap a smaller meter for a bigger one','Install price',null,'Charged at the install price of the new, bigger meter. For example U16 up to U25 is £344.13, up to U40 is £558.76.','01/06/2026','cur',S.sgnM);
@@ -393,13 +393,44 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
   var host=location.hostname;
   if(RELAY&&(/(^|\.)github\.io$/.test(host)||host==='localhost'||host==='127.0.0.1')){
     var hist=[], busy=false;
-    var context=R.map(function(x){
-      return [x.f,x.j,CU[x.c],x.n+', '+x.a,x.i,x.p,x.note,x.from||'-',ST[x.st]].join(' | ');
-    }).join('\n');
+    /*PICK*/
+    var JOBKEYS=[['Disconnection',['disconnect','cut off','cap off']],['Meter removal',['remov','take out']],['Meter upgrade',['upgrade','bigger','upsize']],
+      ['Meter install',['install','exchange','new meter','fit a meter','housing']],['Re-energise / isolate',['energis','energiz','isolat','clamp','switch off','switch on']],
+      ['Alteration / move',['move','moving','alter','relocat','shift']],['Aborted visit',['abort','cancel','turned away','wasted']],['New connection',['new connection','new gas','new electric','new supply','connect']]];
+    var AREAS=[];R.forEach(function(x){(x.a+','+x.n).toLowerCase().split(/,| and /).forEach(function(t){t=t.trim();if(t&&AREAS.indexOf(t)<0)AREAS.push(t)})});
+    AREAS.sort(function(a,b){return b.length-a.length});
+    function detect(q){
+      q=' '+q.toLowerCase()+' ';var d={job:null,fuel:null,areas:[],size:null},rest=q;
+      for(var i=0;i<JOBKEYS.length&&!d.job;i++)if(JOBKEYS[i][1].some(function(k){return q.indexOf(k)>-1}))d.job=JOBKEYS[i][0];
+      if(/\bgas\b/.test(q))d.fuel='Gas';else if(/electric|power|\belec\b/.test(q))d.fuel='Electricity';
+      AREAS.forEach(function(a){if(rest.indexOf(a)>-1){d.areas.push(a);rest=rest.split(a).join(' ')}});
+      var m=q.match(/\bu ?(16|25|40|65|100|160)\b/);if(m)d.size='u'+m[1];
+      return d;
+    }
+    function pick(q,prev){
+      var d=detect(q),p=prev?detect(prev):{areas:[]};
+      var job=d.job||p.job,fuel=d.fuel||p.fuel,areas=d.areas.length?d.areas:p.areas,size=d.size||p.size;
+      function run(useArea,useJob){return R.filter(function(x){
+        if(fuel&&x.f!==fuel)return false;
+        if(useJob&&job&&x.j!==job)return false;
+        if(size&&(x.i+' '+x.note).toLowerCase().indexOf(size)<0)return false;
+        if(useArea&&areas.length){var h=(x.a+','+x.n).toLowerCase();if(!areas.some(function(a){return h.indexOf(a)>-1}))return false}
+        return true})}
+      var rows=run(true,true);if(!rows.length)rows=run(false,true);if(!rows.length)rows=run(true,false);if(!rows.length)rows=R;
+      return rows;
+    }
+    function lines(rows){return rows.map(function(x){
+      var head=['AREA: '+x.a,x.n,x.f,x.j,CU[x.c]], tail=['from '+(x.from||'-'),ST[x.st]];
+      return [head.concat([x.i,'PRICE: '+x.p,x.note],tail).join(' | ')].concat(x.sub.map(function(u){
+        return head.concat([u[0],'PRICE: '+u[1],'-'],tail).join(' | ')})).join('\n');
+    }).join('\n')}
+    /*END*/
     function bubble(cls,text){var d=document.createElement('div');d.className='msg '+cls;d.textContent=text;$('thread').appendChild(d);return d}
     function ask(q){
       q=q.trim();if(!q||busy)return;
       busy=true;$('askgo').disabled=true;$('askq').value='';
+      var prev='';for(var k=hist.length-1;k>=0;k--)if(hist[k].role==='user'){prev=hist[k].content;break}
+      var context=lines(pick(q,prev));
       bubble('me',q);hist.push({role:'user',content:q});
       var w=bubble('bot wait','Looking it up...');
       fetch(RELAY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({context:context,messages:hist.slice(-8)})})

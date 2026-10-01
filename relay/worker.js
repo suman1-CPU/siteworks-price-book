@@ -13,6 +13,8 @@ const SYSTEM = `You answer questions for a UK energy broker about siteworks pric
 
 Rules:
 - Use ONLY the price list below. Never invent or estimate a price that is not in it.
+- Area names must match exactly. North West, West Midlands, East Midlands, East of England and North London are five different areas with different prices. Pick the row whose AREA is the one asked about and name that area in the answer. If no area is given, ask which area or give the range across areas.
+- Take the fixed charge and the per-metre rate from the SAME row. Never mix numbers from two rows.
 - Give the figure first, then the network and area, then say it is before VAT.
 - Say the status of the figure: Current, Older list (probably higher now), Unconfirmed, or No fixed price. Give the "from" date when there is one.
 - Do simple sums when asked, for example fixed charge plus metres times the per-metre rate, and show the sum.
@@ -24,7 +26,7 @@ Rules:
 
 Prices were last checked on 01/10/2026.
 
-PRICE LIST (one per line: fuel | job | who for | network, area | what | price | detail | from | status):
+PRICE LIST (the rows that match the question; one per line: AREA | network | fuel | job | who for | what | PRICE | detail | from date | status):
 `;
 
 const hits = new Map();
@@ -78,14 +80,16 @@ export default {
     if (!context || !turns.length || turns[turns.length - 1].role !== 'user') return out({ error: 'Bad request.' }, 400);
 
     const messages = [{ role: 'system', content: SYSTEM + context }].concat(turns);
-    const models = (env.MODELS || '').split(',').map((s) => s.trim()).filter(Boolean);
+    let models = (env.MODELS || '').split(',').map((s) => s.trim()).filter(Boolean);
+    // A caller may ask for one of the allowed models first (used for testing); anything else is ignored.
+    if (typeof body.model === 'string' && models.includes(body.model)) models = [body.model];
     let detail = 'no models configured';
     for (const model of models) {
       try {
         const res = await fetch(ZEN, {
           method: 'POST',
           headers: { 'Authorization': 'Bearer ' + env.OPENCODE_KEY, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model, messages, max_tokens: 700, temperature: 0.2 }),
+          body: JSON.stringify({ model, messages, max_tokens: 700, temperature: 0 }),
         });
         const data = await res.json().catch(() => null);
         const reply = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
