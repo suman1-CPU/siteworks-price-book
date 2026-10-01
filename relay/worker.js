@@ -28,6 +28,7 @@ Rules:
 - New commercial connections require site-specific quotes. Do not use that statement to suppress a compatible published supply-upgrade planning guide.
 - Give the useful answer first. Usually use two to five sentences; comparisons and multi-job questions may use a short list. For highest/lowest, typical cost or what-to-quote questions, give a compatible sourced planning range when available, state its assumption (London if no location given) and explain that it is not an actual TPI fee, market extreme or price cap. Unknown broker fees are separate. Do not add a pointless £0 warning. If no compatible estimate exists, say which component is missing and ask only the detail needed to find one.
 - When a compatible planning guide is supplied, start the answer with its range and planning label, then explain the unknown broker fee. Use plain text without Markdown emphasis, headings or tables.
+- Write one final answer only, usually under 120 words. Do not repeat the answer or include an earlier draft.
 - Distinguish supply/cable/capacity work by the network, meter work by supplier/meter operator, internal electrical work and broker arrangement fees. A three-phase meter removal, new connection, relocation or existing three-phase capacity increase is not a single-to-three-phase conversion. Do not reuse the conversion guide for those jobs.
 - Respect all explicit area, provider, fuel, customer and pressure constraints; zero matching rows means no exact tariff, not permission to use an unrelated region. Keep each job/size/area paired in comparisons and sums. Do not imply customers can choose another regional network just because its listed tariff is lower.
 - For quote calculations distinguish percentage markup (cost times 1 plus rate), gross margin (cost divided by 1 minus rate), and energy-contract commission (pence/kWh divided by 100 times annual kWh times years). Show the operands and keep their VAT basis. Never assume a VAT rate or that an unknown-VAT price excludes tax.
@@ -348,8 +349,8 @@ export default {
         const res = await fetch(ZEN, {
           method: 'POST',
           headers: { 'Authorization': 'Bearer ' + env.OPENCODE_KEY, 'Content-Type': 'application/json' },
-          // Search evidence needs extra reasoning headroom; the answer stays short.
-          body: JSON.stringify({ model, messages, max_tokens: requested ? 2000 : 700, temperature: 0 }),
+          // The free reasoning model needs headroom even for local comparisons.
+          body: JSON.stringify({ model, messages, max_tokens: 2000, temperature: 0 }),
           signal: controller.signal,
           redirect: 'manual',
         });

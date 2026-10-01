@@ -63,8 +63,7 @@ per-kWh procurement commission, and forbid fabricated exact provider fees.
 London planning estimates may only be repeated when supplied with an explicit
 estimate label, assumptions and basis in the page context.
 
-Zen requests have a 25-second timeout and a 64-KiB response limit. Local lookup
-keeps its 700-token budget; search answers allow 2,000 tokens for reasoning but
+Zen requests have a 25-second timeout and a 64-KiB response limit. Local lookup and search answers both allow 2,000 tokens for reasoning but
 still request a short answer. The free model can occasionally return HTTP 200
 with empty content; that is reported as unavailable while preserving any search
 sources for the page to show. Outbound redirects use `manual` and are rejected;

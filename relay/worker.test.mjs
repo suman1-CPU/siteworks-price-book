@@ -28,7 +28,7 @@ test('local lookup never searches and preserves free model/key/origin boundaries
     assert.equal(url, 'https://opencode.ai/zen/v1/chat/completions');
     const data = JSON.parse(options.body);
     assert.equal(data.model, 'space-bunny-free');
-    assert.equal(data.max_tokens, 700);
+    assert.equal(data.max_tokens, 2000);
     assert.match(data.messages[0].content, /Area names must match exactly/);
     return zenReply();
   }, async (calls) => {

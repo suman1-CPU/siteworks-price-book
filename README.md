@@ -8,7 +8,7 @@ Apple-inspired interface with system, light and dark appearances. The free Zen a
 
 Last checked 01/10/2026. Refresh manually when asked. No scheduled jobs. VAT basis is shown per source.
 
-The question library offers 73 examples from a 76-scenario broker inventory covering supply capacity, metering, connections, isolation, moves, fees and quote calculations, operations and conversation boundaries. Three privacy/abuse scenarios remain test cases only. See `tools/question-coverage.json` and `tools/ask-audit.md`. Matching keeps job comparisons, sizes and follow-up context while rejecting incompatible locations, pressure and supply scopes. London single-to-three-phase conversion uses a checked contractor planning guide, not an observed TPI fee minimum/maximum. Live search failure retains qualified reference sources and an honest status.
+The question library offers 73 examples from a 76-scenario broker inventory covering supply capacity, metering, connections, isolation, moves, fees and quote calculations, operations and conversation boundaries. Three privacy/abuse scenarios remain test cases only. See `tools/question-coverage.json` and `tools/ask-audit.md`. Matching keeps job comparisons, sizes and follow-up context while rejecting incompatible locations, pressure and supply scopes. London single-to-three-phase conversion uses a checked contractor planning guide, not an observed TPI fee minimum/maximum. Live search failure retains qualified reference sources and an honest status. If the free model fails, the UI shows relevant matched source records with an explicit AI-unavailable notice.
 
 ## Build and check
 

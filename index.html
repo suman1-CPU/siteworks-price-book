@@ -525,6 +525,13 @@
     }).join('\n')}
     /*END*/
     function bubble(cls,text){var d=document.createElement('div');d.className='msg '+cls;d.textContent=text;$('thread').appendChild(d);return d}
+    function bookFallback(rows,research){
+      var guides=Object.keys(researchEntries).map(function(key){return researchEntries[key]}).filter(function(x){return research.indexOf(x.job||x.name)>-1});
+      var parts=guides.map(function(x){return (x.job||x.name)+': '+x.price+'. '+x.status+'. '+x.context+' VAT: '+x.vat;});
+      if(!parts.length)parts=rows.slice(0,6).map(function(x){return x.i+': '+x.p+'. '+x.n+', '+x.a+'. '+ST[x.st]+(x.from?' from '+x.from:'')+'. '+x.note+' VAT: '+vatBasis(x);});
+      if(!parts.length)return '';
+      return parts.join('\n\n')+'\n\nThe free AI is unavailable. These are matched source records, not an AI answer; check their scope and source before quoting.';
+    }
     function renderReply(node,reply,sources,search,rows,research,question){
       node.textContent='';
       var answerId=answerContexts.push({reply:reply,sources:sources||[],rows:rows||[],research:research||'',question:question||''})-1;
@@ -543,7 +550,7 @@
       var intent=resolveIntent(q,prior),selected=rowsFor(intent),research=researchFor(q,prev,intent);routingMemory=intent;
       if(/\btpis?\b|broker|intermediar/i.test(q)&&research)selected=[];
       var context='REQUEST MATCH: '+JSON.stringify(intent)+'\nMATCHED PRICE ROWS: '+selected.length+'. Do not substitute another area/provider/job when none match.\n'+research+'\n'+lines(selected)+'\nSOURCE REGISTER (match provider, area and job):\n'+selected.map(function(x){return [x.n,x.a,x.j,'VAT: '+vatBasis(x),'SOURCE URL: '+(safeUrl(x.src)||'unavailable'),'SOURCE TYPE: '+(x.st==='quo'?'quote route only':x.st==='unc'?'unconfirmed, does not verify the figure':'published list')].join(' | ')}).join('\n');
-      bubble('me',q);hist.push({role:'user',content:q});
+      bubble('me',q);hist=requestHistory.slice();hist.push({role:'user',content:q});
       var useSearch=$('askweb').checked;if(/\b(?:do not|don['’]t|without|no)\s+(?:search|online search)|\buse (?:the )?price book only\b/i.test(q)){useSearch=false;$('askweb').checked=false;}
       var w=bubble('bot wait',useSearch?'Searching UK siteworks sources...':'Looking up the price book...');
       fetch(RELAY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({context:context,messages:requestHistory.concat([{role:'user',content:q}]).slice(-8),search:useSearch})})
@@ -551,9 +558,9 @@
         .then(function(o){
           w.className='msg bot';
           if(o.ok&&o.j.reply){renderReply(w,o.j.reply,o.j.sources,o.j.search,selected,research,q);hist.push({role:'assistant',content:o.j.reply})}
-          else{renderReply(w,(o.j&&o.j.error)||'No answer came back. The prices below still work.',o.j&&o.j.sources,o.j&&o.j.search,selected,research,q);hist.pop();$('askq').value=q;}
+          else{renderReply(w,bookFallback(selected,research)||(o.j&&o.j.error)||'No answer came back. The prices below still work.',o.j&&o.j.sources,o.j&&o.j.search,selected,research,q);$('askq').value=q;}
         })
-        .catch(function(){w.className='msg bot';w.textContent='Could not reach the answer service. The prices below still work. Try again in a minute.';hist.pop();$('askq').value=q;})
+        .catch(function(){w.className='msg bot';renderReply(w,bookFallback(selected,research)||'Could not reach the answer service. The prices below still work. Try again in a minute.',[],{status:'unavailable',message:'The answer service could not be reached; these records come from the price book.'},selected,research,q);$('askq').value=q;})
         .then(function(){busy=false;$('askgo').disabled=false;$('askq').focus()});
     }
     ['New gas connection in North London?','U40 meter: install vs removal?','Cheapest network for a gas disconnection?','Move a gas pipe 6 metres, North West?','London electricity disconnection estimate?','What do other TPI brokers charge for siteworks?','What is a London three-phase upgrade budget?'].forEach(function(t){
