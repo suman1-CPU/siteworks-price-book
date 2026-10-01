@@ -1,0 +1,364 @@
+<title>Siteworks Price Book</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: neo-brutal single look. Yellow title slab, filter board, a wall of price cards grouped by job,
+   then the compare chart and the where-to-find blocks. Gas is yellow and electricity is red, as in UK street-works marking. */
+:root{
+  --bg:#e7e1ff; --card:#ffffff; --ink:#111111; --ink2:#2f2f2f; --muted:#555555;
+  --yellow:#ffd60a; --red:#ff5a4f; --blue:#5b8cff; --green:#3ddc97; --orange:#ffa630; --pink:#ff8fd0;
+  --bd:3px solid var(--ink); --sh:6px 6px 0 var(--ink); --sh-s:3px 3px 0 var(--ink);
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Archivo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"Space Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:28px 64px;display:flex;flex-direction:column;gap:28px}
+a{color:var(--ink);font-weight:700;text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{background:var(--yellow)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;text-transform:uppercase}
+h2{font-size:26px;line-height:1.05}
+.box{background:var(--card);border:var(--bd);box-shadow:var(--sh);padding:18px;min-width:0}
+
+/* title slab */
+.slab{background:var(--yellow);display:flex;flex-direction:column;gap:12px;padding:22px}
+.slab h1{font-size:clamp(34px,8.2vw,76px);line-height:.92;letter-spacing:-1px}
+.slab p{margin:0;max-width:60ch;font-size:16px;font-weight:500}
+.stickers{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:4px}
+.sticker{font-family:var(--mono);font-size:12.5px;font-weight:700;text-transform:uppercase;border:var(--bd);padding:5px 10px;background:var(--card);box-shadow:var(--sh-s)}
+.sticker:nth-child(1){background:var(--green);transform:rotate(-1.5deg)}
+.sticker:nth-child(3){background:var(--pink);transform:rotate(1.2deg)}
+
+/* filter board */
+.board{display:flex;flex-direction:column;gap:14px}
+.search{width:100%;font-family:var(--mono);font-size:15px;color:var(--ink);background:var(--card);border:var(--bd);padding:13px 14px;border-radius:0}
+.search::placeholder{color:var(--muted)}
+.grp{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.lab{font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;width:86px;flex:none}
+.btn{font-family:var(--body);font-size:14px;font-weight:700;color:var(--ink);background:var(--card);border:var(--bd);box-shadow:var(--sh-s);padding:7px 12px;cursor:pointer;border-radius:0}
+.btn small{font-family:var(--mono);font-weight:400;font-size:11.5px;margin-left:5px}
+.btn:hover{background:var(--yellow)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--card);box-shadow:none;transform:translate(3px,3px)}
+.btn.gas[aria-pressed="true"]{background:var(--yellow);color:var(--ink)}
+.btn.elec[aria-pressed="true"]{background:var(--red);color:var(--ink)}
+.tog{display:flex;align-items:center;gap:8px;font-weight:500;cursor:pointer}
+.tog input{width:20px;height:20px;accent-color:var(--ink)}
+.spacer{flex:1}
+
+/* price wall */
+.wall-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px}
+.count{font-family:var(--mono);font-size:13px;font-weight:700}
+.group{display:flex;flex-direction:column;gap:14px}
+.ghead{align-self:flex-start;font-family:var(--display);text-transform:uppercase;font-size:16px;background:var(--ink);color:var(--card);padding:5px 12px}
+.ghead span{font-family:var(--mono);font-size:12.5px;margin-left:8px;color:var(--yellow)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.card{background:var(--card);border:var(--bd);box-shadow:var(--sh);padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0;transition:transform .12s,box-shadow .12s}
+.card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.card.unc{border-style:dashed}
+.top{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tag{font-family:var(--mono);font-size:11.5px;font-weight:700;text-transform:uppercase;border:2px solid var(--ink);padding:1px 7px}
+.tag.gas{background:var(--yellow)} .tag.elec{background:var(--red)} .tag.cust{background:var(--card)}
+.price{font-family:var(--mono);font-weight:700;font-size:30px;line-height:1.05;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.price.txt{font-size:22px}
+.price small{display:block;font-size:11.5px;font-weight:400;color:var(--muted);margin-top:2px}
+.item{font-weight:700;font-size:16px;line-height:1.25}
+.net{font-family:var(--mono);font-size:12.5px}
+.note{font-size:13.5px;color:var(--ink2)}
+.foot{margin-top:auto;padding-top:8px;border-top:2px solid var(--ink);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-family:var(--mono);font-size:12px}
+.st{font-weight:700;text-transform:uppercase;border:2px solid var(--ink);padding:1px 6px}
+.st.cur{background:var(--green)} .st.old{background:var(--orange)} .st.quo{background:var(--card)}
+.st.unc{background:repeating-linear-gradient(45deg,var(--pink) 0 6px,var(--card) 6px 12px)}
+.empty{font-family:var(--display);text-transform:uppercase;font-size:24px;background:var(--pink)}
+.empty p{font-family:var(--body);text-transform:none;font-size:15px;margin:6px 0 0}
+
+/* compare */
+.cmp-top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cmp-top select{font-family:var(--body);font-size:14px;font-weight:700;color:var(--ink);background:var(--card);border:var(--bd);box-shadow:var(--sh-s);padding:8px 10px;max-width:100%;border-radius:0}
+.bars{display:flex;flex-direction:column;gap:12px}
+.bar-row{display:grid;grid-template-columns:200px minmax(0,1fr) 96px;gap:12px;align-items:center}
+.bar-row .name{font-weight:700;font-size:14px;line-height:1.2}
+.bar-row .name small{display:block;font-family:var(--mono);font-weight:400;font-size:11.5px;color:var(--muted)}
+.fill{height:28px;background:var(--blue);border:var(--bd);min-width:10px}
+.bar-row:hover .fill{background:var(--yellow)}
+.bar-row .val{font-family:var(--mono);font-weight:700;font-size:16px;text-align:right;font-variant-numeric:tabular-nums}
+.cmp-note{font-size:13.5px;color:var(--ink2);margin:16px 0 0;max-width:80ch}
+
+/* reading + where */
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px}
+.legend div{font-size:14px;display:flex;flex-direction:column;gap:5px;align-items:flex-start}
+.plain{margin:14px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px;max-width:80ch}
+.where{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.where .box{display:flex;flex-direction:column;gap:8px}
+.where .box:nth-child(1){background:var(--yellow)} .where .box:nth-child(2){background:var(--green)}
+.where .box:nth-child(3){background:var(--red)} .where .box:nth-child(4){background:var(--pink)}
+.where h3{font-size:17px}
+.where ul{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:5px}
+.where a:hover{background:var(--card)}
+code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px solid var(--ink);padding:0 4px}
+.end{font-family:var(--mono);font-size:12px;margin:0}
+
+@media (max-width:640px){
+  :root{--sh:4px 4px 0 var(--ink)}
+  .lab{width:100%}
+  .bar-row{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
+  .bar-row .name{grid-column:1 / -1}
+  .bar-row .name small{display:inline;margin-left:6px}
+  .price{font-size:27px}
+}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+</style>
+
+<div class="wrap">
+  <header class="box slab">
+    <h1>Siteworks Price Book</h1>
+    <p>Real published UK prices for new connections, meter installs, upgrades, removals and disconnections. Gas and electricity, homes and businesses. Every card links to where the number came from.</p>
+    <div class="stickers">
+      <span class="sticker">Checked 01/10/2026</span>
+      <span class="sticker">All prices before VAT</span>
+      <span class="sticker">Next price change: April 2027</span>
+    </div>
+  </header>
+
+  <section class="box board" aria-label="Filters">
+    <input class="search" id="q" type="search" placeholder="Type anything: U25, disconnection, Cadent, London..." autocomplete="off" aria-label="Search prices">
+    <div class="grp" id="g-fuel"><span class="lab">Fuel</span></div>
+    <div class="grp" id="g-cust"><span class="lab">Who for</span></div>
+    <div class="grp" id="g-job"><span class="lab">Job</span></div>
+    <div class="grp">
+      <label class="tog"><input type="checkbox" id="unc" checked> Show unconfirmed prices</label>
+      <span class="spacer"></span>
+      <button class="btn" id="clear" type="button">Reset</button>
+    </div>
+  </section>
+
+  <section aria-label="Prices" style="display:flex;flex-direction:column;gap:20px">
+    <div class="wall-top"><h2>Prices</h2><span class="count" id="count"></span></div>
+    <div id="wall" style="display:flex;flex-direction:column;gap:26px"></div>
+    <div class="box empty" id="empty" hidden>Nothing matches.<p>Try fewer filters or a shorter search, or press Reset.</p></div>
+  </section>
+
+  <section class="box" aria-label="Compare prices">
+    <div class="cmp-top"><h2>Compare</h2><select id="cmp" aria-label="What to compare"></select></div>
+    <div class="bars" id="bars"></div>
+    <p class="cmp-note" id="cmpnote"></p>
+  </section>
+
+  <section class="box" aria-label="How to read the prices">
+    <h2>How to read a card</h2>
+    <div class="legend">
+      <div><span class="st cur">Current</span>Read from the network's live price list on the check date.</div>
+      <div><span class="st old">Older list</span>Newest document found is from 2024 or 2025. The live price is probably higher.</div>
+      <div><span class="st unc">Unconfirmed</span>Seen in a search result. The document could not be opened to check it.</div>
+      <div><span class="st quo">No fixed price</span>Nobody publishes one. You get a quote or use the network's online tool.</div>
+    </div>
+    <ul class="plain">
+      <li>Network standard prices cover one home-sized job that meets the network's rules. Commercial connections are quoted job by job.</li>
+      <li>Meter prices are what the meter owner charges the energy supplier. The supplier's price to the customer is usually higher.</li>
+      <li>Not published anywhere we could find: electricity re-energisation and electricity meter upgrade prices. Ask the supplier.</li>
+      <li>Prices move about once a year, mostly in April. This page does not update itself.</li>
+    </ul>
+  </section>
+
+  <section aria-label="Where prices are published" style="display:flex;flex-direction:column;gap:20px">
+    <h2>Where to find the price lists</h2>
+    <div class="where">
+      <div class="box"><h3>Gas pipes</h3><ul>
+        <li>Cadent price tools: <a href="https://cadentgas.com/our-services/household-customers/new-gas-connection/indicative-pricing-tool">new connection</a>, <a href="https://cadentgas.com/our-services/household-customers/alterations/indicative-pricing-tool/north-london-region">alteration</a>, <a href="https://cadentgas.com/our-services/household-customers/gas-disconnections/indicative-pricing-tool/north-london-region">disconnection</a></li>
+        <li><a href="https://www.northerngasnetworks.co.uk/wp-content/uploads/2026/02/NGN-Connections-Charging-Statement-Effective-2-April-2026.pdf">Northern Gas Networks, April 2026</a></li>
+        <li><a href="https://wwutilities.co.uk/media/6028/connections-and-other-distribution-services-charges-march-2025.pdf">Wales &amp; West Utilities, March 2025</a></li>
+        <li><a href="https://www.sgn.co.uk/sites/default/files/media-entities/documents/2024-04/SGN-Connections-Services-Charges-April-2024-Scotland.pdf">SGN connections, April 2024</a></li>
+      </ul></div>
+      <div class="box"><h3>Gas meters</h3><ul>
+        <li><a href="https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/2.%20Southern%202026.pdf">SGN Southern metering, June 2026</a></li>
+        <li><a href="https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/1.%20Scotland%202026.pdf">SGN Scotland metering, 2026</a></li>
+        <li>Other networks: search <code>[network] metering charges statement</code></li>
+      </ul></div>
+      <div class="box"><h3>Electricity</h3><ul>
+        <li>UK Power Networks: <a href="https://www.ukpowernetworks.co.uk/new-electricity-connections/connect-a-small-business">cost tool</a>, <a href="https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/disconnect/permanently-disconnect-cost-and-time">disconnection costs</a></li>
+        <li><a href="https://connections.nationalgrid.co.uk/downloads/215538/statement-of-methodology-and-charges-south-west-april-26.pdf">National Grid South West, April 2026</a></li>
+        <li><a href="https://www.scottishpower.com/documents/d/guest/Miscellaneous_Services_Statement_SPD_April_2026">SP Distribution switch-off and switch-on charges, April 2026</a></li>
+        <li>Others: search <code>[network] statement of methodology and charges for connection</code></li>
+      </ul></div>
+      <div class="box"><h3>Suppliers</h3><ul>
+        <li>Search <code>[supplier] metering charges pdf</code> or <code>[supplier] non-standard charges</code></li>
+        <li>Meter operators only give rate cards to suppliers. Ask the supplier's account manager for the broker rate card.</li>
+      </ul></div>
+    </div>
+    <p class="end">Built 01/10/2026 from the networks' own published price lists.</p>
+  </section>
+</div>
+
+<script>
+(function(){
+  var CAD='https://cadentgas.com/our-services/household-customers/';
+  var S={
+    cadNew:function(r){return CAD+'new-gas-connection/indicative-pricing-tool/'+r+'-region'},
+    cadAlt:function(r){return CAD+'alterations/indicative-pricing-tool/'+r+'-region'},
+    cadDis:function(r){return CAD+'gas-disconnections/indicative-pricing-tool/'+r+'-region'},
+    ngn:'https://www.northerngasnetworks.co.uk/wp-content/uploads/2026/02/NGN-Connections-Charging-Statement-Effective-2-April-2026.pdf',
+    wwu:'https://wwutilities.co.uk/media/6028/connections-and-other-distribution-services-charges-march-2025.pdf',
+    sgnC:'https://www.sgn.co.uk/sites/default/files/media-entities/documents/2024-04/SGN-Connections-Services-Charges-April-2024-Scotland.pdf',
+    sgnM:'https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/2.%20Southern%202026.pdf',
+    ukDis:'https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/disconnect/permanently-disconnect-cost-and-time',
+    ukCom:'https://www.ukpowernetworks.co.uk/new-electricity-connections/connect-a-commercial-project/new-connection-cost-time-and-whats-involved',
+    ukTool:'https://www.ukpowernetworks.co.uk/new-electricity-connections/connect-a-small-business',
+    ukUp:'https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/cost-and-time',
+    ukComDis:'https://www.ukpowernetworks.co.uk/i-already-have-electricity-commercial/disconnect/permanently-disconnect-cost-time-and-whats-involved',
+    spd:'https://www.scottishpower.com/documents/d/guest/Miscellaneous_Services_Statement_SPD_April_2026'
+  };
+  var JOBS=['New connection','Meter install','Meter upgrade','Meter removal','Re-energise / isolate','Disconnection','Alteration / move','Aborted visit'];
+  var R=[];
+  // fuel, job, cust(D|C|B), network, area, item, price text, sort number, note, from, status(cur|old|unc|quo), source
+  function r(f,j,c,n,a,i,p,num,note,from,st,src){R.push({f:f,j:j,c:c,n:n,a:a,i:i,p:p,num:num,note:note,from:from,st:st,src:src})}
+  function gbp(v){return '£'+v.toLocaleString('en-GB',{minimumFractionDigits:v%1?2:0,maximumFractionDigits:2})}
+
+  var cad=[['north-london','North London',3050,165,774,2157,3235,3360,4322],
+           ['east-of-england','East of England',2759,146,679,1908,2880,2995,3837],
+           ['east-midlands','East Midlands',2380,139,679,1504,2391,2494,3321],
+           ['west-midlands','West Midlands',2208,115,660,1393,2153,2244,3021],
+           ['north-west','North West',1927,125,732,1548,2429,2532,3473]];
+  cad.forEach(function(c){
+    r('Gas','New connection','D','Cadent',c[1],'One home, standard job',gbp(c[2]),c[2],'Plus '+gbp(c[3])+' per metre on private land, 70% off that rate if the customer digs. Meter box £58, kiosk £353.','01/04/2026','cur',S.cadNew(c[0]));
+    r('Gas','Alteration / move','D','Cadent',c[1],'Move the service pipe, fixed charge',gbp(c[4]),c[4],'Plus '+gbp(c[3])+' per metre on private land, 70% off if the customer digs. 5% off if your own Gas Safe engineer refits the meter.','01/04/2026','cur',S.cadAlt(c[0]));
+    r('Gas','Disconnection','B','Cadent',c[1],'Service pipe up to 63mm',gbp(c[5]),c[5],'90mm '+gbp(c[6])+', 125mm '+gbp(c[7])+', 180mm '+gbp(c[8])+'. Bigger pipes or intermediate pressure are quoted.','01/04/2026','cur',S.cadDis(c[0]));
+  });
+  r('Gas','New connection','D','Northern Gas Networks','North East, Yorkshire, north Cumbria','One home, main to boundary','£3,022',3022,'Plus £95 per metre on private land, or £20 per metre if the customer digs.','02/04/2026','cur',S.ngn);
+  r('Gas','New connection','D','Wales & West Utilities','Wales and South West','One home, up to 10m in the road','£1,443',1443,'£856 if the customer digs on private land, £769 with no private land. Plus £131 per metre past 10m. The network says the full cost is typically £3,500 to £3,800 before its allowance.','03/03/2025','old',S.wwu);
+  r('Gas','New connection','D','SGN','Scotland','One home, SGN digs','£893',893,'£731 if the customer digs, £567 with no private land. SGN asked the regulator in March 2026 to drop the allowance behind these prices, so expect far more now.','03/04/2024','old',S.sgnC);
+  r('Gas','New connection','D','SGN','Scotland','New housing, 3 to 10 plots','£1,321',1321,'Per plot. £803 for each extra plot from 11 to 250.','03/04/2024','old',S.sgnC);
+  r('Gas','New connection','C','All gas networks','Great Britain','Commercial, or over 73,200 kWh a year','Quote only',null,'No network publishes a price. Apply to the network or an independent connection provider for a quote.','','quo',S.ngn);
+
+  r('Gas','Disconnection','B','Northern Gas Networks','North East, Yorkshire, north Cumbria','Service pipe up to 63mm','£1,234',1234,'In a footpath or unmade ground. £1,412.50 in a road. 90mm and above are quoted.','02/04/2026','cur',S.ngn);
+  r('Gas','Disconnection','B','Wales & West Utilities','Wales and South West','Service pipe up to 63mm','£977',977,'£510 if the customer digs on private land. 90mm or 125mm £2,360 to £2,623. 180mm £2,992 to £3,492.','03/03/2025','old',S.wwu);
+  r('Gas','Disconnection','B','SGN','Scotland','Service pipe up to 63mm','£917',917,'90mm or 125mm £2,483. 180mm £2,912. The meter must be removed first.','03/04/2024','old',S.sgnC);
+
+  r('Gas','Alteration / move','D','Northern Gas Networks','North East, Yorkshire, north Cumbria','Move the service pipe, first metre','£1,135',1135,'Plus £95 per extra metre. If the customer digs: £674.50 plus £20 per metre. Reconnecting the meter and pipework £192.50.','02/04/2026','cur',S.ngn);
+  r('Gas','Alteration / move','D','Wales & West Utilities','Wales and South West','Move the service pipe, fixed charge','£570',570,'Plus £131 per metre, or £18 if the customer digs. Work at the meter end £112. Refit the meter and reconnect up to 3m of pipe £189.','03/03/2025','old',S.wwu);
+  r('Gas','Alteration / move','D','SGN','Scotland','Move the service pipe, up to 5m','£773',773,'£490 if the customer digs. Plus £68 or £27 per extra metre. Moving the meter adds £100 to £201.','03/04/2024','old',S.sgnC);
+  r('Gas','Alteration / move','D','SGN','Southern England','Move the meter only, pipe untouched','£188.76',188.76,'Charged by the meter owner to the supplier.','01/06/2026','cur',S.sgnM);
+  r('Gas','Alteration / move','D','Wales & West Utilities','Wales and South West','Move the meter indoors, no digging','£297',297,'Up to 2m of new pipe each side of the meter.','03/03/2025','old',S.wwu);
+
+  r('Gas','Meter install','D','SGN','Southern England','Home credit meter','£129.54',129.54,'Prepayment meter £145.39. Swap credit for prepayment or back £131.13. Replace a damaged or stolen meter £108.99.','01/06/2026','cur',S.sgnM);
+  var big=[['U16','11 to 21',278.17,859.08,195.94],['U25','21 to 29',344.13,1202.57,211.45],['U40','29 to 51',558.76,1555.71,423.94],
+           ['U65','51 to 79',1392.80,3357.43,573.12],['U100','79 to 121',1529.77,3811.15,738.03],['U160','121 and over',1658.69,3958.95,738.03]];
+  big.forEach(function(b){
+    r('Gas','Meter install','C','SGN','Southern England',b[0]+' meter ('+b[1]+' cubic metres an hour)',gbp(b[2]),b[2],'Meter only. With a meter housing: '+gbp(b[3])+'.','01/06/2026','cur',S.sgnM);
+    r('Gas','Meter removal','C','SGN','Southern England',b[0]+' meter removal',gbp(b[4]),b[4],'Standard low pressure installation.','01/06/2026','cur',S.sgnM);
+  });
+  r('Gas','Meter upgrade','C','SGN','Southern England','Swap a smaller meter for a bigger one','Install price',null,'Charged at the install price of the new, bigger meter. For example U16 up to U25 is £344.13, up to U40 is £558.76.','01/06/2026','cur',S.sgnM);
+  r('Gas','Meter removal','D','SGN','Southern England','Home meter removal','£93.42',93.42,'Charged by the meter owner to the supplier.','01/06/2026','cur',S.sgnM);
+  r('Gas','Re-energise / isolate','B','SGN','Southern England','Fit or remove a meter clamp (lock)','£109.47',109.47,'The gas version of switching a supply off and back on. One charge per visit.','01/06/2026','cur',S.sgnM);
+  r('Gas','Re-energise / isolate','B','Northern Gas Networks','North East, Yorkshire, north Cumbria','Site visit to re-register an isolated meter','£45',45,'Applies when an isolated meter is found using gas. Other industry charges are added.','02/04/2026','cur',S.ngn);
+
+  r('Gas','Aborted visit','B','Northern Gas Networks','North East, Yorkshire, north Cumbria','Crew turned away or site not ready','£165',165,'Plus any permit or hire costs. Give 72 hours notice to avoid it.','02/04/2026','cur',S.ngn);
+  r('Gas','Aborted visit','C','Wales & West Utilities','Wales and South West','Commercial job','£209',209,'£55 for a single home job.','03/03/2025','old',S.wwu);
+  r('Gas','Aborted visit','B','SGN','Scotland','Crew turned away or site not ready','£153',153,'Give 24 hours notice to avoid it.','03/04/2024','old',S.sgnC);
+
+  r('Electricity','Disconnection','B','UK Power Networks','London, South East, East of England','Underground cable, home or small business','£805 to £2,650',805,'What 65% of customers paid. 30% paid £2,650 to £5,510 and 5% paid more. About 31 working days from payment.','','cur',S.ukDis);
+  r('Electricity','Disconnection','B','UK Power Networks','London, South East, East of England','Overhead cable, home or small business','£640 to £1,270',640,'What 70% of customers paid. 20% paid £1,270 to £2,550 and 10% paid more. About 20 working days from payment.','','cur',S.ukDis);
+  r('Electricity','Disconnection','C','UK Power Networks','London, South East, East of England','Large supply over 400 amps, or a substation','Quote only',null,'Priced after a site visit.','','quo',S.ukComDis);
+  r('Electricity','New connection','C','UK Power Networks','London, South East, East of England','More than four properties, low voltage','From £4,000',4000,'Typical average £10,250 per property. Quote in 11 working days, work about 10 weeks after payment.','','cur',S.ukCom);
+  r('Electricity','New connection','B','UK Power Networks','London, South East, East of England','One home or a small business up to 69 kVA','Online tool',null,'No fixed price. The network\'s cost tool gives a figure in about five minutes.','','quo',S.ukTool);
+  r('Electricity','Meter upgrade','B','UK Power Networks','London, South East, East of England','More power to an existing supply','Online tool',null,'The cable upgrade is priced by the network\'s cost tool. The meter change itself is booked and priced by the energy supplier.','','quo',S.ukUp);
+  r('Electricity','Re-energise / isolate','B','SP Distribution','Central and southern Scotland','Switch off by pulling the fuses, normal hours','£46.74',46.74,'From an older statement seen in search results. The April 2026 statement is linked but could not be opened to check.','','unc',S.spd);
+
+  var yu='From Yü Energy\'s 2025 price list as shown in search results. The list has since been taken off its website.';
+  r('Gas','Meter install','C','Yü Energy (supplier)','Great Britain','U16 meter install, exchange or removal','£460.83',460.83,'U25 £539.17, U40 £723.33. '+yu,'2025','unc',null);
+  r('Gas','Meter removal','C','TotalEnergies (supplier)','Great Britain','Siteworks fee on any meter removal','£125',125,'Added on top of the removal itself. Seen in search results, page since removed.','','unc',null);
+  r('Electricity','Meter install','C','Yü Energy (supplier)','Great Britain','Advanced meter install or exchange','£424.17',424.17,'Smart meter install or exchange is free. '+yu,'2025','unc',null);
+  r('Electricity','Meter removal','B','Yü Energy (supplier)','Great Britain','Electricity meter removal','£220',220,'Whether VAT is included was not shown. '+yu,'2025','unc',null);
+
+  var CMP=[
+    {k:'New gas connection, one home (current lists)',note:'Base charge before any per-metre cost. Wales & West and SGN are left out because their newest published lists predate the 2026 change to home connection pricing.',
+     d:[['Cadent','North London',3050],['Northern Gas Networks','North of England',3022],['Cadent','East of England',2759],['Cadent','East Midlands',2380],['Cadent','West Midlands',2208],['Cadent','North West',1927]]},
+    {k:'Gas disconnection, pipe up to 63mm',note:'Wales & West is from its 2025 list and SGN Scotland from its 2024 list, so both are likely higher now.',
+     d:[['Cadent','North London',2157],['Cadent','East of England',1908],['Cadent','North West',1548],['Cadent','East Midlands',1504],['Cadent','West Midlands',1393],['Northern Gas Networks','footpath or unmade',1234],['Wales & West','2025 list',977],['SGN Scotland','2024 list',917]]},
+    {k:'Commercial gas meter install by size',note:'SGN Southern, meter only, from 01/06/2026. This is the meter owner\'s charge to the supplier.',
+     d:big.map(function(b){return [b[0],b[1]+' m³/h',b[2]]})},
+    {k:'Commercial gas meter removal by size',note:'SGN Southern, from 01/06/2026. This is the meter owner\'s charge to the supplier.',
+     d:big.map(function(b){return [b[0],b[1]+' m³/h',b[4]]})}
+  ];
+
+  var state={fuel:'All',cust:'All',job:'All'};
+  var $=function(id){return document.getElementById(id)};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function chips(host,key,opts){
+    opts.forEach(function(o){
+      var b=document.createElement('button');b.type='button';
+      b.className='btn'+(o==='Gas'?' gas':o==='Electricity'?' elec':'');
+      b.dataset.v=o;b.innerHTML=esc(o)+(key==='job'?'<small></small>':'');
+      b.setAttribute('aria-pressed',state[key]===o?'true':'false');
+      b.addEventListener('click',function(){state[key]=o;sync();draw()});
+      host.appendChild(b);
+    });
+  }
+  function sync(){
+    [['g-fuel','fuel'],['g-cust','cust'],['g-job','job']].forEach(function(p){
+      $(p[0]).querySelectorAll('.btn').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.v===state[p[1]]?'true':'false')});
+    });
+  }
+  chips($('g-fuel'),'fuel',['All','Gas','Electricity']);
+  chips($('g-cust'),'cust',['All','Domestic','Commercial']);
+  chips($('g-job'),'job',['All'].concat(JOBS));
+
+  var ST={cur:'Current',old:'Older list',unc:'Unconfirmed',quo:'No fixed price'};
+  var CU={D:'Home',C:'Business',B:'Home + business'};
+  var ORD={cur:0,quo:1,old:2,unc:3};
+
+  function pass(x,q,showUnc,skipJob){
+    if(state.fuel!=='All'&&x.f!==state.fuel)return false;
+    if(!skipJob&&state.job!=='All'&&x.j!==state.job)return false;
+    if(state.cust==='Domestic'&&x.c==='C')return false;
+    if(state.cust==='Commercial'&&x.c==='D')return false;
+    if(!showUnc&&x.st==='unc')return false;
+    if(q){var hay=(x.f+' '+x.j+' '+x.n+' '+x.a+' '+x.i+' '+x.note+' '+x.p+' '+CU[x.c]+(x.c!=='C'?' domestic':'')+(x.c!=='D'?' commercial':'')).toLowerCase();
+      if(!q.split(/\s+/).every(function(w){return hay.indexOf(w)>-1}))return false}
+    return true;
+  }
+  function card(x){
+    return '<article class="card'+(x.st==='unc'?' unc':'')+'"><div class="top"><span class="tag '+(x.f==='Gas'?'gas':'elec')+'">'+x.f+'</span><span class="tag cust">'+CU[x.c]+'</span></div>'
+      +'<div class="price'+(x.num==null?' txt':'')+'">'+esc(x.p)+(x.num==null?'':'<small>before VAT</small>')+'</div>'
+      +'<div class="item">'+esc(x.i)+'</div>'
+      +'<div class="net">'+esc(x.n)+' · '+esc(x.a)+'</div>'
+      +'<div class="note">'+esc(x.note)+'</div>'
+      +'<div class="foot"><span class="st '+x.st+'">'+ST[x.st]+'</span>'+(x.from?'<span>from '+esc(x.from)+'</span>':'')
+      +(x.src?'<a href="'+esc(x.src)+'" target="_blank" rel="noopener">Source</a>':'<span>no live source</span>')+'</div></article>';
+  }
+  function draw(){
+    var q=$('q').value.trim().toLowerCase(), showUnc=$('unc').checked, total=0, h='';
+    var pool=R.filter(function(x){return pass(x,q,showUnc,true)});
+    $('g-job').querySelectorAll('.btn').forEach(function(b){
+      var n=b.dataset.v==='All'?pool.length:pool.filter(function(x){return x.j===b.dataset.v}).length;
+      b.querySelector('small').textContent=n;
+    });
+    JOBS.forEach(function(j){
+      if(state.job!=='All'&&state.job!==j)return;
+      var rows=pool.filter(function(x){return x.j===j}).sort(function(a,b){
+        return (a.f<b.f?1:a.f>b.f?-1:0)||ORD[a.st]-ORD[b.st]||(a.num==null)-(b.num==null)||(a.num||0)-(b.num||0)});
+      if(!rows.length)return;
+      total+=rows.length;
+      h+='<div class="group"><div class="ghead">'+esc(j)+'<span>'+rows.length+'</span></div><div class="cards">'+rows.map(card).join('')+'</div></div>';
+    });
+    $('wall').innerHTML=h;
+    $('empty').hidden=total>0;
+    $('count').textContent=total+' of '+R.length+' shown';
+  }
+  function chart(){
+    var c=CMP[+$('cmp').value], max=Math.max.apply(null,c.d.map(function(d){return d[2]}));
+    $('bars').innerHTML=c.d.map(function(d){
+      return '<div class="bar-row" title="'+esc(d[0]+', '+d[1]+': '+gbp(d[2])+' before VAT')+'"><div class="name">'+esc(d[0])+'<small>'+esc(d[1])+'</small></div>'
+        +'<div><div class="fill" style="width:'+(d[2]/max*100).toFixed(1)+'%"></div></div><div class="val">'+gbp(d[2])+'</div></div>';
+    }).join('');
+    $('cmpnote').textContent=c.note;
+  }
+  CMP.forEach(function(c,i){var o=document.createElement('option');o.value=i;o.textContent=c.k;$('cmp').appendChild(o)});
+  $('cmp').addEventListener('change',chart);
+  $('q').addEventListener('input',draw);
+  $('unc').addEventListener('change',draw);
+  $('clear').addEventListener('click',function(){state={fuel:'All',cust:'All',job:'All'};$('q').value='';$('unc').checked=true;sync();draw()});
+  chart();draw();
+})();
+</script>
