@@ -1,0 +1,14 @@
+name = "siteworks-relay"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+
+[vars]
+# "1" shows the ask box on the page. Leave "0" until the key is set and a test question works.
+ENABLED = "0"
+# Only this page may call the relay.
+ALLOWED_ORIGINS = "https://suman1-cpu.github.io"
+# Free OpenCode Zen models only, tried in order. The first two do not keep or train on the questions.
+MODELS = "space-bunny-free,longcat-2.5-preview-free,big-pickle"
+
+# The OpenCode key is a secret, never a var:  npx wrangler secret put OPENCODE_KEY

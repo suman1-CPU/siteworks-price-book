@@ -54,6 +54,21 @@ h2{font-size:26px;line-height:1.05}
 .tog input{width:20px;height:20px;accent-color:var(--ink)}
 .spacer{flex:1}
 
+/* ask box */
+.ask{background:var(--blue);display:flex;flex-direction:column;gap:12px}
+.ask p{margin:0;font-weight:500;max-width:70ch}
+.ask .fine{font-family:var(--mono);font-size:12px;font-weight:400}
+.thread{display:flex;flex-direction:column;gap:10px}
+.msg{border:var(--bd);padding:10px 12px;max-width:min(640px,92%);white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.me{background:var(--yellow);align-self:flex-end;font-weight:700}
+.msg.bot{background:var(--card);align-self:flex-start;box-shadow:var(--sh-s)}
+.msg.wait{font-family:var(--mono);font-size:13px}
+.askrow{display:flex;gap:10px;align-items:stretch}
+.askrow .search{flex:1;min-width:0}
+.btn.go{background:var(--ink);color:var(--card);font-size:16px;padding-inline:20px}
+.btn.go:hover{background:var(--yellow);color:var(--ink)}
+.btn.go:disabled{opacity:.6;cursor:wait}
+
 /* price wall */
 .wall-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px}
 .count{font-family:var(--mono);font-size:13px;font-weight:700}
@@ -127,6 +142,18 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
       <span class="sticker">Next price change: April 2027</span>
     </div>
   </header>
+
+  <section class="box ask" id="ask" aria-label="Ask a question" hidden>
+    <h2>Ask the price book</h2>
+    <p>Type a question in plain words, English or Hinglish. The answer comes only from the prices on this page.</p>
+    <div class="grp" id="eg"></div>
+    <div class="thread" id="thread" aria-live="polite"></div>
+    <form class="askrow" id="askform">
+      <input class="search" id="askq" type="text" maxlength="400" placeholder="U25 meter removal kitna hai?" autocomplete="off" aria-label="Your question">
+      <button class="btn go" id="askgo" type="submit">Ask</button>
+    </form>
+    <p class="fine">A free AI model writes the answer, so check the card before you quote it. Do not type customer names or addresses.</p>
+  </section>
 
   <section class="box board" aria-label="Filters">
     <input class="search" id="q" type="search" placeholder="Type anything: U25, disconnection, Cadent, London..." autocomplete="off" aria-label="Search prices">
@@ -366,6 +393,38 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
   $('unc').addEventListener('change',draw);
   $('clear').addEventListener('click',function(){state={fuel:'All',cust:'All',job:'All'};$('q').value='';$('unc').checked=true;sync();draw()});
   chart();draw();
+
+  // Ask box: talks to the relay, which holds the key and calls a free OpenCode model.
+  var RELAY='';
+  var host=location.hostname;
+  if(RELAY&&(/(^|\.)github\.io$/.test(host)||host==='localhost'||host==='127.0.0.1')){
+    var hist=[], busy=false;
+    var context=R.map(function(x){
+      return [x.f,x.j,CU[x.c],x.n+', '+x.a,x.i,x.p,x.note,x.from||'-',ST[x.st]].join(' | ');
+    }).join('\n');
+    function bubble(cls,text){var d=document.createElement('div');d.className='msg '+cls;d.textContent=text;$('thread').appendChild(d);return d}
+    function ask(q){
+      q=q.trim();if(!q||busy)return;
+      busy=true;$('askgo').disabled=true;$('askq').value='';
+      bubble('me',q);hist.push({role:'user',content:q});
+      var w=bubble('bot wait','Looking it up...');
+      fetch(RELAY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({context:context,messages:hist.slice(-8)})})
+        .then(function(res){return res.json().then(function(j){return {ok:res.ok,j:j}})})
+        .then(function(o){
+          w.className='msg bot';
+          if(o.ok&&o.j.reply){w.textContent=o.j.reply;hist.push({role:'assistant',content:o.j.reply})}
+          else{w.textContent=(o.j&&o.j.error)||'No answer came back. The prices below still work.';hist.pop()}
+        })
+        .catch(function(){w.className='msg bot';w.textContent='Could not reach the answer service. The prices below still work. Try again in a minute.';hist.pop()})
+        .then(function(){busy=false;$('askgo').disabled=false;$('askq').focus()});
+    }
+    ['New gas connection in North London?','U40 meter: install vs removal?','Cheapest network for a gas disconnection?','Move a gas pipe 6 metres, North West?'].forEach(function(t){
+      var b=document.createElement('button');b.type='button';b.className='btn';b.textContent=t;
+      b.addEventListener('click',function(){ask(t)});$('eg').appendChild(b);
+    });
+    $('askform').addEventListener('submit',function(e){e.preventDefault();ask($('askq').value)});
+    $('ask').hidden=false;
+  }
 })();
 </script>
 
