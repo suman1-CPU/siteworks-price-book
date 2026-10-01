@@ -1,0 +1,354 @@
+{
+  "checked": "2026-10-01",
+  "title": "Broker fees and London budgets",
+  "summary": "Eight energy intermediaries checked. None of the pages reviewed publishes a fixed siteworks arrangement fee. Obtain an itemised quote. The London figures below estimate the underlying work only, using published provider prices or a clearly labelled UK guide proxy.",
+  "caution": "Supplier, network and meter-owner charges are separate from a broker's arrangement fee or energy-contract commission. No broker markup or London premium has been invented. A missing published fee does not mean the service is free.",
+  "tpis": [
+    {
+      "id": "bionic",
+      "name": "Bionic",
+      "type": "Energy broker",
+      "price": "Siteworks fee not publicly published",
+      "status": "Quote required",
+      "charging": "General brokerage is paid through supplier commission included in the energy rates. Its terms normally provide for no direct customer service fee, with exceptions and a right to introduce charges after notification. Its meter guide says installation prices depend on meter type and work required.",
+      "context": "The general brokerage terms do not establish a £0 siteworks installation price. Request the installation cost and any separate arrangement fee.",
+      "vat": "No fixed siteworks fee or VAT basis published on the reviewed pages.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Bionic terms, clauses 5.1 to 5.3",
+          "url": "https://bionic.co.uk/about-bionic/terms-and-conditions/",
+          "type": "TPI primary terms",
+          "quote": "there is no fee due from a Customer to Bionic for providing the Services"
+        },
+        {
+          "title": "Bionic meter-installation guide",
+          "url": "https://bionic.co.uk/business-energy/guides/business-gas-electricity-meters-installation/",
+          "type": "TPI primary guide",
+          "quote": "Installation costs aren't fixed"
+        }
+      ]
+    },
+    {
+      "id": "love",
+      "name": "Love Energy Savings",
+      "type": "Energy broker",
+      "price": "Siteworks fee not publicly published",
+      "status": "Quote required",
+      "charging": "Customers do not normally pay LOVE directly for brokerage. Supplier commission is usually an uplift in the unit rate. Some suppliers instead pay a fixed fee when new meters are installed, but no amount is published.",
+      "context": "Its published example is 1p/kWh × 25,000 kWh/year × two years = £500 estimated energy-contract commission. This is an illustration, not a meter installation or siteworks tariff.",
+      "vat": "VAT basis not stated for the commission illustration; not a customer siteworks invoice.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "LOVE commission and fee transparency",
+          "url": "https://www.loveenergysavings.com/about-us/how-we-get-paid/",
+          "type": "TPI primary disclosure",
+          "quote": "Some suppliers may instead pay a fixed fee, for example, when new meters are installed."
+        }
+      ]
+    },
+    {
+      "id": "helpline",
+      "name": "Utility Helpline",
+      "type": "Energy broker",
+      "price": "Siteworks fee not publicly published",
+      "status": "Quote required",
+      "charging": "Tendering is normally free unless otherwise agreed. Commission generally comes from the supplier and may be built into unit rates or standing charges. The amount is disclosed individually before the contract. Its new-connections service coordinates suppliers, distributors and metering providers.",
+      "context": "September 2026 disclosure illustrates 0.50p/kWh × 10,000 kWh/year = £50/year electricity commission, or £150 over three years. This example is not a siteworks fee.",
+      "vat": "VAT basis not stated for the commission illustration; confirm the quote's VAT separately.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Utility Helpline fees, September 2026",
+          "url": "https://www.utilityhelpline.co.uk/terms-conditions/utility-helpline-fees-and-payment",
+          "type": "TPI primary disclosure",
+          "quote": "The amount of Commission is not the same for every Customer or Contract."
+        },
+        {
+          "title": "Utility Helpline commercial connections",
+          "url": "https://www.utilityhelpline.co.uk/news/commercial-energy-connections-smart-metering",
+          "type": "TPI primary service page",
+          "quote": ""
+        }
+      ]
+    },
+    {
+      "id": "omnium",
+      "name": "Omnium",
+      "type": "Energy intermediary",
+      "price": "Siteworks fee not publicly published",
+      "status": "Quote required",
+      "charging": "New connections are remunerated through a margin on the final unit rate or a fixed management fee, agreed in writing before signing. Siteworks are quoted per job before an appointment is raised.",
+      "context": "The connections page expressly holds no prices. Request the broker management fee separately from the meter operator and network works.",
+      "vat": "No fixed fee or VAT basis published on this page.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Omnium new connections and meters",
+          "url": "https://askomnium.co.uk/connections",
+          "type": "TPI primary service page",
+          "quote": "Site works are quoted per job before anything is raised. This page holds no prices."
+        }
+      ]
+    },
+    {
+      "id": "inspired",
+      "name": "Inspired",
+      "type": "Energy consultancy",
+      "price": "Siteworks fee not publicly published",
+      "status": "Quote required",
+      "charging": "Offers managed connections, disconnections, meter installation/removal, relocations, capacity changes and energisation. Its siteworks page directs customers to request a quote, without publishing a price or markup.",
+      "context": "Project coordination is offered, but no fixed siteworks administration fee is available from the reviewed service page.",
+      "vat": "No fixed fee or VAT basis published on this page.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Inspired siteworks services",
+          "url": "https://inspiredplc.co.uk/how-we-help/energy/site-efficiency/siteworks-services/",
+          "type": "TPI primary service page",
+          "quote": "Request a quote to get started."
+        }
+      ]
+    },
+    {
+      "id": "bidder",
+      "name": "Utility Bidder",
+      "type": "Energy broker",
+      "price": "Siteworks fee not publicly published",
+      "status": "Quote required",
+      "charging": "Guide describes supplier-priced installations, with a £200 to £800 UK electricity estimate. Gas costs vary by meter and supplier. No broker arrangement fee shown.",
+      "context": "Guide estimate of installation cost, not Utility Bidder's fee or a London quote.",
+      "vat": "VAT inclusion is not stated for the £200 to £800 guide range.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Utility Bidder business meter-installation guide, 30 March 2026",
+          "url": "https://www.utilitybidder.co.uk/compare-business-energy/business-gas-electricity-meters-installation/",
+          "type": "TPI primary guide, not installer tariff",
+          "quote": "the average cost of having a new electric meter installed in the UK ranges between £200 and £800"
+        }
+      ]
+    },
+    {
+      "id": "consultiv",
+      "name": "Consultiv Utilities",
+      "type": "Energy consultancy",
+      "price": "Siteworks fee not publicly published",
+      "status": "Quote required",
+      "charging": "Its terms describe supplier-paid commission included in the energy unit price, with the level varying by supplier and set by Consultiv. Its service evidence includes metering and siteworks, without a fixed installation or arrangement price.",
+      "context": "The published illustration is 0.5p/unit × 40,000 units/year × two years = £400 commission. This is energy procurement commission, not a siteworks charge. Contract-failure fees are also not siteworks charges.",
+      "vat": "VAT basis not stated for the commission illustration.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Consultiv terms, section 8",
+          "url": "https://consultivutilities.com/terms-conditions/",
+          "type": "TPI primary terms",
+          "quote": "The timing and amount of the Commission Payment varies from Supplier to Supplier"
+        },
+        {
+          "title": "Consultiv metering and siteworks service evidence",
+          "url": "https://consultivutilities.com/partnership-spotlight-leyton-orient-football-club/",
+          "type": "TPI primary case study",
+          "quote": "Metering and siteworks"
+        }
+      ]
+    },
+    {
+      "id": "advantage",
+      "name": "Advantage Utilities",
+      "type": "Energy consultancy",
+      "price": "Siteworks fee not publicly published",
+      "status": "Quote required",
+      "charging": "Terms allow supplier-paid procurement fees; direct consultancy may use a fixed or time-based fee agreed in writing. The siteworks service offers project management and competitive quotes for meter installation and infrastructure.",
+      "context": "No siteworks fee is published. The service-page 'No Fee' statement concerns a commercial energy audit and must not be read as free siteworks.",
+      "vat": "No fixed siteworks fee or VAT basis published on the reviewed pages.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Advantage terms, section 5",
+          "url": "https://www.advantageutilities.com/policies/terms-and-conditions",
+          "type": "TPI primary terms",
+          "quote": "Where consultancy services or audits are provided on a fixed or time‑based fee"
+        },
+        {
+          "title": "Advantage meter installation and siteworks",
+          "url": "https://www.advantageutilities.com/services/energy-gas-water/meter-installation-siteworks",
+          "type": "TPI primary service page",
+          "quote": "Offering highly competitive quotes from across the UK"
+        }
+      ]
+    }
+  ],
+  "londonEstimates": [
+    {
+      "id": "london-home-gas-new",
+      "job": "Home gas connection, 5m on private land",
+      "fuel": "Gas",
+      "customer": "Home",
+      "area": "Cadent North London network only",
+      "price": "£3,297.50 to £3,875 + VAT",
+      "min": 3297.5,
+      "max": 3875,
+      "status": "Calculated budget example",
+      "basis": "£3,050 fixed + 5m × £165. Lower bound applies the published 70% reduction to the per-metre rate when the customer excavates: £3,050 + 5 × £49.50. Upper bound assumes Cadent excavates.",
+      "context": "Standard domestic job only. Customer excavation costs, meter/box, internal pipework, broker fee and bespoke extra works are not included. This does not estimate a commercial gas connection.",
+      "vat": "Excludes VAT, explicitly stated by Cadent; no VAT rate assumed.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Cadent North London connection pricing",
+          "url": "https://cadentgas.com/our-services/household-customers/new-gas-connection/indicative-pricing-tool/north-london-region",
+          "type": "Network primary price page",
+          "quote": "Our standard pricing apply to domestic properties."
+        }
+      ]
+    },
+    {
+      "id": "london-home-gas-move",
+      "job": "Home gas service-pipe move, 5m",
+      "fuel": "Gas",
+      "customer": "Home",
+      "area": "Cadent North London network only",
+      "price": "£1,021.50 to £1,599 + VAT",
+      "min": 1021.5,
+      "max": 1599,
+      "status": "Calculated budget example",
+      "basis": "£774 fixed + 5m × £165. Lower bound is £774 + 5 × £49.50 with customer excavation; upper bound assumes Cadent excavation. No optional 5% refit discount is applied.",
+      "context": "Domestic standard service alteration. Customer excavation costs, a new box, private downstream changes, broker fee and bespoke extra works are excluded. An additional 5% standard-charge reduction is possible if the customer arranges a Gas Safe engineer refit, whose cost is separate.",
+      "vat": "Excludes VAT, explicitly stated by Cadent; no VAT rate assumed.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Cadent North London alteration pricing",
+          "url": "https://cadentgas.com/our-services/household-customers/alterations/indicative-pricing-tool/north-london-region",
+          "type": "Network primary price page",
+          "quote": "A 70% deduction is applied to the total rate per metre cost"
+        }
+      ]
+    },
+    {
+      "id": "london-gas-disconnect",
+      "job": "Gas service disconnection, up to 63mm",
+      "fuel": "Gas",
+      "customer": "Home or business, subject to quote",
+      "area": "Cadent North London network only",
+      "price": "£2,157 + VAT network component",
+      "min": 2157,
+      "max": 2157,
+      "status": "Published component budget",
+      "basis": "Cadent's published North London charge for a pipe up to 63mm. Larger published pipe charges are £3,235 for 90mm, £3,360 for 125mm and £4,322 for 180mm.",
+      "context": "Budget for the network component only, subject to the job meeting the price-page scope. Confirm meter removal and any additional works separately. No broker fee is included.",
+      "vat": "Excludes VAT, explicitly shown as +VAT by Cadent.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Cadent North London disconnection pricing",
+          "url": "https://cadentgas.com/our-services/household-customers/gas-disconnections/indicative-pricing-tool/north-london-region",
+          "type": "Network primary price page",
+          "quote": "Up to 63mm pipe diameter"
+        }
+      ]
+    },
+    {
+      "id": "london-commercial-gas-install",
+      "job": "Small commercial gas meter install, U16 or U25",
+      "fuel": "Gas",
+      "customer": "Business",
+      "area": "SGN Southern tariff proxy for South London; confirm meter owner",
+      "price": "£278.17 to £1,202.57 meter-owner component",
+      "min": 278.17,
+      "max": 1202.57,
+      "status": "Published component budget",
+      "basis": "SGN Southern June 2026: 11 to under 21 scmh (U16) £278.17 meter-only or £859.08 with housing; 21 to under 29 scmh (U25) £344.13 meter-only or £1,202.57 with housing. Endpoints reflect size and housing choices, not uncertainty about one fixed job.",
+      "context": "Standard low pressure only; supplier-facing meter-owner cost. Connection, downstream work, broker/supplier add-ons, housing bases and relief roofs are extra. Confirm meter owner.",
+      "vat": "VAT basis is not explicitly labelled in the installation table; confirm with the supplier before adding VAT.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "SGN Southern metering charges, June 2026, page 5",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/2.%20Southern%202026.pdf#page=5",
+          "type": "Meter-owner primary price schedule",
+          "quote": "standard low pressure installations, where no enhancements (e.g. bypasses) are required"
+        },
+        {
+          "title": "SGN network geography, business plan PDF page 16",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2022-07/SGN-RIIO-GD2-Business-Plan.pdf#page=16",
+          "type": "Network primary geography document",
+          "quote": "South London and the South East of England"
+        }
+      ]
+    },
+    {
+      "id": "london-commercial-gas-remove",
+      "job": "Commercial gas meter removal, U16 to U40",
+      "fuel": "Gas",
+      "customer": "Business",
+      "area": "SGN Southern tariff proxy for South London; confirm meter owner",
+      "price": "£195.94 to £423.94 meter-owner component",
+      "min": 195.94,
+      "max": 423.94,
+      "status": "Published component budget",
+      "basis": "SGN Southern June 2026 table: U16 £195.94, U25 £211.45, U40 £423.94. Range spans these three meter sizes.",
+      "context": "Standard low pressure; supplier/broker add-ons, service disconnection, extra purging, waiting and materials are separate. Meter-owner component, not customer total.",
+      "vat": "VAT basis is not explicitly labelled in the removal table; confirm with the supplier.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "SGN Southern metering charges, June 2026, page 5",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/2.%20Southern%202026.pdf#page=5",
+          "type": "Meter-owner primary price schedule",
+          "quote": ""
+        }
+      ]
+    },
+    {
+      "id": "london-electricity-disconnect",
+      "job": "Electricity permanent disconnection, underground",
+      "fuel": "Electricity",
+      "customer": "Home or small business",
+      "area": "UK Power Networks: London, South East and East of England",
+      "price": "£805 to £2,650 + VAT usual network band",
+      "min": 805,
+      "max": 2650,
+      "status": "Published regional budget band",
+      "basis": "UKPN reports 65% of customers in this underground-cable band, 30% at £2,650 to £5,510 and 5% above £5,510. It is a regional historical-cost distribution, not a London-only average or fixed quote.",
+      "context": "Meter removal and broker arrangement fees are separate. Council permits and complex work can push the network quote above this band. Large supplies require a separate commercial quote.",
+      "vat": "Excludes VAT, explicitly stated by UKPN.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "UKPN permanent disconnection costs",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/disconnect/permanently-disconnect-cost-and-time",
+          "type": "Network primary customer-cost statistics",
+          "quote": "65% of customers paid this"
+        }
+      ]
+    },
+    {
+      "id": "london-electricity-install-proxy",
+      "job": "Electricity meter installation, simple existing supply",
+      "fuel": "Electricity",
+      "customer": "Business, confirm meter type",
+      "area": "UK guide proxy for a London starting budget",
+      "price": "£200 to £800, VAT not stated",
+      "min": 200,
+      "max": 800,
+      "status": "Guide estimate, lower confidence",
+      "basis": "Utility Bidder publishes £200 to £800 as a typical UK electricity meter-installation range. Used unchanged as a provisional London guide because no London-specific retail tariff was found. No London premium has been added.",
+      "context": "A broker's editorial guide, not its arrangement fee or a supplier price list. Existing supply assumed for budgeting; CT/half-hourly metering, network upgrades, new connections, civil works and broker fees need individual quotes. A supplier smart-meter replacement may have no upfront charge.",
+      "vat": "VAT inclusion not stated. Do not label this +VAT or VAT-inclusive without a supplier quote.",
+      "checked": "2026-10-01",
+      "sources": [
+        {
+          "title": "Utility Bidder UK meter installation guide",
+          "url": "https://www.utilitybidder.co.uk/compare-business-energy/business-gas-electricity-meters-installation/",
+          "type": "TPI primary guide, lower-confidence price proxy",
+          "quote": ""
+        }
+      ]
+    }
+  ],
+  "methodology": "Primary provider terms, disclosures, service pages and network or meter-owner schedules were checked online on 1 October 2026. Not publicly published means no fixed siteworks arrangement price was found on these reviewed pages, not proof that a private tariff does not exist. Illustrative energy-contract commissions are not market averages or siteworks fees. London budgets retain the source's geographic and job scope. They are never assigned to a particular intermediary and exclude any unknown intermediary margin. The lower-confidence electricity meter proxy is a UK broker guide, not an installer tariff. VAT is marked only as stated in the relevant source."
+}

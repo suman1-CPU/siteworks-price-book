@@ -1,147 +1,62 @@
 <title>Siteworks Price Book</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: neo-brutal single look. Yellow title slab, filter board, a wall of price cards grouped by job,
-   then the compare chart and the where-to-find blocks. Gas is yellow and electricity is red, as in UK street-works marking. */
 :root{
-  --bg:#e7e1ff; --card:#ffffff; --ink:#111111; --ink2:#2f2f2f; --muted:#555555;
-  --yellow:#ffd60a; --red:#ff5a4f; --blue:#5b8cff; --green:#3ddc97; --orange:#ffa630; --pink:#ff8fd0;
-  --bd:3px solid var(--ink); --sh:6px 6px 0 var(--ink); --sh-s:3px 3px 0 var(--ink);
-  --display:"Archivo Black","Arial Black",Impact,sans-serif;
-  --body:"Archivo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-  --mono:"Space Mono",ui-monospace,Menlo,Consolas,monospace;
-  color-scheme:light;
+ --bg:#f5f5f7;--card:#fff;--ink:#1d1d1f;--ink2:#424245;--muted:#6e6e73;--accent:#0071e3;--accent-hover:#0077ed;--accent-soft:#e8f2ff;--on-accent:#fff;
+ --line:#e4e4e8;--soft:#f5f5f7;--nav:rgba(255,255,255,.82);--shadow:0 8px 32px rgba(0,0,0,.035);--veil:rgba(0,0,0,.4);
+ --gas:#956000;--gas-bg:#fff5df;--elec:#bd3b36;--elec-bg:#fff0ee;--green:#20764b;--green-bg:#eaf6ed;--orange:#996300;--orange-bg:#fff5df;--pink:#865d97;--pink-bg:#f5eef9;
+ --body:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",Helvetica,Arial,sans-serif;--mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;color-scheme:light;
 }
-*{box-sizing:border-box}
-[hidden]{display:none!important}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;margin:0}
-.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:28px 64px;display:flex;flex-direction:column;gap:28px}
-a{color:var(--ink);font-weight:700;text-decoration-thickness:2px;text-underline-offset:3px}
-a:hover{background:var(--yellow)}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
-h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;text-transform:uppercase}
-h2{font-size:26px;line-height:1.05}
-.box{background:var(--card);border:var(--bd);box-shadow:var(--sh);padding:18px;min-width:0}
-
-/* title slab */
-.slab{background:var(--yellow);display:flex;flex-direction:column;gap:12px;padding:22px}
-.slab h1{font-size:clamp(34px,8.2vw,76px);line-height:.92;letter-spacing:-1px}
-.slab p{margin:0;max-width:60ch;font-size:16px;font-weight:500}
-.stickers{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:4px}
-.sticker{font-family:var(--mono);font-size:12.5px;font-weight:700;text-transform:uppercase;border:var(--bd);padding:5px 10px;background:var(--card);box-shadow:var(--sh-s)}
-.sticker:nth-child(1){background:var(--green);transform:rotate(-1.5deg)}
-.sticker:nth-child(3){background:var(--pink);transform:rotate(1.2deg)}
-
-/* filter board */
-.board{display:flex;flex-direction:column;gap:14px}
-.search{width:100%;font-family:var(--mono);font-size:15px;color:var(--ink);background:var(--card);border:var(--bd);padding:13px 14px;border-radius:0}
-.search::placeholder{color:var(--muted)}
-.grp{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.lab{font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;width:86px;flex:none}
-.btn{font-family:var(--body);font-size:14px;font-weight:700;color:var(--ink);background:var(--card);border:var(--bd);box-shadow:var(--sh-s);padding:7px 12px;cursor:pointer;border-radius:0}
-.btn small{font-family:var(--mono);font-weight:400;font-size:11.5px;margin-left:5px}
-.btn:hover{background:var(--yellow)}
-.btn[aria-pressed="true"]{background:var(--ink);color:var(--card);box-shadow:none;transform:translate(3px,3px)}
-.btn.gas[aria-pressed="true"]{background:var(--yellow);color:var(--ink)}
-.btn.elec[aria-pressed="true"]{background:var(--red);color:var(--ink)}
-.tog{display:flex;align-items:center;gap:8px;font-weight:500;cursor:pointer}
-.tog input{width:20px;height:20px;accent-color:var(--ink)}
-.spacer{flex:1}
-
-/* ask box */
-.ask{background:var(--blue);display:flex;flex-direction:column;gap:12px}
-.ask p{margin:0;font-weight:500;max-width:70ch}
-.ask .fine{font-family:var(--mono);font-size:12px;font-weight:400}
-.thread{display:flex;flex-direction:column;gap:10px}
-.msg{border:var(--bd);padding:10px 12px;max-width:min(640px,92%);white-space:pre-wrap;overflow-wrap:anywhere}
-.msg.me{background:var(--yellow);align-self:flex-end;font-weight:700}
-.msg.bot{background:var(--card);align-self:flex-start;box-shadow:var(--sh-s)}
-.msg.wait{font-family:var(--mono);font-size:13px}
-.askrow{display:flex;gap:10px;align-items:stretch}
-.askrow .search{flex:1;min-width:0}
-.btn.go{background:var(--ink);color:var(--card);font-size:16px;padding-inline:20px}
-.btn.go:hover{background:var(--yellow);color:var(--ink)}
-.btn.go:disabled{opacity:.6;cursor:wait}
-
-/* price wall */
-.wall-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px}
-.count{font-family:var(--mono);font-size:13px;font-weight:700}
-.group{display:flex;flex-direction:column;gap:14px}
-.ghead{align-self:flex-start;font-family:var(--display);text-transform:uppercase;font-size:16px;background:var(--ink);color:var(--card);padding:5px 12px}
-.ghead span{font-family:var(--mono);font-size:12.5px;margin-left:8px;color:var(--yellow)}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
-.card{background:var(--card);border:var(--bd);box-shadow:var(--sh);padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0;transition:transform .12s,box-shadow .12s}
-.card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
-.card.unc{border-style:dashed}
-.top{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.tag{font-family:var(--mono);font-size:11.5px;font-weight:700;text-transform:uppercase;border:2px solid var(--ink);padding:1px 7px}
-.tag.gas{background:var(--yellow)} .tag.elec{background:var(--red)} .tag.cust{background:var(--card)}
-.price{font-family:var(--mono);font-weight:700;font-size:30px;line-height:1.05;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.price.txt{font-size:22px}
-.price small{display:block;font-size:11.5px;font-weight:400;color:var(--muted);margin-top:2px}
-.item{font-weight:700;font-size:16px;line-height:1.25}
-.net{font-family:var(--mono);font-size:12.5px}
-.note{font-size:13.5px;color:var(--ink2)}
-.foot{margin-top:auto;padding-top:8px;border-top:2px solid var(--ink);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-family:var(--mono);font-size:12px}
-.st{font-weight:700;text-transform:uppercase;border:2px solid var(--ink);padding:1px 6px}
-.st.cur{background:var(--green)} .st.old{background:var(--orange)} .st.quo{background:var(--card)}
-.st.unc{background:repeating-linear-gradient(45deg,var(--pink) 0 6px,var(--card) 6px 12px)}
-.empty{font-family:var(--display);text-transform:uppercase;font-size:24px;background:var(--pink)}
-.empty p{font-family:var(--body);text-transform:none;font-size:15px;margin:6px 0 0}
-
-/* compare */
-.cmp-top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
-.cmp-top select{font-family:var(--body);font-size:14px;font-weight:700;color:var(--ink);background:var(--card);border:var(--bd);box-shadow:var(--sh-s);padding:8px 10px;max-width:100%;border-radius:0}
-.bars{display:flex;flex-direction:column;gap:12px}
-.bar-row{display:grid;grid-template-columns:200px minmax(0,1fr) 96px;gap:12px;align-items:center}
-.bar-row .name{font-weight:700;font-size:14px;line-height:1.2}
-.bar-row .name small{display:block;font-family:var(--mono);font-weight:400;font-size:11.5px;color:var(--muted)}
-.fill{height:28px;background:var(--blue);border:var(--bd);min-width:10px}
-.bar-row:hover .fill{background:var(--yellow)}
-.bar-row .val{font-family:var(--mono);font-weight:700;font-size:16px;text-align:right;font-variant-numeric:tabular-nums}
-.cmp-note{font-size:13.5px;color:var(--ink2);margin:16px 0 0;max-width:80ch}
-
-/* reading + where */
-.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px}
-.legend div{font-size:14px;display:flex;flex-direction:column;gap:5px;align-items:flex-start}
-.plain{margin:14px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px;max-width:80ch}
-.where{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.where .box{display:flex;flex-direction:column;gap:8px}
-.where .box:nth-child(1){background:var(--yellow)} .where .box:nth-child(2){background:var(--green)}
-.where .box:nth-child(3){background:var(--red)} .where .box:nth-child(4){background:var(--pink)}
-.where h3{font-size:17px}
-.where ul{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:5px}
-.where a:hover{background:var(--card)}
-code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px solid var(--ink);padding:0 4px}
-.end{font-family:var(--mono);font-size:12px;margin:0}
-
-@media (max-width:640px){
-  :root{--sh:4px 4px 0 var(--ink)}
-  .lab{width:100%}
-  .bar-row{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
-  .bar-row .name{grid-column:1 / -1}
-  .bar-row .name small{display:inline;margin-left:6px}
-  .price{font-size:27px}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#000;--card:#1d1d1f;--ink:#f5f5f7;--ink2:#d2d2d7;--muted:#a1a1a6;--accent:#2997ff;--accent-hover:#64b5ff;--accent-soft:#102b45;--on-accent:#fff;
+ --line:#3b3b3f;--soft:#29292c;--nav:rgba(29,29,31,.84);--shadow:0 8px 32px rgba(0,0,0,.1);--veil:rgba(0,0,0,.65);
+ --gas:#edc279;--gas-bg:#382c17;--elec:#ff9f95;--elec-bg:#3b2322;--green:#8cd7ab;--green-bg:#203329;--orange:#edc279;--orange-bg:#382c17;--pink:#d4a9ed;--pink-bg:#342a3a;color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+ --bg:#000;--card:#1d1d1f;--ink:#f5f5f7;--ink2:#d2d2d7;--muted:#a1a1a6;--accent:#2997ff;--accent-hover:#64b5ff;--accent-soft:#102b45;--on-accent:#fff;
+ --line:#3b3b3f;--soft:#29292c;--nav:rgba(29,29,31,.84);--shadow:0 8px 32px rgba(0,0,0,.1);--veil:rgba(0,0,0,.65);
+ --gas:#edc279;--gas-bg:#382c17;--elec:#ff9f95;--elec-bg:#3b2322;--green:#8cd7ab;--green-bg:#203329;--orange:#edc279;--orange-bg:#382c17;--pink:#d4a9ed;--pink-bg:#342a3a;color-scheme:dark;
 }
-@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+*{box-sizing:border-box}[hidden]{display:none!important}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input,select,summary{-webkit-tap-highlight-color:transparent}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}button{cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}h1,h2,h3,p{margin:0}h1,h2,h3{font-weight:600;letter-spacing:-.035em;line-height:1.12;text-wrap:balance}h2{font-size:clamp(26px,3vw,34px)}h3{font-size:21px}button{color:var(--ink)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--nav);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--line)}.nav-inner{max-width:1180px;padding:13px 16px;margin:auto;display:flex;gap:20px;align-items:center}.brand{color:var(--ink);font-size:17px;font-weight:600;letter-spacing:-.025em;white-space:nowrap}.nav-links{margin-left:auto;display:flex;gap:22px;font-size:12px;align-items:center}.nav-links a{color:var(--ink2)}.theme{display:flex;gap:7px;align-items:center;font-size:12px;color:var(--muted)}.theme select{border:0;border-radius:20px;background:var(--soft);color:var(--ink);font-size:12px;padding:6px 9px;max-width:110px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 64px;display:flex;flex-direction:column;gap:38px;min-width:0}.box{background:var(--card);border-radius:24px;padding:30px;min-width:0;box-shadow:var(--shadow)}.slab{text-align:center;background:var(--bg);box-shadow:none;padding:76px 10px 34px;display:flex;flex-direction:column;gap:23px;align-items:center}.eyebrow{font-size:13px;letter-spacing:.075em;font-weight:600;text-transform:uppercase;color:var(--muted)}.slab h1{font-size:clamp(44px,7.3vw,86px);letter-spacing:-.06em;line-height:1.02;max-width:900px}.slab p{max-width:740px;font-size:clamp(17px,2vw,21px);line-height:1.5;color:var(--muted);letter-spacing:-.015em}.stickers{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}.sticker{font-size:12px;background:var(--card);color:var(--muted);border-radius:20px;padding:7px 12px}.hero-links{display:flex;gap:24px;margin-top:2px;font-size:16px}.hero-links a::after{content:' ›'}
+.board{display:flex;flex-direction:column;gap:20px}.search{width:100%;background:var(--soft);color:var(--ink);border:1px solid var(--line);padding:14px 18px;border-radius:14px;font-size:15px;min-width:0}.search::placeholder{color:var(--muted)}.grp{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.lab{color:var(--muted);font-size:12px;font-weight:600;width:75px;flex:none}.btn{border:1px solid var(--line);border-radius:30px;background:var(--card);color:var(--ink2);font-size:13px;font-weight:500;padding:8px 13px;line-height:1.35;transition:background .15s,color .15s}.btn:hover{background:var(--soft)}.btn small{font-size:11px;margin-left:6px;opacity:.75}.btn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}.btn.gas[aria-pressed="true"]{background:var(--gas-bg);color:var(--gas);border-color:var(--gas)}.btn.elec[aria-pressed="true"]{background:var(--elec-bg);color:var(--elec);border-color:var(--elec)}.tog{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);cursor:pointer}.tog input{width:16px;height:16px;accent-color:var(--accent)}.spacer{flex:1}.filter-title{display:flex;align-items:center;justify-content:space-between;gap:14px}.filter-title h2{font-size:23px}.filter-title span{font-size:12px;color:var(--muted)}
+.ask{display:flex;flex-direction:column;gap:16px}.ask-head{display:flex;gap:12px;align-items:center;justify-content:space-between}.ai-badge{padding:5px 10px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-size:11px;font-weight:600;white-space:nowrap}.ask p{max-width:75ch;color:var(--muted)}.ask .fine{font-size:12px}.ask .grp .btn{font-size:12px}.thread{display:flex;flex-direction:column;gap:14px}.thread:empty{display:none}.msg{padding:15px 18px;max-width:min(740px,94%);white-space:pre-wrap;overflow-wrap:anywhere;border-radius:19px}.msg.me{background:var(--accent);color:var(--on-accent);align-self:flex-end;border-bottom-right-radius:6px}.msg.bot{background:var(--soft);align-self:flex-start;border-bottom-left-radius:6px}.msg.wait{color:var(--muted);font-size:14px}.askrow{display:flex;gap:10px;align-items:stretch}.askrow .search{flex:1}.btn.go{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-size:14px;padding-inline:23px}.btn.go:hover{background:var(--accent-hover)}.btn.go:disabled{opacity:.6;cursor:wait}.msg-sources{margin-top:12px;border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:6px;font-size:12px;white-space:normal}.msg-sources a{overflow-wrap:anywhere}.search-status{font-size:12px;color:var(--muted);margin-top:10px;white-space:normal}.ask-options{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.ask-options .fine{color:var(--muted)}
+.wall-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 16px}.count{font-size:13px;color:var(--muted)}.group{display:flex;flex-direction:column;gap:18px}.ghead{font-size:22px;font-weight:600;letter-spacing:-.025em;display:flex;align-items:center;gap:10px}.ghead span{font-size:12px;font-weight:500;border-radius:20px;background:var(--card);padding:3px 9px;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:20px}.card{background:var(--card);border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0;box-shadow:var(--shadow);border:1px solid var(--card);transition:transform .2s}.card:hover{transform:translateY(-2px)}.card.unc{border:1px dashed var(--line)}.top{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.tag{font-size:11px;font-weight:500;border-radius:20px;padding:3px 9px;color:var(--muted);background:var(--soft)}.tag.gas{background:var(--gas-bg);color:var(--gas)}.tag.elec{background:var(--elec-bg);color:var(--elec)}.tag.gas::before,.tag.elec::before{content:'●';font-size:7px;margin-right:5px;vertical-align:2px}.price{font-family:var(--body);font-size:36px;font-weight:600;letter-spacing:-.05em;line-height:1.1;overflow-wrap:anywhere;text-align:left;display:block;border:0;padding:3px 0;background:none;color:var(--ink);width:100%;font-variant-numeric:tabular-nums}.price:hover{color:var(--accent)}.price.txt{font-size:27px}.price small{display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:7px}.item{font-weight:600;font-size:17px;letter-spacing:-.015em;line-height:1.3}.net{font-size:12px;color:var(--muted)}.note{font-size:13px;color:var(--ink2);line-height:1.6}.money-link{font:inherit;border:0;padding:0;background:none;color:var(--accent);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer;text-align:left}.money-link:hover{text-decoration-style:solid}.foot{margin-top:auto;padding-top:17px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--muted)}.foot a,.foot button{margin-left:auto}.context-link{background:none;border:0;padding:0;color:var(--accent);font-size:11px}.st{font-size:10px;font-weight:600;border-radius:20px;padding:3px 8px;background:var(--soft);color:var(--muted);white-space:nowrap}.st.cur{background:var(--green-bg);color:var(--green)}.st.old{background:var(--orange-bg);color:var(--orange)}.st.unc{background:var(--pink-bg);color:var(--pink)}.empty{font-size:23px;font-weight:600}.empty p{font-size:15px;font-weight:400;color:var(--muted);margin-top:6px}
+.cmp-top{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:28px}.cmp-top select{max-width:100%;border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:12px;padding:10px 12px;font-size:13px}.bars{display:flex;flex-direction:column;gap:20px}.bar-row{display:grid;grid-template-columns:190px minmax(0,1fr) 110px;gap:16px;align-items:center}.bar-row .name{font-size:13px;font-weight:600;line-height:1.3}.bar-row .name small{display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px}.fill{height:20px;background:var(--accent);border-radius:4px;min-width:8px}.bar-row .val{font-size:15px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums;border:0;background:none;padding:5px 0;color:var(--ink)}.bar-row .val:hover{color:var(--accent)}.cmp-note{font-size:13px;color:var(--muted);margin-top:26px;max-width:80ch}.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:25px}.legend div{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:8px;align-items:flex-start}.plain{margin:25px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:9px;max-width:88ch;font-size:13px;color:var(--muted)}.where{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:20px}.where .box{display:flex;flex-direction:column;gap:16px;padding:25px}.where ul{margin:0;padding-left:17px;font-size:13px;display:flex;flex-direction:column;gap:12px;color:var(--muted)}code{font-family:var(--mono);font-size:11px;background:var(--soft);color:var(--ink2);border-radius:4px;padding:2px 4px;overflow-wrap:anywhere}.end{font-size:12px;color:var(--muted)}
+.evidence-dialog{border:1px solid var(--line);border-radius:26px;background:var(--card);color:var(--ink);padding:30px;width:calc(100% - 32px);max-width:600px;max-height:calc(100dvh - 40px);overflow:auto;box-shadow:var(--shadow)}.evidence-dialog::backdrop{background:var(--veil);backdrop-filter:blur(5px)}.dialog-head{display:flex;justify-content:space-between;gap:15px;align-items:center}.dialog-head h2{font-size:25px}.dialog-close{border:0;background:var(--soft);color:var(--ink);border-radius:50%;width:32px;height:32px;font-size:20px;line-height:1;flex:none}.evidence-amount{font-size:40px;font-weight:600;letter-spacing:-.05em;margin:23px 0 10px}.evidence-dialog h3{font-size:19px}.evidence-dialog p{font-size:14px;color:var(--ink2);margin-top:12px}.evidence-meta{display:grid;grid-template-columns:100px 1fr;gap:9px;font-size:13px;margin:23px 0;padding:20px 0;border-block:1px solid var(--line)}.evidence-meta dt{color:var(--muted)}.evidence-meta dd{margin:0}.evidence-source{display:block;margin-top:18px;font-size:14px}.source-url{display:block;font-size:11px;color:var(--muted);overflow-wrap:anywhere;margin-top:5px}.evidence-warning{background:var(--soft);border-radius:12px;padding:13px}.context-help{font-size:12px;color:var(--muted)}
+@media(max-width:640px){.nav-inner{gap:10px}.brand{font-size:14px}.nav-links{gap:10px}.nav-links a{display:none}.theme>span{display:none}.wrap{gap:28px}.slab{padding:48px 0 18px;gap:20px}.slab h1{font-size:49px}.box{padding:22px;border-radius:20px}.stickers{gap:7px}.sticker{font-size:10px;padding:6px 9px}.lab{width:100%;margin-bottom:2px}.board{gap:18px}.filter-title span{display:none}.cards{grid-template-columns:minmax(0,1fr)}.card{padding:25px}.ask-head{align-items:flex-start}.ask-head h2{font-size:25px}.askrow{gap:7px}.btn.go{padding-inline:17px}.askrow .search{font-size:14px;padding-inline:13px}.msg{font-size:14px;max-width:96%}.bar-row{grid-template-columns:minmax(0,1fr) 92px;gap:6px 12px}.bar-row .name{grid-column:1/-1}.bar-row .name small{display:inline;margin-left:7px}.cmp-top select{width:100%;min-width:0}.where{grid-template-columns:minmax(0,1fr)}.hero-links{font-size:14px;gap:20px}.evidence-dialog{padding:23px}.evidence-meta{grid-template-columns:85px 1fr}.context-help{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.btn{transition:none}.card:hover{transform:none}}
+.research-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(295px,1fr));gap:20px}.research-card{background:var(--card);padding:26px;border-radius:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px;min-width:0}.research-card p,.research-details{font-size:13px;color:var(--muted);line-height:1.6}.research-card h3{font-size:22px}.research-card .research-price{font-size:30px;font-weight:600;letter-spacing:-.04em}.research-details summary{color:var(--accent);cursor:pointer;font-weight:500}.research-details[open] summary{margin-bottom:10px}.research-details a{overflow-wrap:anywhere}.estimate{background:var(--accent-soft);border-radius:18px;padding:24px;color:var(--ink)}.estimate p{color:var(--ink2);font-size:14px;margin-top:12px}.research-tag{border-radius:20px;padding:4px 10px;align-self:flex-start;font-size:11px;background:var(--soft);color:var(--muted)}@media(max-width:640px){.research-grid{grid-template-columns:minmax(0,1fr)}}
+
+.hero-links{flex-wrap:wrap;justify-content:center}.research-intro{max-width:80ch;color:var(--muted);font-size:16px;line-height:1.6}.research-section{display:flex;flex-direction:column;gap:22px}.research-price{border:0;background:none;padding:0;text-align:left;color:var(--ink);line-height:1.2;width:100%;overflow-wrap:anywhere}.research-price:hover{color:var(--accent)}.research-card .research-price{font-size:25px}.research-card .context-link{margin-top:auto;font-size:12px;align-self:flex-start}.research-card .research-tag.estimated{background:var(--accent-soft);color:var(--accent)}.research-card .research-tag.guide{background:var(--orange-bg);color:var(--orange)}.research-method{font-size:12px;color:var(--muted);line-height:1.6}.research-card .budget-label{font-size:11px;color:var(--muted);margin-top:-7px}.research-dialog-sources{display:flex;flex-direction:column;gap:14px;margin-top:20px}.research-dialog-sources .evidence-source{margin:0}.research-dialog-sources small{font-size:11px;color:var(--muted)}
 </style>
 
-<div class="wrap">
+<nav class="nav" aria-label="Main navigation"><div class="nav-inner">
+  <a class="brand" href="#top">Siteworks Price Book</a>
+  <div class="nav-links"><a href="#price-index">Prices</a><a href="#compare-view">Compare</a><a href="#brokers">Brokers</a><a href="#london-budgets">London</a><a href="#sources-view">Sources</a>
+    <label class="theme"><span>Appearance</span><select id="theme" aria-label="Appearance"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+  </div>
+</div></nav>
+<div class="wrap" id="top">
   <header class="box slab">
-    <h1>Siteworks Price Book</h1>
-    <p>Real published UK prices for new connections, meter installs, upgrades, removals and disconnections. Gas and electricity, homes and businesses. Every card links to where the number came from.</p>
+    <span class="eyebrow">UK energy connections &amp; metering</span>
+    <h1>Siteworks.<br>Clearly priced.</h1>
+    <p>Real published UK prices for new connections, meter installs, upgrades, removals and disconnections. Gas and electricity, homes and businesses. Click any price for its scope, date and source. Unconfirmed figures are clearly labelled.</p>
     <div class="stickers">
       <span class="sticker">Checked 01/10/2026</span>
-      <span class="sticker">All prices before VAT</span>
+      <span class="sticker">VAT basis varies by source</span>
       <span class="sticker">Next price change: April 2027</span>
     </div>
+    <div class="hero-links"><a href="#price-index">Explore the prices</a><a href="#london-budgets">London estimates</a><a href="#sources-view">Read the sources</a></div>
   </header>
 
   <section class="box ask" id="ask" aria-label="Ask a question" hidden>
-    <h2>Ask the price book</h2>
-    <p>Type a question in plain words, English or Hinglish. The answer comes only from the prices on this page.</p>
+    <div class="ask-head"><h2>Ask the price book</h2><span class="ai-badge">Free Zen AI</span></div>
+    <p>Type a question in plain words, English or Hinglish. Use the prices on this page, or turn on online search for UK siteworks and TPI charges.</p>
     <div class="grp" id="eg"></div>
     <div class="thread" id="thread" aria-live="polite"></div>
+    <div class="ask-options"><label class="tog"><input type="checkbox" id="askweb"> Search online for this answer</label><span class="fine">UK siteworks, suppliers and TPIs only</span></div>
     <form class="askrow" id="askform">
       <input class="search" id="askq" type="text" maxlength="400" placeholder="U25 meter removal kitna hai?" autocomplete="off" aria-label="Your question">
       <button class="btn go" id="askgo" type="submit">Ask</button>
@@ -150,6 +65,7 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
   </section>
 
   <section class="box board" aria-label="Filters">
+    <div class="filter-title"><h2>Find your siteworks</h2><span>Choose a job. See what applies.</span></div>
     <input class="search" id="q" type="search" placeholder="Type anything: U25, disconnection, Cadent, London..." autocomplete="off" aria-label="Search prices">
     <div class="grp" id="g-fuel"><span class="lab">Fuel</span></div>
     <div class="grp" id="g-cust"><span class="lab">Who for</span></div>
@@ -161,16 +77,29 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
     </div>
   </section>
 
-  <section aria-label="Prices" style="display:flex;flex-direction:column;gap:20px">
-    <div class="wall-top"><h2>Prices</h2><span class="count" id="count"></span></div>
+  <section id="price-index" aria-label="Prices" style="display:flex;flex-direction:column;gap:20px">
+    <div class="wall-top"><h2>Prices</h2><span class="count" id="count"></span><span class="spacer"></span><span class="context-help">Click a price to see its context and source ↗</span></div>
     <div id="wall" style="display:flex;flex-direction:column;gap:26px"></div>
     <div class="box empty" id="empty" hidden>Nothing matches.<p>Try fewer filters or a shorter search, or press Reset.</p></div>
   </section>
 
-  <section class="box" aria-label="Compare prices">
+  <section class="box" id="compare-view" aria-label="Compare prices">
     <div class="cmp-top"><h2>Compare</h2><select id="cmp" aria-label="What to compare"></select></div>
     <div class="bars" id="bars"></div>
     <p class="cmp-note" id="cmpnote"></p>
+  </section>
+
+  <section class="research-section" id="london-budgets" aria-label="London planning estimates">
+    <div class="wall-top"><h2>London planning estimates</h2><span class="count">7 sourced examples</span></div>
+    <p class="research-intro">A starting point when a broker's exact charge is unavailable. These cover the underlying work, with the geography and assumptions shown. Add the broker's separately agreed fee to get your customer total.</p>
+    <div class="estimate"><strong>Check the scope before using a budget.</strong><p>North London and South London can have different providers. Home connection examples apply to homes. Meter-owner prices are supplier-facing components. Every figure opens its calculation, exclusions, VAT basis and source URLs.</p></div>
+    <div class="research-grid" id="london-cards"></div>
+  </section>
+  <section class="research-section" id="brokers" aria-label="Energy broker fee research">
+    <div class="wall-top"><h2>What other brokers charge</h2><span class="count">8 intermediaries checked · 01/10/2026</span></div>
+    <p class="research-intro">No fixed siteworks arrangement fee was found on the reviewed pages. The cards explain how each broker charges and link to its own terms or service page. A fee that is not published does not mean the work is free.</p>
+    <div class="research-grid" id="broker-cards"></div>
+    <details class="research-details"><summary>How this research was checked</summary><p class="research-method" id="research-method"></p></details>
   </section>
 
   <section class="box" aria-label="How to read the prices">
@@ -189,7 +118,7 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
     </ul>
   </section>
 
-  <section aria-label="Where prices are published" style="display:flex;flex-direction:column;gap:20px">
+  <section id="sources-view" aria-label="Where prices are published" style="display:flex;flex-direction:column;gap:20px">
     <h2>Where to find the price lists</h2>
     <div class="where">
       <div class="box"><h3>Gas pipes</h3><ul>
@@ -217,6 +146,10 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
     <p class="end">Built 01/10/2026 from the networks' own published price lists.</p>
   </section>
 </div>
+<dialog class="evidence-dialog" id="evidence" aria-labelledby="evidence-title">
+  <div class="dialog-head"><h2 id="evidence-title">Price context</h2><button class="dialog-close" id="evidence-close" type="button" aria-label="Close price context">×</button></div>
+  <div id="evidence-body"></div>
+</dialog>
 
 <script>
 (function(){
@@ -312,6 +245,40 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
   var state={fuel:'All',cust:'All',job:'All'};
   var $=function(id){return document.getElementById(id)};
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  var themeControl=$('theme');
+  try{var savedTheme=localStorage.getItem('siteworks-theme');if(['light','dark','system'].indexOf(savedTheme)>-1)themeControl.value=savedTheme}catch(e){}
+  function setTheme(){var theme=themeControl.value;if(theme==='system')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',theme);try{localStorage.setItem('siteworks-theme',theme)}catch(e){}}
+  themeControl.addEventListener('change',setTheme);setTheme();
+  function safeUrl(value){try{var u=new URL(value);return /^https?:$/.test(u.protocol)?u.href:null}catch(e){return null}}
+  function vatBasis(x){return x.src===S.sgnM?'VAT basis not stated in source; confirm with supplier':x.note.indexOf('Whether VAT is included')>-1?'VAT treatment not confirmed':'Amounts shown before VAT'}
+  function researchUrl(x){return 'https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.f+' '+x.j+' published charges')}
+  function sourceLink(x){
+    var url=safeUrl(x.src);
+    if(!url)return '<a class="evidence-source" href="'+esc(researchUrl(x))+'" target="_blank" rel="noopener noreferrer">Research this supplier ↗<span class="source-url">Search link only. No source document is available for this figure.</span></a>';
+    var label=x.st==='quo'?'Open the quote route':x.st==='unc'?'Open supplier or newer statement':'Open the source document';
+    return '<a class="evidence-source" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+label+' ↗<span class="source-url">'+esc(url)+'</span></a>';
+  }
+  function moneyContext(text,x){
+    var id=R.indexOf(x),out='',at=0,re=/£\d[\d,]*(?:\.\d{1,2})?/g,m;
+    while((m=re.exec(text))){out+=esc(text.slice(at,m.index))+'<button class="money-link" type="button" data-evidence="'+id+'" data-amount="'+esc(m[0])+'" aria-label="Context and source for '+esc(m[0])+'">'+esc(m[0])+'</button>';at=m.index+m[0].length}
+    return out+esc(text.slice(at));
+  }
+  var evidenceTrigger=null;
+  function showEvidence(x,amount){
+    if(!x)return;
+    var warning=x.st==='unc'?'This figure is unconfirmed. It was seen in a search result and the original document could not be checked. A linked newer statement or supplier search does not verify this amount.':x.st==='old'?'This is an older published list. Confirm the current charge before quoting.':x.st==='quo'?'No fixed amount is published for this job. The link is a route to a quote or pricing tool, not evidence of a fixed charge.':'This is recorded as current on the book’s check date, 01/10/2026. Confirm that the source still applies before quoting.';
+    if(!x.src)warning+=' The original page has been removed or no live source is available.';
+    $('evidence-body').innerHTML='<div class="evidence-amount">'+esc(amount||x.p)+'</div><h3>'+esc(x.i)+'</h3>'
+      +'<dl class="evidence-meta"><dt>Provider</dt><dd>'+esc(x.n)+'</dd><dt>Area</dt><dd>'+esc(x.a)+'</dd><dt>Job</dt><dd>'+esc(x.f+' · '+x.j+' · '+CU[x.c])+'</dd><dt>List date</dt><dd>'+esc(x.from||'No effective date recorded')+'</dd><dt>Evidence</dt><dd><span class="st '+x.st+'">'+ST[x.st]+'</span></dd><dt>VAT</dt><dd>'+esc(vatBasis(x))+'</dd></dl>'
+      +'<p><strong>Scope and conditions</strong><br>'+esc(x.note)+'</p>'
+      +(amount&&amount!==x.p?'<p>This selected amount appears in the conditions above. The main card amount is '+esc(x.p)+'. Read the complete condition before applying it.</p>':'')
+      +'<p class="evidence-warning">'+esc(warning)+'</p>'+sourceLink(x);
+    if(!$('evidence').open)evidenceTrigger=document.activeElement;$('evidence').showModal();
+  }
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-evidence]');if(b)showEvidence(R[+b.dataset.evidence],b.dataset.amount)});
+  $('evidence-close').addEventListener('click',function(){$('evidence').close()});
+  $('evidence').addEventListener('click',function(e){if(e.target===$('evidence')){var b=$('evidence').getBoundingClientRect();if(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom)$('evidence').close()}});
+  $('evidence').addEventListener('close',function(){if(evidenceTrigger&&evidenceTrigger.isConnected)evidenceTrigger.focus()});
   function chips(host,key,opts){
     opts.forEach(function(o){
       var b=document.createElement('button');b.type='button';
@@ -346,13 +313,13 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
     return true;
   }
   function card(x){
+    var id=R.indexOf(x);
     return '<article class="card'+(x.st==='unc'?' unc':'')+'"><div class="top"><span class="tag '+(x.f==='Gas'?'gas':'elec')+'">'+x.f+'</span><span class="tag cust">'+CU[x.c]+'</span></div>'
-      +'<div class="price'+(x.num==null?' txt':'')+'">'+esc(x.p)+(x.num==null?'':'<small>before VAT</small>')+'</div>'
-      +'<div class="item">'+esc(x.i)+'</div>'
-      +'<div class="net">'+esc(x.n)+' · '+esc(x.a)+'</div>'
-      +'<div class="note">'+esc(x.note)+'</div>'
+      +'<button type="button" data-evidence="'+id+'" data-amount="'+esc(x.p)+'" class="price'+(x.num==null?' txt':'')+'" aria-label="Context and source for '+esc(x.p)+'">'+esc(x.p)+(x.num==null?'':'<small>'+(x.src===S.sgnM||x.note.indexOf('Whether VAT is included')>-1?'VAT basis unconfirmed':'before VAT')+' · View context ↗</small>')+'</button>'
+      +'<div class="item">'+esc(x.i)+'</div><div class="net">'+esc(x.n)+' · '+esc(x.a)+'</div>'
+      +'<div class="note">'+moneyContext(x.note,x)+'</div>'
       +'<div class="foot"><span class="st '+x.st+'">'+ST[x.st]+'</span>'+(x.from?'<span>from '+esc(x.from)+'</span>':'')
-      +(x.src?'<a href="'+esc(x.src)+'" target="_blank" rel="noopener">Source</a>':'<span>no live source</span>')+'</div></article>';
+      +'<button class="context-link" type="button" data-evidence="'+id+'">Context &amp; source ↗</button></div></article>';
   }
   function draw(){
     var q=$('q').value.trim().toLowerCase(), showUnc=$('unc').checked, total=0, h='';
@@ -373,13 +340,18 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
     $('empty').hidden=total>0;
     $('count').textContent=total+' of '+R.length+' shown';
   }
+  function comparisonRow(index,d){
+    var job=index===0?'New connection':index===1?'Disconnection':index===2?'Meter install':'Meter removal';
+    return R.find(function(x){return x.f==='Gas'&&x.j===job&&x.num===d[2]&&(index>1?x.i.indexOf(d[0]+' ')==0:(d[0]==='SGN Scotland'?x.n==='SGN'&&x.a==='Scotland':d[0]==='Wales & West'?x.n==='Wales & West Utilities':x.n===d[0])&&(d[0]!=='Cadent'||x.a===d[1]))});
+  }
   function chart(){
-    var c=CMP[+$('cmp').value], max=Math.max.apply(null,c.d.map(function(d){return d[2]}));
+    var index=+$('cmp').value,c=CMP[index], max=Math.max.apply(null,c.d.map(function(d){return d[2]}));
     $('bars').innerHTML=c.d.map(function(d){
-      return '<div class="bar-row" title="'+esc(d[0]+', '+d[1]+': '+gbp(d[2])+' before VAT')+'"><div class="name">'+esc(d[0])+'<small>'+esc(d[1])+'</small></div>'
-        +'<div><div class="fill" style="width:'+(d[2]/max*100).toFixed(1)+'%"></div></div><div class="val">'+gbp(d[2])+'</div></div>';
+      var x=comparisonRow(index,d), value=x?'<button type="button" class="val" data-evidence="'+R.indexOf(x)+'" data-amount="'+esc(gbp(d[2]))+'" aria-label="Context and source for '+esc(d[0]+' '+gbp(d[2]))+'">'+gbp(d[2])+' ↗</button>':'<div class="val">'+gbp(d[2])+'</div>';
+      return '<div class="bar-row" title="'+esc(d[0]+', '+d[1]+': '+gbp(d[2])+(x?' · '+vatBasis(x):''))+'"><div class="name">'+esc(d[0])+'<small>'+esc(d[1])+'</small></div>'
+        +'<div><div class="fill" style="width:'+(d[2]/max*100).toFixed(1)+'%"></div></div>'+value+'</div>';
     }).join('');
-    $('cmpnote').textContent=c.note;
+    $('cmpnote').textContent=c.note+' Click a value to read its context and source.';
   }
   CMP.forEach(function(c,i){var o=document.createElement('option');o.value=i;o.textContent=c.k;$('cmp').appendChild(o)});
   $('cmp').addEventListener('change',chart);
@@ -387,6 +359,53 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
   $('unc').addEventListener('change',draw);
   $('clear').addEventListener('click',function(){state={fuel:'All',cust:'All',job:'All'};$('q').value='';$('unc').checked=true;sync();draw()});
   chart();draw();
+
+  var RESEARCH={"checked":"2026-10-01","title":"Broker fees and London budgets","summary":"Eight energy intermediaries checked. None of the pages reviewed publishes a fixed siteworks arrangement fee. Obtain an itemised quote. The London figures below estimate the underlying work only, using published provider prices or a clearly labelled UK guide proxy.","caution":"Supplier, network and meter-owner charges are separate from a broker's arrangement fee or energy-contract commission. No broker markup or London premium has been invented. A missing published fee does not mean the service is free.","tpis":[{"id":"bionic","name":"Bionic","type":"Energy broker","price":"Siteworks fee not publicly published","status":"Quote required","charging":"General brokerage is paid through supplier commission included in the energy rates. Its terms normally provide for no direct customer service fee, with exceptions and a right to introduce charges after notification. Its meter guide says installation prices depend on meter type and work required.","context":"The general brokerage terms do not establish a £0 siteworks installation price. Request the installation cost and any separate arrangement fee.","vat":"No fixed siteworks fee or VAT basis published on the reviewed pages.","checked":"2026-10-01","sources":[{"title":"Bionic terms, clauses 5.1 to 5.3","url":"https://bionic.co.uk/about-bionic/terms-and-conditions/","type":"TPI primary terms","quote":"there is no fee due from a Customer to Bionic for providing the Services"},{"title":"Bionic meter-installation guide","url":"https://bionic.co.uk/business-energy/guides/business-gas-electricity-meters-installation/","type":"TPI primary guide","quote":"Installation costs aren't fixed"}]},{"id":"love","name":"Love Energy Savings","type":"Energy broker","price":"Siteworks fee not publicly published","status":"Quote required","charging":"Customers do not normally pay LOVE directly for brokerage. Supplier commission is usually an uplift in the unit rate. Some suppliers instead pay a fixed fee when new meters are installed, but no amount is published.","context":"Its published example is 1p/kWh × 25,000 kWh/year × two years = £500 estimated energy-contract commission. This is an illustration, not a meter installation or siteworks tariff.","vat":"VAT basis not stated for the commission illustration; not a customer siteworks invoice.","checked":"2026-10-01","sources":[{"title":"LOVE commission and fee transparency","url":"https://www.loveenergysavings.com/about-us/how-we-get-paid/","type":"TPI primary disclosure","quote":"Some suppliers may instead pay a fixed fee, for example, when new meters are installed."}]},{"id":"helpline","name":"Utility Helpline","type":"Energy broker","price":"Siteworks fee not publicly published","status":"Quote required","charging":"Tendering is normally free unless otherwise agreed. Commission generally comes from the supplier and may be built into unit rates or standing charges. The amount is disclosed individually before the contract. Its new-connections service coordinates suppliers, distributors and metering providers.","context":"September 2026 disclosure illustrates 0.50p/kWh × 10,000 kWh/year = £50/year electricity commission, or £150 over three years. This example is not a siteworks fee.","vat":"VAT basis not stated for the commission illustration; confirm the quote's VAT separately.","checked":"2026-10-01","sources":[{"title":"Utility Helpline fees, September 2026","url":"https://www.utilityhelpline.co.uk/terms-conditions/utility-helpline-fees-and-payment","type":"TPI primary disclosure","quote":"The amount of Commission is not the same for every Customer or Contract."},{"title":"Utility Helpline commercial connections","url":"https://www.utilityhelpline.co.uk/news/commercial-energy-connections-smart-metering","type":"TPI primary service page","quote":""}]},{"id":"omnium","name":"Omnium","type":"Energy intermediary","price":"Siteworks fee not publicly published","status":"Quote required","charging":"New connections are remunerated through a margin on the final unit rate or a fixed management fee, agreed in writing before signing. Siteworks are quoted per job before an appointment is raised.","context":"The connections page expressly holds no prices. Request the broker management fee separately from the meter operator and network works.","vat":"No fixed fee or VAT basis published on this page.","checked":"2026-10-01","sources":[{"title":"Omnium new connections and meters","url":"https://askomnium.co.uk/connections","type":"TPI primary service page","quote":"Site works are quoted per job before anything is raised. This page holds no prices."}]},{"id":"inspired","name":"Inspired","type":"Energy consultancy","price":"Siteworks fee not publicly published","status":"Quote required","charging":"Offers managed connections, disconnections, meter installation/removal, relocations, capacity changes and energisation. Its siteworks page directs customers to request a quote, without publishing a price or markup.","context":"Project coordination is offered, but no fixed siteworks administration fee is available from the reviewed service page.","vat":"No fixed fee or VAT basis published on this page.","checked":"2026-10-01","sources":[{"title":"Inspired siteworks services","url":"https://inspiredplc.co.uk/how-we-help/energy/site-efficiency/siteworks-services/","type":"TPI primary service page","quote":"Request a quote to get started."}]},{"id":"bidder","name":"Utility Bidder","type":"Energy broker","price":"Siteworks fee not publicly published","status":"Quote required","charging":"Guide describes supplier-priced installations, with a £200 to £800 UK electricity estimate. Gas costs vary by meter and supplier. No broker arrangement fee shown.","context":"Guide estimate of installation cost, not Utility Bidder's fee or a London quote.","vat":"VAT inclusion is not stated for the £200 to £800 guide range.","checked":"2026-10-01","sources":[{"title":"Utility Bidder business meter-installation guide, 30 March 2026","url":"https://www.utilitybidder.co.uk/compare-business-energy/business-gas-electricity-meters-installation/","type":"TPI primary guide, not installer tariff","quote":"the average cost of having a new electric meter installed in the UK ranges between £200 and £800"}]},{"id":"consultiv","name":"Consultiv Utilities","type":"Energy consultancy","price":"Siteworks fee not publicly published","status":"Quote required","charging":"Its terms describe supplier-paid commission included in the energy unit price, with the level varying by supplier and set by Consultiv. Its service evidence includes metering and siteworks, without a fixed installation or arrangement price.","context":"The published illustration is 0.5p/unit × 40,000 units/year × two years = £400 commission. This is energy procurement commission, not a siteworks charge. Contract-failure fees are also not siteworks charges.","vat":"VAT basis not stated for the commission illustration.","checked":"2026-10-01","sources":[{"title":"Consultiv terms, section 8","url":"https://consultivutilities.com/terms-conditions/","type":"TPI primary terms","quote":"The timing and amount of the Commission Payment varies from Supplier to Supplier"},{"title":"Consultiv metering and siteworks service evidence","url":"https://consultivutilities.com/partnership-spotlight-leyton-orient-football-club/","type":"TPI primary case study","quote":"Metering and siteworks"}]},{"id":"advantage","name":"Advantage Utilities","type":"Energy consultancy","price":"Siteworks fee not publicly published","status":"Quote required","charging":"Terms allow supplier-paid procurement fees; direct consultancy may use a fixed or time-based fee agreed in writing. The siteworks service offers project management and competitive quotes for meter installation and infrastructure.","context":"No siteworks fee is published. The service-page 'No Fee' statement concerns a commercial energy audit and must not be read as free siteworks.","vat":"No fixed siteworks fee or VAT basis published on the reviewed pages.","checked":"2026-10-01","sources":[{"title":"Advantage terms, section 5","url":"https://www.advantageutilities.com/policies/terms-and-conditions","type":"TPI primary terms","quote":"Where consultancy services or audits are provided on a fixed or time‑based fee"},{"title":"Advantage meter installation and siteworks","url":"https://www.advantageutilities.com/services/energy-gas-water/meter-installation-siteworks","type":"TPI primary service page","quote":"Offering highly competitive quotes from across the UK"}]}],"londonEstimates":[{"id":"london-home-gas-new","job":"Home gas connection, 5m on private land","fuel":"Gas","customer":"Home","area":"Cadent North London network only","price":"£3,297.50 to £3,875 + VAT","min":3297.5,"max":3875,"status":"Calculated budget example","basis":"£3,050 fixed + 5m × £165. Lower bound applies the published 70% reduction to the per-metre rate when the customer excavates: £3,050 + 5 × £49.50. Upper bound assumes Cadent excavates.","context":"Standard domestic job only. Customer excavation costs, meter/box, internal pipework, broker fee and bespoke extra works are not included. This does not estimate a commercial gas connection.","vat":"Excludes VAT, explicitly stated by Cadent; no VAT rate assumed.","checked":"2026-10-01","sources":[{"title":"Cadent North London connection pricing","url":"https://cadentgas.com/our-services/household-customers/new-gas-connection/indicative-pricing-tool/north-london-region","type":"Network primary price page","quote":"Our standard pricing apply to domestic properties."}]},{"id":"london-home-gas-move","job":"Home gas service-pipe move, 5m","fuel":"Gas","customer":"Home","area":"Cadent North London network only","price":"£1,021.50 to £1,599 + VAT","min":1021.5,"max":1599,"status":"Calculated budget example","basis":"£774 fixed + 5m × £165. Lower bound is £774 + 5 × £49.50 with customer excavation; upper bound assumes Cadent excavation. No optional 5% refit discount is applied.","context":"Domestic standard service alteration. Customer excavation costs, a new box, private downstream changes, broker fee and bespoke extra works are excluded. An additional 5% standard-charge reduction is possible if the customer arranges a Gas Safe engineer refit, whose cost is separate.","vat":"Excludes VAT, explicitly stated by Cadent; no VAT rate assumed.","checked":"2026-10-01","sources":[{"title":"Cadent North London alteration pricing","url":"https://cadentgas.com/our-services/household-customers/alterations/indicative-pricing-tool/north-london-region","type":"Network primary price page","quote":"A 70% deduction is applied to the total rate per metre cost"}]},{"id":"london-gas-disconnect","job":"Gas service disconnection, up to 63mm","fuel":"Gas","customer":"Home or business, subject to quote","area":"Cadent North London network only","price":"£2,157 + VAT network component","min":2157,"max":2157,"status":"Published component budget","basis":"Cadent's published North London charge for a pipe up to 63mm. Larger published pipe charges are £3,235 for 90mm, £3,360 for 125mm and £4,322 for 180mm.","context":"Budget for the network component only, subject to the job meeting the price-page scope. Confirm meter removal and any additional works separately. No broker fee is included.","vat":"Excludes VAT, explicitly shown as +VAT by Cadent.","checked":"2026-10-01","sources":[{"title":"Cadent North London disconnection pricing","url":"https://cadentgas.com/our-services/household-customers/gas-disconnections/indicative-pricing-tool/north-london-region","type":"Network primary price page","quote":"Up to 63mm pipe diameter"}]},{"id":"london-commercial-gas-install","job":"Small commercial gas meter install, U16 or U25","fuel":"Gas","customer":"Business","area":"SGN Southern tariff proxy for South London; confirm meter owner","price":"£278.17 to £1,202.57 meter-owner component","min":278.17,"max":1202.57,"status":"Published component budget","basis":"SGN Southern June 2026: 11 to under 21 scmh (U16) £278.17 meter-only or £859.08 with housing; 21 to under 29 scmh (U25) £344.13 meter-only or £1,202.57 with housing. Endpoints reflect size and housing choices, not uncertainty about one fixed job.","context":"Standard low pressure only; supplier-facing meter-owner cost. Connection, downstream work, broker/supplier add-ons, housing bases and relief roofs are extra. Confirm meter owner.","vat":"VAT basis is not explicitly labelled in the installation table; confirm with the supplier before adding VAT.","checked":"2026-10-01","sources":[{"title":"SGN Southern metering charges, June 2026, page 5","url":"https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/2.%20Southern%202026.pdf#page=5","type":"Meter-owner primary price schedule","quote":"standard low pressure installations, where no enhancements (e.g. bypasses) are required"},{"title":"SGN network geography, business plan PDF page 16","url":"https://www.sgn.co.uk/sites/default/files/media-entities/documents/2022-07/SGN-RIIO-GD2-Business-Plan.pdf#page=16","type":"Network primary geography document","quote":"South London and the South East of England"}]},{"id":"london-commercial-gas-remove","job":"Commercial gas meter removal, U16 to U40","fuel":"Gas","customer":"Business","area":"SGN Southern tariff proxy for South London; confirm meter owner","price":"£195.94 to £423.94 meter-owner component","min":195.94,"max":423.94,"status":"Published component budget","basis":"SGN Southern June 2026 table: U16 £195.94, U25 £211.45, U40 £423.94. Range spans these three meter sizes.","context":"Standard low pressure; supplier/broker add-ons, service disconnection, extra purging, waiting and materials are separate. Meter-owner component, not customer total.","vat":"VAT basis is not explicitly labelled in the removal table; confirm with the supplier.","checked":"2026-10-01","sources":[{"title":"SGN Southern metering charges, June 2026, page 5","url":"https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/2.%20Southern%202026.pdf#page=5","type":"Meter-owner primary price schedule","quote":""}]},{"id":"london-electricity-disconnect","job":"Electricity permanent disconnection, underground","fuel":"Electricity","customer":"Home or small business","area":"UK Power Networks: London, South East and East of England","price":"£805 to £2,650 + VAT usual network band","min":805,"max":2650,"status":"Published regional budget band","basis":"UKPN reports 65% of customers in this underground-cable band, 30% at £2,650 to £5,510 and 5% above £5,510. It is a regional historical-cost distribution, not a London-only average or fixed quote.","context":"Meter removal and broker arrangement fees are separate. Council permits and complex work can push the network quote above this band. Large supplies require a separate commercial quote.","vat":"Excludes VAT, explicitly stated by UKPN.","checked":"2026-10-01","sources":[{"title":"UKPN permanent disconnection costs","url":"https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/disconnect/permanently-disconnect-cost-and-time","type":"Network primary customer-cost statistics","quote":"65% of customers paid this"}]},{"id":"london-electricity-install-proxy","job":"Electricity meter installation, simple existing supply","fuel":"Electricity","customer":"Business, confirm meter type","area":"UK guide proxy for a London starting budget","price":"£200 to £800, VAT not stated","min":200,"max":800,"status":"Guide estimate, lower confidence","basis":"Utility Bidder publishes £200 to £800 as a typical UK electricity meter-installation range. Used unchanged as a provisional London guide because no London-specific retail tariff was found. No London premium has been added.","context":"A broker's editorial guide, not its arrangement fee or a supplier price list. Existing supply assumed for budgeting; CT/half-hourly metering, network upgrades, new connections, civil works and broker fees need individual quotes. A supplier smart-meter replacement may have no upfront charge.","vat":"VAT inclusion not stated. Do not label this +VAT or VAT-inclusive without a supplier quote.","checked":"2026-10-01","sources":[{"title":"Utility Bidder UK meter installation guide","url":"https://www.utilitybidder.co.uk/compare-business-energy/business-gas-electricity-meters-installation/","type":"TPI primary guide, lower-confidence price proxy","quote":""}]}],"methodology":"Primary provider terms, disclosures, service pages and network or meter-owner schedules were checked online on 1 October 2026. Not publicly published means no fixed siteworks arrangement price was found on these reviewed pages, not proof that a private tariff does not exist. Illustrative energy-contract commissions are not market averages or siteworks fees. London budgets retain the source's geographic and job scope. They are never assigned to a particular intermediary and exclude any unknown intermediary margin. The lower-confidence electricity meter proxy is a UK broker guide, not an installer tariff. VAT is marked only as stated in the relevant source."};
+  var answerContexts=[];
+  function showAnswerContext(id,amount){
+    var x=answerContexts[id];if(!x)return;
+    var records=Object.keys(researchEntries).filter(function(key){var item=researchEntries[key];return x.research.indexOf(item.job||item.name)>-1});
+    var links=x.rows.map(function(row){return '<p><button type="button" class="context-link" data-evidence="'+R.indexOf(row)+'">'+esc(row.n+' · '+row.a+' · '+row.i+' · '+row.p)+' ↗</button></p>'}).join('');
+    links+=records.map(function(key){var item=researchEntries[key];return '<p><button type="button" class="context-link" data-research="'+key+'">'+esc(item.job||item.name)+' ↗</button></p>'}).join('');
+    var online=x.sources.map(function(source,i){var url=safeUrl(source.url);return url?'<a class="evidence-source" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">['+(i+1)+'] '+esc(source.title||'Online source')+'<span class="source-url">'+esc(url)+'</span></a>':''}).join('');
+    $('evidence-body').innerHTML='<div class="evidence-amount">'+esc(amount)+'</div><h3>Answer context</h3><p>'+esc(x.reply)+'</p><p class="evidence-warning">The AI wrote this answer. Check the matching record and its conditions below before quoting. Online search snippets are discovery leads and do not verify an exact tariff.</p>'+links+online;
+    if(!$('evidence').open)evidenceTrigger=document.activeElement;$('evidence').showModal();
+  }
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-answer-context]');if(b)showAnswerContext(+b.dataset.answerContext,b.dataset.amount)});
+  var researchEntries={};
+  RESEARCH.tpis.forEach(function(x){researchEntries['broker:'+x.id]=x});
+  RESEARCH.londonEstimates.forEach(function(x){researchEntries['budget:'+x.id]=x});
+  function researchMoney(text,key){
+    return esc(text).replace(/£\d[\d,]*(?:\.\d{1,2})?/g,function(amount){return '<button class="money-link" type="button" data-research="'+esc(key)+'" aria-label="Context and sources for '+amount+'">'+amount+'</button>'});
+  }
+  function researchSources(x){return x.sources.map(function(source){var url=safeUrl(source.url);return url?'<a class="evidence-source" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(source.title)+' ↗<span class="source-url">'+esc(url)+'</span></a><small>'+esc(source.type)+'</small>':''}).join('')}
+  function showResearch(key){
+    var x=researchEntries[key];if(!x)return;
+    var budget=key.indexOf('budget:')===0;
+    $('evidence-body').innerHTML='<div class="evidence-amount">'+esc(budget?x.price:'Quote required')+'</div><h3>'+esc(x.job||x.name)+'</h3>'
+      +'<dl class="evidence-meta"><dt>Type</dt><dd>'+esc(budget?x.status:x.type)+'</dd><dt>Area</dt><dd>'+esc(x.area||'UK energy brokerage')+'</dd><dt>Checked</dt><dd>01/10/2026</dd><dt>VAT</dt><dd>'+esc(x.vat)+'</dd></dl>'
+      +'<p><strong>'+(budget?'Calculation and basis':'How the broker charges')+'</strong><br>'+esc(x.basis||x.charging)+'</p><p><strong>Scope and exclusions</strong><br>'+esc(x.context)+'</p>'
+      +'<p class="evidence-warning">'+esc(budget?'This is a planning example or published component, not a named broker’s quote. Any broker fee is extra and unknown.':x.price+'. Do not confuse energy-contract commission with a siteworks charge. Ask for an itemised quote.')+'</p><div class="research-dialog-sources">'+researchSources(x)+'</div>';
+    if(!$('evidence').open)evidenceTrigger=document.activeElement;$('evidence').showModal();
+  }
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-research]');if(b)showResearch(b.dataset.research)});
+  $('broker-cards').innerHTML=RESEARCH.tpis.map(function(x){var key='broker:'+x.id;return '<article class="research-card"><span class="research-tag">'+esc(x.type)+'</span><h3>'+esc(x.name)+'</h3><button class="research-price" type="button" data-research="'+key+'">Quote required</button><p>'+esc(x.price)+'.</p><p>'+researchMoney(x.charging,key)+'</p><button class="context-link" type="button" data-research="'+key+'">Fee context and source URLs ↗</button></article>'}).join('');
+  $('london-cards').innerHTML=RESEARCH.londonEstimates.map(function(x){var key='budget:'+x.id;return '<article class="research-card"><span class="research-tag '+(x.status.indexOf('Guide')>-1?'guide':'estimated')+'">'+esc(x.status)+'</span><h3>'+esc(x.job)+'</h3><button class="research-price" type="button" data-research="'+key+'" aria-label="Budget context and sources for '+esc(x.job)+'">'+esc(x.price)+'</button><span class="budget-label">Underlying work only. Broker fee extra.</span><p>'+esc(x.area)+'</p><p>'+esc(x.context)+'</p><button class="context-link" type="button" data-research="'+key+'">Calculation and source URLs ↗</button></article>'}).join('');
+  $('research-method').textContent=RESEARCH.methodology;
+  function researchFor(question,previous){
+    var q=question.toLowerCase(),broker=/\btpi\b|\btpis\b|broker|intermediar/.test(q),named=RESEARCH.tpis.filter(function(x){return q.indexOf(x.name.toLowerCase())>-1});
+    var wantsBudget=/estimate|budget|rough|approx|ballpark/.test(q)&&(/london/.test(q+' '+previous.toLowerCase()));
+    if(!broker&&!named.length&&!wantsBudget)return '';
+    var chosen=(named.length?named:broker?RESEARCH.tpis:[]).map(function(x){return 'TPI RESEARCH: '+x.name+' | '+x.price+' | '+x.charging+' | '+x.context+' | VAT: '+x.vat+' | SOURCES: '+x.sources.map(function(y){return y.url}).join(', ')});
+    if(wantsBudget||broker||named.length){
+      var job=detect(question).job;
+      var mapped={'New connection':/connection/,'Meter install':/install/,'Meter removal':/removal/,'Meter upgrade':/upgrade/,'Disconnection':/disconnection/,'Alteration / move':/move/};
+      var budgets=RESEARCH.londonEstimates.filter(function(x){return !job||!mapped[job]||mapped[job].test(x.job.toLowerCase())});
+      budgets.forEach(function(x){chosen.push('LONDON PLANNING ESTIMATE: '+x.job+' | '+x.price+' | AREA: '+x.area+' | '+x.status+' | BASIS: '+x.basis+' | EXCLUSIONS: '+x.context+' | VAT: '+x.vat+' | SOURCES: '+x.sources.map(function(y){return y.url}).join(', '))});
+    }
+    return '\nRESEARCH CHECKED 01/10/2026. Estimates are underlying components, NOT broker quotes. Unknown broker fees are extra.\n'+chosen.join('\n');
+  }
+
 
   // Ask box: talks to the relay, which holds the key and calls a free OpenCode model.
   var RELAY='https://siteworks-relay.saumya-siteworks.workers.dev';
@@ -426,24 +445,35 @@ code{font-family:var(--mono);font-size:12.5px;background:var(--card);border:2px 
     }).join('\n')}
     /*END*/
     function bubble(cls,text){var d=document.createElement('div');d.className='msg '+cls;d.textContent=text;$('thread').appendChild(d);return d}
+    function renderReply(node,reply,sources,search,rows,research){
+      node.textContent='';
+      var answerId=answerContexts.push({reply:reply,sources:sources||[],rows:rows||[],research:research||''})-1;
+      var urlPattern=/https?:\/\/[^\s<>]+|£\d[\d,]*(?:\.\d{1,2})?/g,at=0,match;
+      while((match=urlPattern.exec(reply))){node.appendChild(document.createTextNode(reply.slice(at,match.index)));var raw=match[0],urlText=raw.replace(/[),.;\]]+$/,'');var href=safeUrl(urlText);if(raw.charAt(0)==='£'){var money=document.createElement('button');money.type='button';money.className='money-link';money.dataset.answerContext=answerId;money.dataset.amount=raw;money.textContent=raw;money.setAttribute('aria-label','Check answer context and sources for '+raw);node.appendChild(money)}else if(href){var link=document.createElement('a');link.href=href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=urlText;node.appendChild(link);node.appendChild(document.createTextNode(raw.slice(urlText.length)))}else node.appendChild(document.createTextNode(raw));at=match.index+raw.length}
+      node.appendChild(document.createTextNode(reply.slice(at)));
+      if(search&&['unavailable','blocked'].indexOf(search.status)>-1){var status=document.createElement('div');status.className='search-status';status.textContent=search.message||'Online search is unavailable for this answer.';node.appendChild(status)}
+      if(Array.isArray(sources)&&sources.length){var list=document.createElement('div');list.className='msg-sources';var label=document.createElement('strong');label.textContent='Online sources';list.appendChild(label);sources.slice(0,8).forEach(function(s,i){var url=safeUrl(s.url);if(!url)return;var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='['+(i+1)+'] '+(s.title||new URL(url).hostname)+' ↗';list.appendChild(a)});if(list.children.length>1)node.appendChild(list)}
+    }
     function ask(q){
       q=q.trim();if(!q||busy)return;
       busy=true;$('askgo').disabled=true;$('askq').value='';
       var prev='';for(var k=hist.length-1;k>=0;k--)if(hist[k].role==='user'){prev=hist[k].content;break}
-      var context=lines(pick(q,prev));
+      var selected=pick(q,prev), research=researchFor(q,prev);if(research&&(/\btpis?\b|broker|intermediar/i.test(q)||RESEARCH.tpis.some(function(x){return q.toLowerCase().indexOf(x.name.toLowerCase())>-1})))selected=[];
+      var context=lines(selected)+'\nSOURCE REGISTER (match provider, area and job):\n'+selected.map(function(x){return [x.n,x.a,x.j,'VAT: '+vatBasis(x),'SOURCE URL: '+(safeUrl(x.src)||'unavailable'),'SOURCE TYPE: '+(x.st==='quo'?'quote route only':x.st==='unc'?'unconfirmed, does not verify the figure':'published list')].join(' | ')}).join('\n')+research;
       bubble('me',q);hist.push({role:'user',content:q});
-      var w=bubble('bot wait','Looking it up...');
-      fetch(RELAY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({context:context,messages:hist.slice(-8)})})
+      var useSearch=$('askweb').checked;
+      var w=bubble('bot wait',useSearch?'Searching UK siteworks sources...':'Looking up the price book...');
+      fetch(RELAY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({context:context,messages:hist.slice(-8),search:useSearch})})
         .then(function(res){return res.json().then(function(j){return {ok:res.ok,j:j}})})
         .then(function(o){
           w.className='msg bot';
-          if(o.ok&&o.j.reply){w.textContent=o.j.reply;hist.push({role:'assistant',content:o.j.reply})}
-          else{w.textContent=(o.j&&o.j.error)||'No answer came back. The prices below still work.';hist.pop()}
+          if(o.ok&&o.j.reply){renderReply(w,o.j.reply,o.j.sources,o.j.search,selected,research);hist.push({role:'assistant',content:o.j.reply})}
+          else{renderReply(w,(o.j&&o.j.error)||'No answer came back. The prices below still work.',o.j&&o.j.sources,o.j&&o.j.search,selected,research);hist.pop()}
         })
         .catch(function(){w.className='msg bot';w.textContent='Could not reach the answer service. The prices below still work. Try again in a minute.';hist.pop()})
         .then(function(){busy=false;$('askgo').disabled=false;$('askq').focus()});
     }
-    ['New gas connection in North London?','U40 meter: install vs removal?','Cheapest network for a gas disconnection?','Move a gas pipe 6 metres, North West?'].forEach(function(t){
+    ['New gas connection in North London?','U40 meter: install vs removal?','Cheapest network for a gas disconnection?','Move a gas pipe 6 metres, North West?','London electricity disconnection estimate?','What do other TPI brokers charge for siteworks?'].forEach(function(t){
       var b=document.createElement('button');b.type='button';b.className='btn';b.textContent=t;
       b.addEventListener('click',function(){ask(t)});$('eg').appendChild(b);
     });
