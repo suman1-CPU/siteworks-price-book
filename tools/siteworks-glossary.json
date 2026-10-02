@@ -1,0 +1,1355 @@
+{
+  "checked": "2026-10-02",
+  "terms": [
+    {
+      "id": "tpi",
+      "term": "Third-party intermediary (TPI)",
+      "aliases": [
+        "energy broker",
+        "broker",
+        "intermediary"
+      ],
+      "category": "Networks and roles",
+      "definition": "A business arranging energy contracts or related support between customers and suppliers.",
+      "whyItMatters": "Broker coordination and physical work are separate services.",
+      "quoteCheck": "Identify its service and who performs the actual work.",
+      "sources": [
+        {
+          "title": "Ofgem: Third-party intermediaries market review",
+          "url": "https://www.ofgem.gov.uk/call-for-input/third-party-intermediaries-tpis-market-review"
+        }
+      ]
+    },
+    {
+      "id": "dno",
+      "term": "Distribution Network Operator (DNO)",
+      "aliases": [
+        "electricity distributor",
+        "network operator"
+      ],
+      "category": "Networks and roles",
+      "definition": "The operator owning and maintaining the local electricity distribution network.",
+      "whyItMatters": "Cable and capacity work need the correct network route.",
+      "quoteCheck": "Check whether the site is on that DNO or an embedded IDNO.",
+      "sources": [
+        {
+          "title": "SSEN: Connections glossary",
+          "url": "https://www.ssen.co.uk/our-services/glossary/"
+        }
+      ]
+    },
+    {
+      "id": "idno",
+      "term": "Independent Distribution Network Operator (IDNO)",
+      "aliases": [
+        "independent network"
+      ],
+      "category": "Networks and roles",
+      "definition": "An operator of local electricity networks connected to a DNO, sometimes through another IDNO.",
+      "whyItMatters": "The local network may differ from the regional DNO.",
+      "quoteCheck": "Check the actual connected network.",
+      "sources": [
+        {
+          "title": "SSEN: Connections glossary",
+          "url": "https://www.ssen.co.uk/our-services/glossary/"
+        }
+      ]
+    },
+    {
+      "id": "icp",
+      "term": "Independent Connection Provider (ICP)",
+      "aliases": [
+        "independent connections provider"
+      ],
+      "category": "Networks and roles",
+      "definition": "An accredited provider able to undertake eligible electricity connection works.",
+      "whyItMatters": "Its construction role differs from a broker or network owner.",
+      "quoteCheck": "Check accreditation, scope and asset adoption.",
+      "sources": [
+        {
+          "title": "UKPN: Appointing an ICP or IDNO",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/worksinformation/4.1-information-common-to-all-quotes/4.1.12-appointing-an-ICP-or-IDNO/"
+        }
+      ]
+    },
+    {
+      "id": "gdn",
+      "term": "Gas distribution network (GDN)",
+      "aliases": [
+        "gas transporter",
+        "GT",
+        "gas network"
+      ],
+      "category": "Networks and roles",
+      "definition": "The network transporting gas through mains and service pipes to the property.",
+      "whyItMatters": "Pipe and meter work can have different providers.",
+      "quoteCheck": "Confirm the actual gas network before using regional prices.",
+      "sources": [
+        {
+          "title": "SGN: Getting Connected guide, January 2026",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/SGN-Getting-Connected-Guide-070126%20v1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "supplier",
+      "term": "Energy supplier",
+      "aliases": [
+        "retailer",
+        "billing supplier"
+      ],
+      "category": "Networks and roles",
+      "definition": "The business supplying and billing for energy and coordinating its metering arrangements.",
+      "whyItMatters": "It is the usual contact for meter work.",
+      "quoteCheck": "Check retail metering charges separately from network tariffs.",
+      "sources": [
+        {
+          "title": "Cadent: New gas connections",
+          "url": "https://cadentgas.com/our-services/household-customers/new-gas-connection"
+        },
+        {
+          "title": "UKPN: What do you need to upgrade?",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/what-do-you-need-to-upgrade"
+        }
+      ]
+    },
+    {
+      "id": "meter-owner",
+      "term": "Meter owner",
+      "aliases": [
+        "meter asset owner",
+        "asset provider"
+      ],
+      "category": "Networks and roles",
+      "definition": "The party providing the meter asset.",
+      "whyItMatters": "Its tariff is not automatically the retail customer price.",
+      "quoteCheck": "Ask which meter owner and tariff apply.",
+      "sources": [
+        {
+          "title": "NGN: Model-capacity explanation, page 14 (2011; terminology only)",
+          "url": "https://www.northerngasnetworks.co.uk/wp-content/uploads/2017/04/Metering-Charges-Statement-November-2011.pdf#page=14"
+        }
+      ]
+    },
+    {
+      "id": "mop",
+      "term": "Meter Operator (MOP)",
+      "aliases": [
+        "metering service provider",
+        "MSP"
+      ],
+      "category": "Networks and roles",
+      "definition": "A provider of electricity meter installation, operation and maintenance. MHHS introduces updated provider names.",
+      "whyItMatters": "Contracts may include recurring fees.",
+      "quoteCheck": "Check appointed provider, one-off work and ongoing charges.",
+      "sources": [
+        {
+          "title": "EDF: Meter operator services",
+          "url": "https://www.edfenergy.com/large-business/energy-solutions/energy-management/meter-operators"
+        },
+        {
+          "title": "EDF: MHHS metering and data services",
+          "url": "https://www.edfenergy.com/large-business/metering/mhhs/changes-metering-and-data-services"
+        }
+      ]
+    },
+    {
+      "id": "gas-safe",
+      "term": "Gas Safe registered engineer",
+      "aliases": [
+        "Gas Safe engineer"
+      ],
+      "category": "Networks and roles",
+      "definition": "An engineer registered for the relevant gas work and categories.",
+      "whyItMatters": "Internal gas work requires suitable competence.",
+      "quoteCheck": "Check registration and categories for the actual premises and equipment.",
+      "sources": [
+        {
+          "title": "HSE: Gas safety for employers",
+          "url": "https://www.hse.gov.uk/gas/employers.htm"
+        }
+      ]
+    },
+    {
+      "id": "mpan",
+      "term": "Meter Point Administration Number (MPAN)",
+      "aliases": [
+        "electricity supply number",
+        "S number"
+      ],
+      "category": "Supply identifiers",
+      "definition": "The reference identifying an electricity supply point in Great Britain.",
+      "whyItMatters": "It identifies the supply, not the meter.",
+      "quoteCheck": "Use the bill or confirmed network record; confirm required digits.",
+      "sources": [
+        {
+          "title": "British Gas business: Supply references and meter serials",
+          "url": "https://www.britishgas.co.uk/business/help-and-support/billing-and-payments/mpan-mprn-meter-serial-numbers"
+        }
+      ]
+    },
+    {
+      "id": "mprn",
+      "term": "Meter Point Reference Number (MPRN)",
+      "aliases": [
+        "gas supply number",
+        "M number"
+      ],
+      "category": "Supply identifiers",
+      "definition": "The reference identifying a gas supply point in Great Britain.",
+      "whyItMatters": "It differs from the meter serial.",
+      "quoteCheck": "Confirm the supply record with supplier or network.",
+      "sources": [
+        {
+          "title": "British Gas business: Supply references and meter serials",
+          "url": "https://www.britishgas.co.uk/business/help-and-support/billing-and-payments/mpan-mprn-meter-serial-numbers"
+        }
+      ]
+    },
+    {
+      "id": "msn",
+      "term": "Meter serial number (MSN)",
+      "aliases": [
+        "meter ID",
+        "serial number"
+      ],
+      "category": "Supply identifiers",
+      "definition": "The identifier of the physical gas or electricity meter.",
+      "whyItMatters": "It can change when the meter is exchanged.",
+      "quoteCheck": "Compare bill and meter serials; resolve mismatches with the supplier.",
+      "sources": [
+        {
+          "title": "British Gas business: Supply references and meter serials",
+          "url": "https://www.britishgas.co.uk/business/help-and-support/billing-and-payments/mpan-mprn-meter-serial-numbers"
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "term": "U6 gas meter",
+      "aliases": [
+        "U 6",
+        "domestic gas meter"
+      ],
+      "category": "Gas meters and capacity",
+      "definition": "A common domestic-size gas meter designation.",
+      "whyItMatters": "Larger appliance loads may need another size.",
+      "quoteCheck": "Obtain a gas-load assessment; do not size solely by bedrooms.",
+      "sources": [
+        {
+          "title": "SGN: Getting Connected guide, January 2026",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/SGN-Getting-Connected-Guide-070126%20v1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "u16",
+      "term": "U16 gas meter",
+      "aliases": [
+        "U 16"
+      ],
+      "category": "Gas meters and capacity",
+      "definition": "Nominal gas meter capacity of 16 cubic metres per hour.",
+      "whyItMatters": "Tariff-band endpoints are different.",
+      "quoteCheck": "Confirm model, pressure and target size.",
+      "sources": [
+        {
+          "title": "NGN: Model-capacity explanation, page 14 (2011; terminology only)",
+          "url": "https://www.northerngasnetworks.co.uk/wp-content/uploads/2017/04/Metering-Charges-Statement-November-2011.pdf#page=14"
+        }
+      ]
+    },
+    {
+      "id": "u25",
+      "term": "U25 gas meter",
+      "aliases": [
+        "U 25"
+      ],
+      "category": "Gas meters and capacity",
+      "definition": "Nominal gas meter capacity of 25 cubic metres per hour.",
+      "whyItMatters": "Tariff-band endpoints are different.",
+      "quoteCheck": "Confirm model, pressure and target size.",
+      "sources": [
+        {
+          "title": "NGN: Model-capacity explanation, page 14 (2011; terminology only)",
+          "url": "https://www.northerngasnetworks.co.uk/wp-content/uploads/2017/04/Metering-Charges-Statement-November-2011.pdf#page=14"
+        }
+      ]
+    },
+    {
+      "id": "u40",
+      "term": "U40 gas meter",
+      "aliases": [
+        "U 40"
+      ],
+      "category": "Gas meters and capacity",
+      "definition": "Nominal gas meter capacity of 40 cubic metres per hour.",
+      "whyItMatters": "Tariff-band endpoints are different.",
+      "quoteCheck": "Confirm model, pressure and target size.",
+      "sources": [
+        {
+          "title": "NGN: Model-capacity explanation, page 14 (2011; terminology only)",
+          "url": "https://www.northerngasnetworks.co.uk/wp-content/uploads/2017/04/Metering-Charges-Statement-November-2011.pdf#page=14"
+        }
+      ]
+    },
+    {
+      "id": "u65",
+      "term": "U65 gas meter",
+      "aliases": [
+        "U 65"
+      ],
+      "category": "Gas meters and capacity",
+      "definition": "Nominal gas meter capacity of 65 cubic metres per hour.",
+      "whyItMatters": "Tariff-band endpoints are different.",
+      "quoteCheck": "Confirm model, pressure and target size.",
+      "sources": [
+        {
+          "title": "NGN: Model-capacity explanation, page 14 (2011; terminology only)",
+          "url": "https://www.northerngasnetworks.co.uk/wp-content/uploads/2017/04/Metering-Charges-Statement-November-2011.pdf#page=14"
+        }
+      ]
+    },
+    {
+      "id": "u100",
+      "term": "U100 gas meter",
+      "aliases": [
+        "U 100"
+      ],
+      "category": "Gas meters and capacity",
+      "definition": "Nominal gas meter capacity of 100 cubic metres per hour.",
+      "whyItMatters": "Tariff-band endpoints are different.",
+      "quoteCheck": "Confirm model, pressure and target size.",
+      "sources": [
+        {
+          "title": "NGN: Model-capacity explanation, page 14 (2011; terminology only)",
+          "url": "https://www.northerngasnetworks.co.uk/wp-content/uploads/2017/04/Metering-Charges-Statement-November-2011.pdf#page=14"
+        }
+      ]
+    },
+    {
+      "id": "u160",
+      "term": "U160 gas meter",
+      "aliases": [
+        "U 160"
+      ],
+      "category": "Gas meters and capacity",
+      "definition": "Nominal gas meter capacity of 160 cubic metres per hour.",
+      "whyItMatters": "Tariff-band endpoints are different.",
+      "quoteCheck": "Confirm model, pressure and target size.",
+      "sources": [
+        {
+          "title": "NGN: Model-capacity explanation, page 14 (2011; terminology only)",
+          "url": "https://www.northerngasnetworks.co.uk/wp-content/uploads/2017/04/Metering-Charges-Statement-November-2011.pdf#page=14"
+        }
+      ]
+    },
+    {
+      "id": "scmh",
+      "term": "Standard cubic metres per hour (scmh)",
+      "aliases": [
+        "standard m³/h",
+        "scm/h",
+        "gas flow rate"
+      ],
+      "category": "Gas meters and capacity",
+      "definition": "Gas volume flow expressed at standard reference conditions.",
+      "whyItMatters": "Meter tariffs group capacities into bands.",
+      "quoteCheck": "Match the exact capacity band and pressure scope.",
+      "sources": [
+        {
+          "title": "SGN Southern: Metering charges effective June 2026, page 5",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/2.%20Southern%202026.pdf#page=5"
+        }
+      ]
+    },
+    {
+      "id": "gas-pressure",
+      "term": "Gas installation pressure",
+      "aliases": [
+        "low pressure",
+        "LP",
+        "medium pressure",
+        "MP",
+        "intermediate pressure",
+        "IP"
+      ],
+      "category": "Gas meters and capacity",
+      "definition": "The pressure category of the gas service or installation.",
+      "whyItMatters": "Standard low-pressure meter rates exclude some enhancements.",
+      "quoteCheck": "Confirm actual pressure and whether a bespoke quote is needed.",
+      "sources": [
+        {
+          "title": "SGN Southern: Metering charges effective June 2026, page 5",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/2.%20Southern%202026.pdf#page=5"
+        }
+      ]
+    },
+    {
+      "id": "housing",
+      "term": "Meter housing",
+      "aliases": [
+        "meter box",
+        "kiosk",
+        "cabinet"
+      ],
+      "category": "Gas meters and capacity",
+      "definition": "The enclosure accommodating a gas meter installation.",
+      "whyItMatters": "Meter-only and housing-inclusive options differ.",
+      "quoteCheck": "Check enclosure, base and relief-roof scope.",
+      "sources": [
+        {
+          "title": "SGN Southern: Metering charges effective June 2026, page 5",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/2.%20Southern%202026.pdf#page=5"
+        }
+      ]
+    },
+    {
+      "id": "amps",
+      "term": "Ampere (A)",
+      "aliases": [
+        "amp",
+        "amps",
+        "amperage"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "The unit of electric current.",
+      "whyItMatters": "Amps alone are not a kVA rating.",
+      "quoteCheck": "Confirm voltage, phases and whether stated per phase.",
+      "sources": [
+        {
+          "title": "NIST: Ampere definition",
+          "url": "https://www.nist.gov/glossary-term/18436"
+        }
+      ]
+    },
+    {
+      "id": "kva",
+      "term": "Kilovolt-ampere (kVA)",
+      "aliases": [
+        "apparent power",
+        "supply capacity"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "A unit of apparent electrical power equal to 1,000 volt-amperes.",
+      "whyItMatters": "Networks assess capacity alongside demand.",
+      "quoteCheck": "Compare existing/requested capacity, not annual usage.",
+      "sources": [
+        {
+          "title": "SP Energy Networks: EV fleet capacity guidance and glossary",
+          "url": "https://www.spenergynetworks.co.uk/userfiles/file/Connecting%20your%20EV%20fleet%20V3.pdf"
+        }
+      ]
+    },
+    {
+      "id": "kw",
+      "term": "Kilowatt (kW)",
+      "aliases": [
+        "real power",
+        "active power"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "A unit of power equal to 1,000 watts.",
+      "whyItMatters": "Power differs from energy accumulated over time.",
+      "quoteCheck": "Distinguish appliance kW from kVA.",
+      "sources": [
+        {
+          "title": "SP Energy Networks: EV fleet capacity guidance and glossary",
+          "url": "https://www.spenergynetworks.co.uk/userfiles/file/Connecting%20your%20EV%20fleet%20V3.pdf"
+        }
+      ]
+    },
+    {
+      "id": "kwh",
+      "term": "Kilowatt-hour (kWh)",
+      "aliases": [
+        "energy consumption",
+        "annual usage"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "Energy used by one kilowatt of power over one hour.",
+      "whyItMatters": "Annual consumption does not identify peak capacity.",
+      "quoteCheck": "Keep annual usage and peak demand separate.",
+      "sources": [
+        {
+          "title": "SP Energy Networks: EV fleet capacity guidance and glossary",
+          "url": "https://www.spenergynetworks.co.uk/userfiles/file/Connecting%20your%20EV%20fleet%20V3.pdf"
+        }
+      ]
+    },
+    {
+      "id": "power-factor",
+      "term": "Power factor",
+      "aliases": [
+        "PF"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "The relationship between real and apparent power in an AC load.",
+      "whyItMatters": "kW and kVA are not always interchangeable.",
+      "quoteCheck": "Have the designer check load and connection requirements.",
+      "sources": [
+        {
+          "title": "UKPN: Power factor",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/Customerresponsibilities/3.17-power-factor/"
+        }
+      ]
+    },
+    {
+      "id": "single-phase",
+      "term": "Single-phase supply",
+      "aliases": [
+        "1 phase",
+        "1ph",
+        "single phase"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "An electricity supply with one AC phase.",
+      "whyItMatters": "Some equipment requires three phase.",
+      "quoteCheck": "Confirm the service arrangement through a qualified assessment.",
+      "sources": [
+        {
+          "title": "SP Energy Networks: Jargon Buster",
+          "url": "https://www.spenergynetworks.co.uk/userfiles/file/SPEnergyNetworks_JargonBuster_v2.pdf"
+        }
+      ]
+    },
+    {
+      "id": "three-phase",
+      "term": "Three-phase supply",
+      "aliases": [
+        "3 phase",
+        "3ph",
+        "three phase",
+        "TPN"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "An electricity supply using three AC phases.",
+      "whyItMatters": "A meter alone does not establish available network capacity.",
+      "quoteCheck": "Confirm service, agreed capacity and compatible meter.",
+      "sources": [
+        {
+          "title": "UKPN: What do you need to upgrade?",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/what-do-you-need-to-upgrade"
+        }
+      ]
+    },
+    {
+      "id": "phase-conversion",
+      "term": "Single-to-three-phase conversion",
+      "aliases": [
+        "phase upgrade",
+        "three-phase upgrade"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "Changing a single-phase network supply to three phase.",
+      "whyItMatters": "Cable, meter and internal electrical work can be separate.",
+      "quoteCheck": "Itemise all components; do not price a meter exchange alone.",
+      "sources": [
+        {
+          "title": "UKPN: What do you need to upgrade?",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/what-do-you-need-to-upgrade"
+        }
+      ]
+    },
+    {
+      "id": "capacity-increase",
+      "term": "Supply capacity increase",
+      "aliases": [
+        "more power",
+        "load increase",
+        "supply upgrade"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "Increasing capacity available to a site, with or without changing phases.",
+      "whyItMatters": "Existing three-phase upgrades can differ from phase conversions.",
+      "quoteCheck": "Confirm existing/requested capacity and network assessment.",
+      "sources": [
+        {
+          "title": "UKPN: Upgrade cost and time",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/cost-and-time"
+        }
+      ]
+    },
+    {
+      "id": "reinforcement",
+      "term": "Network reinforcement",
+      "aliases": [
+        "network strengthening"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "Network works needed to accommodate the requested load.",
+      "whyItMatters": "Complex works may exceed a simple conversion budget.",
+      "quoteCheck": "Obtain project-specific network scope and quote.",
+      "sources": [
+        {
+          "title": "SP Energy Networks: Jargon Buster",
+          "url": "https://www.spenergynetworks.co.uk/userfiles/file/SPEnergyNetworks_JargonBuster_v2.pdf"
+        }
+      ]
+    },
+    {
+      "id": "ct",
+      "term": "Current-transformer (CT) metering",
+      "aliases": [
+        "CT meter",
+        "CTs"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "Electricity metering using current-transformer equipment.",
+      "whyItMatters": "It has specific space and equipment requirements.",
+      "quoteCheck": "Use provider drawings and a specialist quote.",
+      "sources": [
+        {
+          "title": "UKPN: CT-metering responsibilities",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/Customerresponsibilities/3.10-Commercial-or-industrial-connections-CT-metering/"
+        },
+        {
+          "title": "SSEN: Connections glossary",
+          "url": "https://www.ssen.co.uk/our-services/glossary/"
+        }
+      ]
+    },
+    {
+      "id": "hh",
+      "term": "Half-hourly (HH) data",
+      "aliases": [
+        "half hourly",
+        "HH metering"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "Electricity data recorded or used in half-hour intervals.",
+      "whyItMatters": "Settlement classification differs from physical capacity.",
+      "quoteCheck": "Check current metering and data-service arrangements.",
+      "sources": [
+        {
+          "title": "EDF: MHHS metering and data services",
+          "url": "https://www.edfenergy.com/large-business/metering/mhhs/changes-metering-and-data-services"
+        }
+      ]
+    },
+    {
+      "id": "smart",
+      "term": "Smart and advanced (AMR) metering",
+      "aliases": [
+        "smart metering",
+        "AMR",
+        "advanced meter",
+        "remote-read meter"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "Smart and advanced/AMR meters can send or support remote readings; their technology and service categories differ.",
+      "whyItMatters": "Meter replacement does not upgrade the network service.",
+      "quoteCheck": "Check supplier appointment scope and business charges.",
+      "sources": [
+        {
+          "title": "British Gas business: Supply references and meter serials",
+          "url": "https://www.britishgas.co.uk/business/help-and-support/billing-and-payments/mpan-mprn-meter-serial-numbers"
+        },
+        {
+          "title": "EDF: Business metering FAQ",
+          "url": "https://www.edfenergy.com/large-business/customers/business-faq"
+        },
+        {
+          "title": "EDF: MHHS metering and data services",
+          "url": "https://www.edfenergy.com/large-business/metering/mhhs/changes-metering-and-data-services"
+        }
+      ]
+    },
+    {
+      "id": "agreed-capacity",
+      "term": "Agreed supply capacity",
+      "aliases": [
+        "authorised capacity",
+        "ASC",
+        "available capacity"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "Capacity authorised under the site's network arrangements.",
+      "whyItMatters": "Demand and authorised capacity may differ.",
+      "quoteCheck": "Read the connection agreement and confirm proposed changes.",
+      "sources": [
+        {
+          "title": "SP Energy Networks: EV fleet capacity guidance and glossary",
+          "url": "https://www.spenergynetworks.co.uk/userfiles/file/Connecting%20your%20EV%20fleet%20V3.pdf"
+        }
+      ]
+    },
+    {
+      "id": "cut-out",
+      "term": "Service head / cut-out",
+      "aliases": [
+        "main fuse",
+        "supply fuse",
+        "intake fuse"
+      ],
+      "category": "Electricity capacity and metering",
+      "definition": "The incoming supply termination containing the main protective fuse or associated equipment.",
+      "whyItMatters": "It differs from the meter and distribution board.",
+      "quoteCheck": "Check ownership, especially in private networks; arrange authorised work.",
+      "sources": [
+        {
+          "title": "UKPN: Point of supply and ownership boundaries",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/worksinformation/4.1-information-common-to-all-quotes/4.1.5-the-point-of-supply/"
+        }
+      ]
+    },
+    {
+      "id": "connection",
+      "term": "New connection",
+      "aliases": [
+        "new supply",
+        "service connection"
+      ],
+      "category": "Works and job scope",
+      "definition": "Creating a new physical network service to a site.",
+      "whyItMatters": "Connection and meter installation are separate scopes.",
+      "quoteCheck": "Confirm load, meter position, route and supplier arrangements.",
+      "sources": [
+        {
+          "title": "Cadent: New gas connections",
+          "url": "https://cadentgas.com/our-services/household-customers/new-gas-connection"
+        }
+      ]
+    },
+    {
+      "id": "meter-removal",
+      "term": "Meter removal",
+      "aliases": [
+        "take out meter",
+        "remove meter"
+      ],
+      "category": "Works and job scope",
+      "definition": "Removing the physical meter through the supplier or appointed provider.",
+      "whyItMatters": "It need not disconnect the network service.",
+      "quoteCheck": "Check whether pipe/cable disconnection is also required.",
+      "sources": [
+        {
+          "title": "Cadent: Gas disconnections",
+          "url": "https://cadentgas.com/our-services/household-customers/gas-disconnections"
+        }
+      ]
+    },
+    {
+      "id": "disconnection",
+      "term": "Permanent disconnection",
+      "aliases": [
+        "cap off service",
+        "cut off supply"
+      ],
+      "category": "Works and job scope",
+      "definition": "Separating the site service from the gas or electricity network.",
+      "whyItMatters": "It differs from removal or temporary isolation.",
+      "quoteCheck": "Specify service size and route; arrange required meter removal separately.",
+      "sources": [
+        {
+          "title": "Cadent: Gas disconnections",
+          "url": "https://cadentgas.com/our-services/household-customers/gas-disconnections"
+        },
+        {
+          "title": "UKPN: Permanent disconnection cost and time",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/disconnect/permanently-disconnect-cost-and-time"
+        }
+      ]
+    },
+    {
+      "id": "isolation",
+      "term": "Temporary isolation",
+      "aliases": [
+        "de-energisation",
+        "switch off",
+        "clamp",
+        "lock"
+      ],
+      "category": "Works and job scope",
+      "definition": "A temporary arrangement preventing supply use for authorised activity.",
+      "whyItMatters": "It differs from permanent service disconnection.",
+      "quoteCheck": "Confirm method, authorised provider and return visit.",
+      "sources": [
+        {
+          "title": "UKPN: Help and contact",
+          "url": "https://www.ukpowernetworks.co.uk/help-and-contact"
+        }
+      ]
+    },
+    {
+      "id": "re-energise",
+      "term": "Re-energisation",
+      "aliases": [
+        "energise",
+        "switch on",
+        "recommission"
+      ],
+      "category": "Works and job scope",
+      "definition": "Restoring an authorised supply after it has been made inactive.",
+      "whyItMatters": "A disconnected service may need new physical works.",
+      "quoteCheck": "Confirm the service exists and required checks.",
+      "sources": [
+        {
+          "title": "UKPN: Disconnection with temporary electricity supply",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/disconnect/disconnect-and-add-temporary-electricity-supply"
+        },
+        {
+          "title": "UKPN: Appointing an ICP or IDNO",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/worksinformation/4.1-information-common-to-all-quotes/4.1.12-appointing-an-ICP-or-IDNO/"
+        }
+      ]
+    },
+    {
+      "id": "alteration",
+      "term": "Service alteration / move",
+      "aliases": [
+        "relocation",
+        "diversion",
+        "meter move"
+      ],
+      "category": "Works and job scope",
+      "definition": "Changing a service route or meter position.",
+      "whyItMatters": "Meter-only movement and pipe/cable works differ.",
+      "quoteCheck": "Record both positions and whether the service changes.",
+      "sources": [
+        {
+          "title": "Cadent: Gas alterations",
+          "url": "https://cadentgas.com/our-services/household-customers/alterations"
+        }
+      ]
+    },
+    {
+      "id": "abort",
+      "term": "Aborted visit",
+      "aliases": [
+        "abortive visit",
+        "wasted visit",
+        "cancelled visit"
+      ],
+      "category": "Works and job scope",
+      "definition": "A booked visit unable to complete the intended work.",
+      "whyItMatters": "Charges depend on terms, notice and site readiness.",
+      "quoteCheck": "Check access, obstructions, notice and chargeable extras.",
+      "sources": [
+        {
+          "title": "NGN: Connections charging statement, April 2026",
+          "url": "https://www.northerngasnetworks.co.uk/wp-content/uploads/2026/02/NGN-Connections-Charging-Statement-Effective-2-April-2026.pdf"
+        }
+      ]
+    },
+    {
+      "id": "customer-dig",
+      "term": "Customer excavation",
+      "aliases": [
+        "customer digs",
+        "self dig"
+      ],
+      "category": "Civils and land",
+      "definition": "Customer-arranged excavation for an agreed part of the work.",
+      "whyItMatters": "It does not remove every network construction cost.",
+      "quoteCheck": "Confirm route, specification, readiness and restoration responsibility.",
+      "sources": [
+        {
+          "title": "UKPN: On-site trenches and cable route",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/Customerresponsibilities/3.1-On-site-trenches-and-cable-route/"
+        },
+        {
+          "title": "UKPN: After an upgrade application",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/what-happens-after-i-apply"
+        }
+      ]
+    },
+    {
+      "id": "street-works",
+      "term": "Highway / street works",
+      "aliases": [
+        "public road",
+        "footpath",
+        "permit",
+        "road closure"
+      ],
+      "category": "Civils and land",
+      "definition": "Utility work on or under public streets, including footways.",
+      "whyItMatters": "Permits and traffic management affect scope and timing.",
+      "quoteCheck": "Do not use a private-land rate for highway excavation.",
+      "sources": [
+        {
+          "title": "Department for Transport: Street works",
+          "url": "https://www.gov.uk/government/collections/street-works"
+        }
+      ]
+    },
+    {
+      "id": "civils",
+      "term": "Civil works",
+      "aliases": [
+        "excavation",
+        "trenching",
+        "ducting"
+      ],
+      "category": "Civils and land",
+      "definition": "Groundworks and related construction for a utility route.",
+      "whyItMatters": "Equipment prices may exclude these works.",
+      "quoteCheck": "Identify excavation, ducts, surfaces and provider.",
+      "sources": [
+        {
+          "title": "UKPN: On-site trenches and cable route",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/Customerresponsibilities/3.1-On-site-trenches-and-cable-route/"
+        }
+      ]
+    },
+    {
+      "id": "reinstatement",
+      "term": "Reinstatement",
+      "aliases": [
+        "making good",
+        "surface restoration"
+      ],
+      "category": "Civils and land",
+      "definition": "Restoring excavated ground or surfaces after work.",
+      "whyItMatters": "Digging and finished restoration are separate scope checks.",
+      "quoteCheck": "Confirm finishes and responsible contractor.",
+      "sources": [
+        {
+          "title": "Department for Transport: Practical Guide to Street Works",
+          "url": "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/4382/practicalguidetostreetworks.pdf"
+        }
+      ]
+    },
+    {
+      "id": "wayleave",
+      "term": "Wayleave",
+      "aliases": [
+        "land permission"
+      ],
+      "category": "Civils and land",
+      "definition": "An agreement allowing network apparatus on another party's land.",
+      "whyItMatters": "Permission may be needed before work progresses.",
+      "quoteCheck": "Refer ownership and route to the network land-rights team.",
+      "sources": [
+        {
+          "title": "UKPN: Wayleave land rights",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/Customerresponsibilities/3.22-land-rights-non-contestable-works-only/"
+        }
+      ]
+    },
+    {
+      "id": "easement",
+      "term": "Easement / servitude",
+      "aliases": [
+        "deed of easement",
+        "servitude"
+      ],
+      "category": "Civils and land",
+      "definition": "A legal land right for apparatus and access; terminology varies by jurisdiction.",
+      "whyItMatters": "Legal completion can affect timing.",
+      "quoteCheck": "Confirm documents with network and landowner's solicitor.",
+      "sources": [
+        {
+          "title": "UKPN: Easement land rights",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/Customerresponsibilities/3.21-land-rights-required-from-you-within-its-occupation-ownership-and-control/"
+        }
+      ]
+    },
+    {
+      "id": "contestable",
+      "term": "Contestable works",
+      "aliases": [
+        "competition in connections"
+      ],
+      "category": "Civils and land",
+      "definition": "Eligible connection works an accredited independent provider can undertake.",
+      "whyItMatters": "Competitive quotes must preserve required network scope.",
+      "quoteCheck": "Compare equivalent scope and adoption arrangements.",
+      "sources": [
+        {
+          "title": "UKPN: Appointing an ICP or IDNO",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/worksinformation/4.1-information-common-to-all-quotes/4.1.12-appointing-an-ICP-or-IDNO/"
+        }
+      ]
+    },
+    {
+      "id": "noncontestable",
+      "term": "Non-contestable works",
+      "aliases": [
+        "non contestable"
+      ],
+      "category": "Civils and land",
+      "definition": "Connection activities reserved to the licensed network operator under the applicable works split.",
+      "whyItMatters": "ICP prices may exclude these charges.",
+      "quoteCheck": "Check network components and all-works quote overlap.",
+      "sources": [
+        {
+          "title": "UKPN: Appointing an ICP or IDNO",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/worksinformation/4.1-information-common-to-all-quotes/4.1.12-appointing-an-ICP-or-IDNO/"
+        }
+      ]
+    },
+    {
+      "id": "estimate",
+      "term": "Planning estimate",
+      "aliases": [
+        "budget",
+        "ballpark",
+        "indicative price"
+      ],
+      "category": "Quotes and costing",
+      "definition": "A provisional cost indication based on stated assumptions.",
+      "whyItMatters": "It is not a provider offer or market minimum/maximum.",
+      "quoteCheck": "State location, exclusions, source and VAT uncertainty.",
+      "sources": [
+        {
+          "title": "UKPN: Upgrade cost and time",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/cost-and-time"
+        }
+      ]
+    },
+    {
+      "id": "quote",
+      "term": "Quotation",
+      "aliases": [
+        "connection offer",
+        "itemised quote"
+      ],
+      "category": "Quotes and costing",
+      "definition": "A provider's priced offer for specified work, subject to terms.",
+      "whyItMatters": "Changes or expiry can require a new offer.",
+      "quoteCheck": "Check validity, customer, route, load and acceptance terms.",
+      "sources": [
+        {
+          "title": "SGN: Getting Connected guide, January 2026",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/SGN-Getting-Connected-Guide-070126%20v1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "commission",
+      "term": "Energy-contract commission",
+      "aliases": [
+        "pence per kWh uplift",
+        "procurement commission"
+      ],
+      "category": "Quotes and costing",
+      "definition": "Broker payment associated with an energy contract, potentially recovered through the supplier bill.",
+      "whyItMatters": "Consumption-based commission differs from a works fee.",
+      "quoteCheck": "Confirm basis, period and disclosure separately.",
+      "sources": [
+        {
+          "title": "Ofgem: TPI services and charges",
+          "url": "https://www.ofgem.gov.uk/cy/guidance/third-party-intermediaries-what-your-microbusiness-needs-know"
+        }
+      ]
+    },
+    {
+      "id": "siteworks-fee",
+      "term": "One-off siteworks arrangement fee",
+      "aliases": [
+        "admin fee",
+        "broker arrangement fee"
+      ],
+      "category": "Quotes and costing",
+      "definition": "An agreed charge for arranging or managing a particular works job.",
+      "whyItMatters": "Network tariffs do not establish broker retail fees.",
+      "quoteCheck": "Itemise services and distinguish direct charges from energy commission.",
+      "sources": [
+        {
+          "title": "Ofgem: TPI services and charges",
+          "url": "https://www.ofgem.gov.uk/cy/guidance/third-party-intermediaries-what-your-microbusiness-needs-know"
+        }
+      ]
+    },
+    {
+      "id": "markup",
+      "term": "Markup",
+      "aliases": [
+        "mark-up",
+        "cost uplift"
+      ],
+      "category": "Quotes and costing",
+      "definition": "An addition as a percentage of cost: (price − cost) ÷ cost × 100.",
+      "whyItMatters": "Markup and margin percentages differ.",
+      "quoteCheck": "Use a consistent cost and VAT basis.",
+      "sources": [
+        {
+          "title": "HMRC: Mark-up and gross-profit-rate formulae",
+          "url": "https://www.gov.uk/hmrc-internal-manuals/enquiry-manual/em3503"
+        }
+      ]
+    },
+    {
+      "id": "margin",
+      "term": "Gross margin",
+      "aliases": [
+        "gross profit rate",
+        "margin on sales"
+      ],
+      "category": "Quotes and costing",
+      "definition": "Gross profit as a percentage of sales: (price − cost) ÷ price × 100.",
+      "whyItMatters": "A target margin differs from adding markup.",
+      "quoteCheck": "Price = cost ÷ (1 − margin as a decimal).",
+      "sources": [
+        {
+          "title": "HMRC: Gross profit rate on sales",
+          "url": "https://www.gov.uk/hmrc-internal-manuals/enquiry-manual/em3082"
+        }
+      ]
+    },
+    {
+      "id": "vat",
+      "term": "VAT basis",
+      "aliases": [
+        "VAT treatment",
+        "VAT rate"
+      ],
+      "category": "Quotes and costing",
+      "definition": "The tax treatment of the specific supply and invoicing arrangement.",
+      "whyItMatters": "Fuel, connections and contractor work need different checks.",
+      "quoteCheck": "Confirm with the provider; do not default every job to one rate.",
+      "sources": [
+        {
+          "title": "HMRC: Fuel and power, VAT Notice 701/19",
+          "url": "https://www.gov.uk/guidance/vat-on-fuel-and-power-notice-70119"
+        }
+      ]
+    },
+    {
+      "id": "net-gross",
+      "term": "Net and gross price",
+      "aliases": [
+        "excluding VAT",
+        "including VAT",
+        "ex VAT",
+        "inc VAT"
+      ],
+      "category": "Quotes and costing",
+      "definition": "Here, net excludes VAT and gross includes VAT.",
+      "whyItMatters": "Comparison needs the same price basis.",
+      "quoteCheck": "Record net, confirmed VAT and gross total separately.",
+      "sources": [
+        {
+          "title": "HMRC: VAT records and invoice values",
+          "url": "https://www.gov.uk/guidance/record-keeping-for-vat-notice-70021"
+        }
+      ]
+    }
+  ],
+  "checklists": [
+    {
+      "id": "electric-upgrade",
+      "title": "Electricity upgrade quote brief",
+      "jobs": [
+        "Meter upgrade",
+        "New connection"
+      ],
+      "items": [
+        "Record local network, customer type and existing service.",
+        "Distinguish phase conversion from an existing three-phase capacity increase.",
+        "Obtain current/requested capacity and a qualified load assessment.",
+        "Separate network works, supplier meter works and internal board/wiring.",
+        "Confirm route, excavation, access and quote assumptions."
+      ],
+      "sources": [
+        {
+          "title": "UKPN: What do you need to upgrade?",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/what-do-you-need-to-upgrade"
+        },
+        {
+          "title": "UKPN: After an upgrade application",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/what-happens-after-i-apply"
+        },
+        {
+          "title": "SP Energy Networks: EV fleet capacity guidance and glossary",
+          "url": "https://www.spenergynetworks.co.uk/userfiles/file/Connecting%20your%20EV%20fleet%20V3.pdf"
+        }
+      ]
+    },
+    {
+      "id": "gas-meter",
+      "title": "Gas meter work quote brief",
+      "jobs": [
+        "Meter install",
+        "Meter upgrade",
+        "Meter removal"
+      ],
+      "items": [
+        "Confirm supplier, meter owner and existing/target model.",
+        "Record capacity and pressure; nominal U-size differs from band endpoints.",
+        "Specify meter-only or housing-inclusive work and excluded bases/roofs.",
+        "Check downstream works, waiting, purging and additional materials.",
+        "Separate owner tariff, supplier retail fee and broker fee."
+      ],
+      "sources": [
+        {
+          "title": "SGN Southern: Metering charges effective June 2026, page 5",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/2.%20Southern%202026.pdf#page=5"
+        },
+        {
+          "title": "NGN: Model-capacity explanation, page 14 (2011; terminology only)",
+          "url": "https://www.northerngasnetworks.co.uk/wp-content/uploads/2017/04/Metering-Charges-Statement-November-2011.pdf#page=14"
+        },
+        {
+          "title": "Ofgem: TPI services and charges",
+          "url": "https://www.ofgem.gov.uk/cy/guidance/third-party-intermediaries-what-your-microbusiness-needs-know"
+        }
+      ]
+    },
+    {
+      "id": "gas-connection",
+      "title": "Gas connection or alteration brief",
+      "jobs": [
+        "New connection",
+        "Alteration / move"
+      ],
+      "items": [
+        "Confirm property type, gas load, network and meter position.",
+        "Measure meter-to-boundary route and identify private land.",
+        "Specify excavation provider and site/planning information.",
+        "Check landlord or third-party land consent.",
+        "Arrange metering separately; review validity and scope changes."
+      ],
+      "sources": [
+        {
+          "title": "Cadent: New gas connections",
+          "url": "https://cadentgas.com/our-services/household-customers/new-gas-connection"
+        },
+        {
+          "title": "Cadent: Gas alterations",
+          "url": "https://cadentgas.com/our-services/household-customers/alterations"
+        },
+        {
+          "title": "SGN: Getting Connected guide, January 2026",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/SGN-Getting-Connected-Guide-070126%20v1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "disconnect",
+      "title": "Permanent disconnection brief",
+      "jobs": [
+        "Disconnection",
+        "Meter removal"
+      ],
+      "items": [
+        "Confirm permanent disconnection rather than isolation or meter-only removal.",
+        "For gas record pipe diameter, pressure and meter details.",
+        "Arrange supplier meter removal as required by the network.",
+        "For electricity record overhead/underground and supply size.",
+        "Confirm completed disconnection before demolition proceeds."
+      ],
+      "sources": [
+        {
+          "title": "Cadent: Gas disconnections",
+          "url": "https://cadentgas.com/our-services/household-customers/gas-disconnections"
+        },
+        {
+          "title": "UKPN: Permanent disconnection cost and time",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/disconnect/permanently-disconnect-cost-and-time"
+        }
+      ]
+    },
+    {
+      "id": "civils",
+      "title": "Civils and land scope check",
+      "jobs": [
+        "New connection",
+        "Alteration / move",
+        "Disconnection",
+        "Meter upgrade"
+      ],
+      "items": [
+        "Split private land and public highway.",
+        "Confirm trench, ducts, surface and excavation provider.",
+        "Identify permits, traffic management and restrictions.",
+        "Confirm reinstatement finish and contractor.",
+        "Resolve network land rights before relying on a work date."
+      ],
+      "sources": [
+        {
+          "title": "UKPN: On-site trenches and cable route",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/Customerresponsibilities/3.1-On-site-trenches-and-cable-route/"
+        },
+        {
+          "title": "Department for Transport: Street works",
+          "url": "https://www.gov.uk/government/collections/street-works"
+        },
+        {
+          "title": "UKPN: Easement land rights",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/Customerresponsibilities/3.21-land-rights-required-from-you-within-its-occupation-ownership-and-control/"
+        }
+      ]
+    },
+    {
+      "id": "customer-quote",
+      "title": "Customer quote review",
+      "jobs": [
+        "New connection",
+        "Meter install",
+        "Meter upgrade",
+        "Meter removal",
+        "Re-energise / isolate",
+        "Disconnection",
+        "Alteration / move",
+        "Aborted visit"
+      ],
+      "items": [
+        "Label tariff, guide estimate, historical band or actual quotation.",
+        "Itemise network, metering, civils, internal works and broker fees.",
+        "Check package overlap before adding costs.",
+        "Record source/date, area, scope, exclusions and expiry.",
+        "Confirm net/VAT/gross with the invoicing provider.",
+        "Separate procurement commission from one-off arrangement fees."
+      ],
+      "sources": [
+        {
+          "title": "UKPN: Upgrade cost and time",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/cost-and-time"
+        },
+        {
+          "title": "SGN: Getting Connected guide, January 2026",
+          "url": "https://www.sgn.co.uk/sites/default/files/media-entities/documents/2026-02/SGN-Getting-Connected-Guide-070126%20v1.pdf"
+        },
+        {
+          "title": "HMRC: VAT records and invoice values",
+          "url": "https://www.gov.uk/guidance/record-keeping-for-vat-notice-70021"
+        },
+        {
+          "title": "HMRC: Fuel and power, VAT Notice 701/19",
+          "url": "https://www.gov.uk/guidance/vat-on-fuel-and-power-notice-70119"
+        },
+        {
+          "title": "Ofgem: TPI services and charges",
+          "url": "https://www.ofgem.gov.uk/cy/guidance/third-party-intermediaries-what-your-microbusiness-needs-know"
+        }
+      ]
+    },
+    {
+      "id": "visit-ready",
+      "title": "Visit readiness and cancellation",
+      "jobs": [
+        "Meter install",
+        "Meter upgrade",
+        "Meter removal",
+        "Re-energise / isolate",
+        "Disconnection",
+        "Alteration / move",
+        "Aborted visit"
+      ],
+      "items": [
+        "Check provider-specific notice, cancellation and refund terms.",
+        "Confirm access, attendance and route obstructions.",
+        "Prepare agreed trenches and metering space.",
+        "Coordinate provider sequence and return visits.",
+        "Retain written changes and clarify wasted-visit extras."
+      ],
+      "sources": [
+        {
+          "title": "NGN: Connections charging statement, April 2026",
+          "url": "https://www.northerngasnetworks.co.uk/wp-content/uploads/2026/02/NGN-Connections-Charging-Statement-Effective-2-April-2026.pdf"
+        },
+        {
+          "title": "UKPN: After an upgrade application",
+          "url": "https://www.ukpowernetworks.co.uk/i-already-have-electricity-domestic/adding-more-power/what-happens-after-i-apply"
+        },
+        {
+          "title": "UKPN: CT-metering responsibilities",
+          "url": "https://library.ukpowernetworks.co.uk/library/en/Connectionsquotations/Customerresponsibilities/3.10-Commercial-or-industrial-connections-CT-metering/"
+        }
+      ]
+    }
+  ]
+}

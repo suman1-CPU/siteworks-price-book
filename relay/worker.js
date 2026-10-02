@@ -38,7 +38,7 @@ Rules:
 - Search snippets are discovery leads, not verified full-page tariffs. Cite web evidence with [1], [2] etc matching the supplied numbered sources. Say "search result suggests" for a figure found only in a snippet and ask the user to check the linked page. Do not call it a verified or current published charge. Do not infer a broker's siteworks fee from its per-kWh procurement commission.
 - If live search is unavailable or partial, say so and use the supplied matched context and clearly labelled checked reference sources. These are reference guides, not fresh search results. Still provide the applicable planning range; do not stop at no published price when a compatible checked guide is available. Never imply you searched successfully or supply invented links. Distinguish underlying network/supplier cost, broker administration fee and ongoing procurement commission; VAT can differ and must not be assumed for a broker fee.
 
-Prices were last checked on 01/10/2026.
+Baseline records were checked on 01/10/2026; additional records and glossary sources on 02/10/2026. Use per-record checked and effective dates; older tariffs remain older.
 
 PRICE LIST (the rows that match the question; one per line: AREA | network | fuel | job | who for | what | PRICE | detail | from date | status):
 `;

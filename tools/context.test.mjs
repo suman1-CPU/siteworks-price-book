@@ -6,7 +6,7 @@ const data=source.slice(source.indexOf('var CAD='),source.indexOf('var CMP=['));
 const picker=source.slice(source.indexOf('/*PICK*/'),source.indexOf('/*END*/'));
 const research=JSON.parse(source.match(/var RESEARCH=(.*);\n/)[1]);
 const helpers=source.slice(source.indexOf('function phaseUpgrade('),source.indexOf('// Ask box:'));
-const {detect,resolveIntent,pick,researchFor}=new Function(data+";var CU={D:'Home',C:'Business',B:'Home + business'},ST={cur:'Current',old:'Older list',unc:'Unconfirmed',quo:'No fixed price'},RESEARCH="+JSON.stringify(research)+';'+picker+helpers+';return {detect,resolveIntent,pick,researchFor}')();
+const {detect,resolveIntent,pick,researchFor,glossaryFor}=new Function(data+";var CU={D:'Home',C:'Business',B:'Home + business'},ST={cur:'Current',old:'Older list',unc:'Unconfirmed',quo:'No fixed price'},RESEARCH="+JSON.stringify(research)+';'+picker+helpers+';return {detect,resolveIntent,pick,researchFor,glossaryFor}')();
 test('screenshot question gets relevant London guide without unrelated tariffs',()=>{
  const q="what's the highest and lowest a tpi can charge for a 3 phase upgrade?";
  assert.equal(detect(q).fuel,'Electricity');assert(detect(q).supply);
@@ -36,7 +36,15 @@ test('technical scope keeps pipe work, cable type and large supplies separate',(
  const state=resolveIntent('What does Bionic charge for U25 removal?','');assert(researchFor('And their commission?',state).includes('TPI RESEARCH: Bionic'));
 });
 test('missing location/provider/pressure matches never relax to another tariff',()=>{
- for(const q of ['U25 gas meter removal in Newcastle?','EDF U25 gas meter removal in London?','London electricity meter relocation?','Medium pressure U40 meter removal?'])assert.equal(pick(q,'').length,0,q);
+ for(const q of ['U25 gas meter removal in Newcastle?','EDF U25 gas meter removal in London?','Medium pressure U40 meter removal?'])assert.equal(pick(q,'').length,0,q);
+});
+test('new relocation quote route is available without a fabricated exact charge',()=>{const rows=pick('London electricity meter relocation?','');assert(rows.length);assert(rows.every(x=>x.num==null));});
+test('additional references keep hours, temporary capacity and meter technology scopes separate',()=>{
+ const normal=pick('SP Distribution electricity isolation normal hours Scotland','');assert(normal.some(x=>x.num===71));assert(!normal.some(x=>x.num===196));
+ const out=pick('SP Distribution electricity isolation out of hours Scotland','');assert(out.some(x=>x.num===196));assert(!out.some(x=>x.num===71));
+ const permanent=pick('London permanent new electricity connection one small shop','');assert(!permanent.some(x=>/temporary/i.test(x.i)));
+ const temporary=pick('London new temporary electricity connection up to 69 kVA','');assert(temporary.length);assert(temporary.every(x=>/temporary/i.test(x.i)&&!/70 kVA/.test(x.i)));
+ const smart=pick('SMETS2 electricity install Yü Energy','');assert.equal(smart.length,1);assert.equal(smart[0].num,0);assert.equal(smart[0].st,'old');
 });
 test('comparisons keep all requested jobs and sizes',()=>{
  const rows=pick('SGN U40 install vs removal?','');assert(rows.some(x=>x.j==='Meter install'&&x.num===558.76));assert(rows.some(x=>x.j==='Meter removal'&&x.num===423.94));
@@ -58,4 +66,19 @@ test('inventory exercises every scenario without runtime failure or fuel substit
  const inventory=JSON.parse(readFileSync(new URL('./question-coverage.json',import.meta.url),'utf8'));
  assert(inventory.scenarios.length>=76);
  for(const x of inventory.scenarios){const rows=pick(x.question,x.previous||'');const d=resolveIntent(x.question,x.previous||'');researchFor(x.question,x.previous||'',d);if(d.fuel&&d.fuel!=='Both')assert(rows.every(r=>r.f===d.fuel),x.id);}
+});
+
+test('terminology recognises acronyms and phrases without substring collisions',()=>{
+ const terms=JSON.parse(readFileSync(new URL('./siteworks-glossary.json',import.meta.url),'utf8')).terms;
+ assert(glossaryFor('What is an MOP?',terms).some(x=>x.id==='mop'));
+ assert(glossaryFor('Explain gross margin',terms).some(x=>x.id==='margin'));
+ assert(!glossaryFor('Shopping around for suppliers',terms).some(x=>x.id==='mop'));
+});
+
+test('emergency and fractional temporary capacity cannot retrieve planned incompatible costs',()=>{
+ const q='Emergency London electricity underground disconnection cost?';
+ assert(pick(q,'').every(x=>x.extra&&/emergency/.test(x.extra.id)));
+ assert(!researchFor(q,'').includes('£805'));
+ assert.equal(pick('New temporary London electricity supply 69.5 kVA','').length,0);
+ assert.equal(pick('New temporary London electricity supply 70 kVA','').length,0);
 });
