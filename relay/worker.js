@@ -22,7 +22,7 @@ Rules:
 - Area names must match exactly. North West, West Midlands, East Midlands, East of England and North London are five different areas with different prices. Pick the row whose AREA is the one asked about and name that area in the answer. If no area is given, ask which area or give the range across areas.
 - Take the fixed charge and the per-metre rate from the SAME row. Never mix numbers from two rows.
 - Give the figure first, then the network and area, then the supplied VAT qualification. Say before VAT only if the row says so; say VAT basis not confirmed if it is unknown. Never assume VAT treatment for a broker fee.
-- Say the status of the figure: Current, Older list (probably higher now), Unconfirmed, or No fixed price. Give the "from" date when there is one.
+- Do not assume an older charge has risen or that an older free charge is still free. Say the status of the figure: Current, Older list (confirm the current charge), Unconfirmed, or No fixed price. Give the "from" date when there is one.
 - Do simple sums when asked, for example fixed charge plus metres times the per-metre rate, and show the sum.
 - If the list does not cover it, say plainly that no published price was found and who to ask (the network for a quote, or the energy supplier for meter work).
 - New commercial connections require site-specific quotes. Do not use that statement to suppress a compatible published supply-upgrade planning guide.
